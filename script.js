@@ -134,6 +134,11 @@ function smoothScrollTo(targetId) {
           price: '$16,800',
           description: 'Премиальная версия модульного дома G30 предлагает улучшенное качество и расширенные возможности. Современный дизайн и передовые технологии создают идеальное пространство для комфортной жизни. Этот дом сочетает инновационные решения с практичностью, обеспечивая высокий уровень комфорта. Идеальный выбор для тех, кто ценит качество и стиль.',
           image: './media/catalog/G30-view.png',
+          gallery: [
+            './media/catalog/G30.webp',
+            './media/catalog/G30-view.png',
+            './media/catalog/G30-scaled.webp'
+          ],
           characteristics: [
             { 
               label: 'ПЛОЩАДЬ', 
@@ -164,10 +169,58 @@ function smoothScrollTo(targetId) {
           external_protection: 'Каркас конструкции из оцинкованной стали система|Алюминий с фторуглеродным напылением модуль корпуса из сплава|Теплоизоляция, водонепроницаемость и влагостойкая конструктивная система|Трехслойный полый закаленный стекло от пола до потолка|Стандартная распашная входная дверь',
           guest_control: 'Освещение/Электрические шторы|Интеллектуальная система контроля доступа для отелей',
           accessories: 'Опорные ножки совмещены по нижняя часть изделия|Подъемные кольца / Транспортировочные приспособления'
+        },
+        'g50': {
+          title: 'Space Capsule House G50',
+          price: '$18,500',
+          description: 'Модель G50 представляет собой просторное решение премиум-класса для комфортной жизни. Увеличенная площадь и панорамное остекление создают ощущение свободы и простора. Этот модульный дом оснащен передовыми системами безопасности и комфорта, включая умное голосовое управление и панорамный балкон. Идеальный выбор для тех, кто ищет максимальный комфорт в компактном формате.',
+          image: './media/catalog/G50-view.jpg',
+          gallery: [
+            './media/catalog/G50-interer.webp',
+            './media/catalog/G50-view.jpg',
+            './media/catalog/G50.png'
+          ],
+          characteristics: [
+            { 
+              label: 'ПЛОЩАДЬ', 
+              value: '31.4 м²',
+              icon: '<path d="M3 3h18v18H3V3zm2 2v14h14V5H5z"/>'
+            },
+            { 
+              label: 'ВМЕСТИМОСТЬ', 
+              value: '2 чел.',
+              icon: '<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>'
+            },
+            { 
+              label: 'МОЩНОСТЬ', 
+              value: '7.5KW/12KW',
+              icon: '<path d="M7 2v11h3v9l7-12h-4l4-8z"/>'
+            },
+            { 
+              label: 'РАЗМЕРЫ', 
+              value: '9.5×3.3×3.2 м',
+              icon: '<path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v10H7V7z"/>'
+            },
+            { 
+              label: 'ОБЩИЙ ВЕС НЕТТО', 
+              value: '6.5 тонны',
+              icon: '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>'
+            }
+          ],
+          external_protection: 'Каркас конструкции из оцинкованной стали система|Алюминий с фторуглеродным напылением модуль корпуса из сплава|Теплоизоляция, водонепроницаемость и влагостойкая конструктивная система|Трехслойный полый закаленный стекло от пола до потолка|Стандартная распашная входная дверь|Качели из окрашенной нержавеющей стали входная дверь|Панорамный балкон',
+          guest_control: 'Освещение/Электрические шторы|Интеллектуальная система контроля доступа для отелей|Умное голосовое управление',
+          accessories: 'Опорные ножки совмещены по нижняя часть изделия|Подъемные кольца / Транспортировочные приспособления'
         }
       };
       
       const product = productData[productId] || productData['g30'];
+      
+      // Store current product ID for language switching
+      window.currentProductId = productId;
+      
+      // Get current language
+      const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+      const t = window.translations && window.translations[lang] ? window.translations[lang] : window.translations.ru;
       
       // Update modal content
       const titleElement = document.getElementById('productModalTitle');
@@ -175,22 +228,85 @@ function smoothScrollTo(targetId) {
       const descriptionElement = document.getElementById('productModalDescription');
       const imageElement = document.getElementById('productModalImage');
       const characteristicsElement = document.getElementById('productModalCharacteristics');
+      const prevBtn = document.getElementById('productPrevBtn');
+      const nextBtn = document.getElementById('productNextBtn');
       
-      if (titleElement) titleElement.textContent = product.title;
+      // Use translated title
+      if (titleElement) {
+        const titleKey = `product.${productId}.title`;
+        titleElement.textContent = t[titleKey] || product.title;
+      }
       if (priceElement) priceElement.textContent = product.price;
-      if (descriptionElement) descriptionElement.textContent = product.short_description || product.description;
-      if (imageElement) {
-        imageElement.src = product.image;
-        imageElement.alt = product.title;
+      // Use translated description
+      if (descriptionElement) {
+        const descKey = `product.${productId}.description`;
+        descriptionElement.textContent = t[descKey] || product.description;
+      }
+      
+      // Handle product gallery or single image
+      if (product.gallery && product.gallery.length > 1) {
+        // Product has gallery - setup gallery navigation
+        currentProductGallery = product.gallery;
+        currentProductGalleryIndex = 0;
+        
+        console.log('Product has gallery:', currentProductGallery);
+        
+        if (imageElement) {
+          imageElement.src = currentProductGallery[0];
+          imageElement.alt = product.title;
+        }
+        
+        // Show navigation arrows
+        if (prevBtn) {
+          prevBtn.classList.remove('hidden');
+          prevBtn.classList.add('flex');
+        }
+        if (nextBtn) {
+          nextBtn.classList.remove('hidden');
+          nextBtn.classList.add('flex');
+        }
+        
+        updateProductGalleryImage(0);
+      } else {
+        // Product has single image
+        currentProductGallery = [];
+        currentProductGalleryIndex = 0;
+        
+        console.log('Product has single image');
+        
+        if (imageElement) {
+          imageElement.src = product.image;
+          imageElement.alt = product.title;
+        }
+        
+        // Hide navigation arrows
+        if (prevBtn) {
+          prevBtn.classList.add('hidden');
+          prevBtn.classList.remove('flex');
+        }
+        if (nextBtn) {
+          nextBtn.classList.add('hidden');
+          nextBtn.classList.remove('flex');
+        }
       }
       
       if (characteristicsElement) {
         const characteristics = product.characteristics;
         let html = '';
         
+        // Map for characteristic label keys
+        const labelKeys = {
+          'ПЛОЩАДЬ': 'modal.product.area',
+          'ВМЕСТИМОСТЬ': 'modal.product.capacity',
+          'МОЩНОСТЬ': 'modal.product.power',
+          'РАЗМЕРЫ': 'modal.product.dimensions',
+          'ОБЩИЙ ВЕС НЕТТО': 'modal.product.weight'
+        };
+        
         // Первые 4 характеристики
         for (let i = 0; i < 4; i++) {
           const char = characteristics[i];
+          const translatedLabel = t[labelKeys[char.label]] || char.label;
           html += `
             <div class="bg-gray-800 rounded-xl p-2 sm:p-4 border border-gray-700">
               <div class="flex items-center mb-1 sm:mb-3">
@@ -199,7 +315,7 @@ function smoothScrollTo(targetId) {
                     ${char.icon}
                   </svg>
                 </div>
-                <span class="text-gray-400 text-xs sm:text-sm font-medium">${char.label}</span>
+                <span class="text-gray-400 text-xs sm:text-sm font-medium">${translatedLabel}</span>
               </div>
               <div class="text-white text-xs sm:text-xl font-bold">${char.value}</div>
             </div>
@@ -209,6 +325,7 @@ function smoothScrollTo(targetId) {
         // Последняя характеристика (Общий вес нетто) - центрированная
         if (characteristics[4]) {
           const char = characteristics[4];
+          const translatedLabel = t[labelKeys[char.label]] || char.label;
           html += `
             <div class="bg-gray-800 rounded-xl p-2 sm:p-4 border border-gray-700 col-span-2 mx-auto max-w-xs">
               <div class="flex items-center mb-1 sm:mb-3">
@@ -217,7 +334,7 @@ function smoothScrollTo(targetId) {
                     ${char.icon}
                   </svg>
                 </div>
-                <span class="text-gray-400 text-xs sm:text-sm font-medium">${char.label}</span>
+                <span class="text-gray-400 text-xs sm:text-sm font-medium">${translatedLabel}</span>
               </div>
               <div class="text-white text-xs sm:text-xl font-bold">${char.value}</div>
             </div>
@@ -233,6 +350,10 @@ function smoothScrollTo(targetId) {
   
     // Function to update additional systems
     function updateAdditionalSystems(product) {
+      // Get current language
+      const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+      const t = window.translations && window.translations[lang] ? window.translations[lang] : window.translations.ru;
+      
       // External Protection Systems
       const externalProtectionSection = document.getElementById('externalProtectionSection');
       const externalProtectionList = document.getElementById('externalProtectionList');
@@ -240,10 +361,16 @@ function smoothScrollTo(targetId) {
       if (product.external_protection && product.external_protection.trim()) {
         const items = product.external_protection.split('|').filter(item => item.trim());
         if (items.length > 0) {
-          externalProtectionList.innerHTML = items.map(item => 
+          // Map items to their translation keys
+          const itemTranslations = items.map((item, index) => {
+            const key = `system.protection.${index + 1}`;
+            return t[key] || item.trim();
+          });
+          
+          externalProtectionList.innerHTML = itemTranslations.map(item => 
             `<li class="flex items-center text-gray-300">
               <i class="ri-shield-check-line text-primary mr-2"></i>
-              <span>${item.trim()}</span>
+              <span>${item}</span>
             </li>`
           ).join('');
           externalProtectionSection.style.display = 'block';
@@ -261,10 +388,16 @@ function smoothScrollTo(targetId) {
       if (product.guest_control && product.guest_control.trim()) {
         const items = product.guest_control.split('|').filter(item => item.trim());
         if (items.length > 0) {
-          guestControlList.innerHTML = items.map(item => 
+          // Map items to their translation keys
+          const itemTranslations = items.map((item, index) => {
+            const key = `system.control.${index + 1}`;
+            return t[key] || item.trim();
+          });
+          
+          guestControlList.innerHTML = itemTranslations.map(item => 
             `<li class="flex items-center text-gray-300">
               <i class="ri-user-settings-line text-primary mr-2"></i>
-              <span>${item.trim()}</span>
+              <span>${item}</span>
             </li>`
           ).join('');
           guestControlSection.style.display = 'block';
@@ -282,10 +415,16 @@ function smoothScrollTo(targetId) {
       if (product.accessories && product.accessories.trim()) {
         const items = product.accessories.split('|').filter(item => item.trim());
         if (items.length > 0) {
-          accessoriesList.innerHTML = items.map(item => 
+          // Map items to their translation keys
+          const itemTranslations = items.map((item, index) => {
+            const key = `system.accessories.${index + 1}`;
+            return t[key] || item.trim();
+          });
+          
+          accessoriesList.innerHTML = itemTranslations.map(item => 
             `<li class="flex items-center text-gray-300">
               <i class="ri-tools-line text-primary mr-2"></i>
-              <span>${item.trim()}</span>
+              <span>${item}</span>
             </li>`
           ).join('');
           accessoriesSection.style.display = 'block';
@@ -300,6 +439,7 @@ function smoothScrollTo(targetId) {
     // Make functions globally available
     window.smoothScrollTo = smoothScrollTo;
     window.updateAdditionalSystems = updateAdditionalSystems;
+    window.updateProductModalContent = updateProductModalContent;
   
     // ========================================
     // НОВАЯ ПРОСТАЯ СИСТЕМА МОДАЛЬНЫХ ОКОН
@@ -388,7 +528,7 @@ function smoothScrollTo(targetId) {
       './media/gallery/4photo.jpg',
       './media/gallery/5phot.JPG'
     ];
-  
+
     function updateGalleryImage(index) {
       currentGalleryIndex = index;
       const image = document.getElementById('galleryModalImage');
@@ -402,15 +542,45 @@ function smoothScrollTo(targetId) {
         counter.textContent = `${currentGalleryIndex + 1} / ${galleryImages.length}`;
       }
     }
-  
+
     function nextGalleryImage() {
       currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
       updateGalleryImage(currentGalleryIndex);
     }
-  
+
     function prevGalleryImage() {
       currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
       updateGalleryImage(currentGalleryIndex);
+    }
+
+    // Функции для галереи продуктов
+    let currentProductGallery = [];
+    let currentProductGalleryIndex = 0;
+
+    function updateProductGalleryImage(index) {
+      if (currentProductGallery.length === 0) return;
+      
+      currentProductGalleryIndex = index;
+      const image = document.getElementById('productModalImage');
+      
+      if (image && currentProductGallery[currentProductGalleryIndex]) {
+        image.src = currentProductGallery[currentProductGalleryIndex];
+        console.log('Updated product gallery image to:', currentProductGallery[currentProductGalleryIndex]);
+      }
+    }
+
+    function nextProductGalleryImage() {
+      if (currentProductGallery.length === 0) return;
+      currentProductGalleryIndex = (currentProductGalleryIndex + 1) % currentProductGallery.length;
+      console.log('Next image, index:', currentProductGalleryIndex);
+      updateProductGalleryImage(currentProductGalleryIndex);
+    }
+
+    function prevProductGalleryImage() {
+      if (currentProductGallery.length === 0) return;
+      currentProductGalleryIndex = (currentProductGalleryIndex - 1 + currentProductGallery.length) % currentProductGallery.length;
+      console.log('Prev image, index:', currentProductGalleryIndex);
+      updateProductGalleryImage(currentProductGalleryIndex);
     }
   
     // Функция для перехода от продукта к заказу
@@ -436,6 +606,8 @@ function smoothScrollTo(targetId) {
     window.openOrderForm = openOrderForm;
     window.nextGalleryImage = nextGalleryImage;
     window.prevGalleryImage = prevGalleryImage;
+    window.nextProductGalleryImage = nextProductGalleryImage;
+    window.prevProductGalleryImage = prevProductGalleryImage;
   
     // ========================================
     // ИНИЦИАЛИЗАЦИЯ СИСТЕМЫ МОДАЛЬНЫХ ОКОН
@@ -552,6 +724,38 @@ function smoothScrollTo(targetId) {
           e.preventDefault();
           e.stopPropagation();
           nextGalleryImage();
+        });
+      }
+      
+      // Навигация галереи продуктов
+      const productPrevBtn = document.getElementById('productPrevBtn');
+      const productNextBtn = document.getElementById('productNextBtn');
+      
+      if (productPrevBtn) {
+        productPrevBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          prevProductGalleryImage();
+        });
+        
+        productPrevBtn.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          prevProductGalleryImage();
+        });
+      }
+      
+      if (productNextBtn) {
+        productNextBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          nextProductGalleryImage();
+        });
+        
+        productNextBtn.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          nextProductGalleryImage();
         });
       }
       

@@ -569,7 +569,7 @@
   /* Hero Background - Desktop */
   .hero-bg {
     background-color: #1A1A1A;
-    background-image: url('./media/backgrounds/fon2.png');
+    background-image: url('./media/backgrounds/main-background.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1999,6 +1999,48 @@
   @media (max-width: 768px) {
     #galleryModalImage {
       max-height: 50vh !important;
+    }
+  }
+  
+  /* Стрелки галереи продуктов */
+  #productPrevBtn,
+  #productNextBtn {
+    background: rgba(255, 215, 0, 0.8) !important;
+    color: black !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-size: 1.5rem !important;
+    z-index: 10 !important;
+    position: absolute !important;
+  }
+  
+  #productPrevBtn:hover,
+  #productNextBtn:hover {
+    background: rgba(255, 215, 0, 1) !important;
+  }
+  
+  /* Мобильные стили для стрелок галереи продуктов */
+  @media (max-width: 768px) {
+    #productPrevBtn,
+    #productNextBtn {
+      width: 2.5rem !important;
+      height: 2.5rem !important;
+      font-size: 1.2rem !important;
+    }
+    
+    #productPrevBtn {
+      left: 0.5rem !important;
+    }
+    
+    #productNextBtn {
+      right: 0.5rem !important;
     }
   }
   
