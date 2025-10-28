@@ -141,8 +141,6 @@ const translations = {
     'footer.contacts': 'Контакты',
     'footer.copyright': '© 2025 ARTHOUSE GROUP',
     
-    // Modals
-    'modal.close': 'Закрыть',
     'modal.order.title': 'Запросить расчет стоимости',
     'modal.order.name': 'Имя',
     'modal.order.email': 'Электронная почта',
@@ -331,8 +329,6 @@ const translations = {
     'footer.contacts': 'Contacts',
     'footer.copyright': '© 2025 ARTHOUSE GROUP',
     
-    // Modals
-    'modal.close': 'Close',
     'modal.order.title': 'Request Cost Estimate',
     'modal.order.name': 'Name',
     'modal.order.email': 'Email',
@@ -521,8 +517,6 @@ const translations = {
     'footer.contacts': 'კონტაქტები',
     'footer.copyright': '© 2025 ARTHOUSE GROUP',
     
-    // Modals
-    'modal.close': 'დახურვა',
     'modal.order.title': 'ღირებულების გაანგარიშების მოთხოვნა',
     'modal.order.name': 'სახელი',
     'modal.order.email': 'ელფოსტა',

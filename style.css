@@ -35,6 +35,11 @@
     overflow-x: hidden;
   }
   
+  /* Заголовки с шрифтом Ysabeau SC */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ysabeau SC', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
   
   /* Luxury Cards */
   .luxury-card {
@@ -569,7 +574,7 @@
   /* Hero Background - Desktop */
   .hero-bg {
     background-color: #1A1A1A;
-    background-image: url('./media/backgrounds/main-background.png');
+    background-image: url('./media/backgrounds/main-background.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -2002,55 +2007,64 @@
     }
   }
   
-  /* Стрелки галереи продуктов */
+  /* Стрелки галереи продуктов - на изображении по бокам */
   #productPrevBtn,
   #productNextBtn {
-    background: rgba(255, 215, 0, 0.8) !important;
+    background: rgba(255, 215, 0, 0.95) !important;
     color: black !important;
-    border: none !important;
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
     border-radius: 50% !important;
-    width: 3rem !important;
-    height: 3rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
-    font-size: 1.5rem !important;
+    font-size: 1.25rem !important;
     z-index: 10 !important;
     position: absolute !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
   }
   
   #productPrevBtn:hover,
   #productNextBtn:hover {
     background: rgba(255, 215, 0, 1) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5) !important;
   }
   
-  /* Мобильные стили для стрелок галереи продуктов */
+  /* Адаптивные размеры стрелок в зависимости от размера изображения */
   @media (max-width: 768px) {
     #productPrevBtn,
     #productNextBtn {
-      width: 2.5rem !important;
-      height: 2.5rem !important;
-      font-size: 1.2rem !important;
-    }
-    
-    #productPrevBtn {
-      left: 0.5rem !important;
-    }
-    
-    #productNextBtn {
-      right: 0.5rem !important;
+      width: 2rem !important;
+      height: 2rem !important;
+      font-size: 1rem !important;
     }
   }
   
-  /* Изображение в модальном окне продукта - значительно больше чем на карточке */
+  /* Для очень маленьких изображений */
+  @media (max-width: 480px) {
+    #productPrevBtn,
+    #productNextBtn {
+      width: 1.75rem !important;
+      height: 1.75rem !important;
+      font-size: 0.875rem !important;
+    }
+  }
+  
+  /* Изображение в модальном окне продукта - адаптивная рамка как в галерее */
   #productModalImage {
+    max-height: 60vh !important;
     max-width: 100% !important;
-    height: 24rem !important; /* h-96 = 24rem, значительно больше чем на карточке */
-    width: 100% !important;
-    object-fit: cover !important;
-    border-radius: 8px !important;
+    height: auto !important;
+    width: auto !important;
+    object-fit: contain !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+    border: 2px solid #FFD700 !important;
+    display: block !important;
+    margin: 0 auto !important;
   }
   
   /* Адаптивность */
