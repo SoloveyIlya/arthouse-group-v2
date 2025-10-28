@@ -573,7 +573,7 @@
   
   /* Hero Background - Desktop */
   .hero-bg {
-    background-color: #1A1A1A;
+    background-color: #000000;
     background-image: url('./media/backgrounds/main-background.jpg');
     background-size: cover;
     background-position: center center;
@@ -717,8 +717,6 @@
   
   /* Hero заголовок - адаптивный размер */
   .hero-title {
-    word-break: break-word;
-    hyphens: auto;
   }
   
   /* Мобильная версия заголовка */
@@ -726,8 +724,6 @@
     .hero-title {
       font-size: 2.25rem !important; /* 4xl */
       line-height: 2.5rem !important;
-      word-break: keep-all;
-      hyphens: none;
     }
     
     /* Скрываем весь текст между span'ами (включая тире) */
@@ -2000,10 +1996,25 @@
     display: block !important;
   }
   
-  /* Мобильная версия - еще меньше изображение */
+  /* Позиционирование крестиков модальных окон */
+  #closeModal,
+  #closeProductModal,
+  #closeGalleryModal,
+  #closeStructureModal {
+    left: 93%;
+  }
+
+  /* Мобильная версия - крестик ближе к левому краю */
   @media (max-width: 768px) {
     #galleryModalImage {
       max-height: 50vh !important;
+    }
+    
+    #closeModal,
+    #closeProductModal,
+    #closeGalleryModal,
+    #closeStructureModal {
+      left: 87%;
     }
   }
   
@@ -2083,7 +2094,7 @@
     #closeGalleryModal,
     #closeStructureModal {
       top: 15px !important;
-      left: 88% !important;
+      left: 85% !important;
       width: 2rem !important;
       height: 2rem !important;
       font-size: 1.2rem !important;

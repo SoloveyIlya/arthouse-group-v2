@@ -176,6 +176,13 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
           <a href="#faq" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.faq">FAQ</a>
           <a href="#investor-cooperation" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.investors">Инвесторам</a>
           <a href="#contact" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.contacts">Контакты</a>
+          
+          <!-- Language Switcher - Desktop -->
+          <div class="flex items-center space-x-2 ml-4">
+            <button data-lang="ru" class="text-sm px-2 py-1 rounded hover:text-primary transition-colors">RU</button>
+            <button data-lang="en" class="text-sm px-2 py-1 rounded hover:text-primary transition-colors">EN</button>
+            <button data-lang="ge" class="text-sm px-2 py-1 rounded hover:text-primary transition-colors">GE</button>
+          </div>
         </nav>
 
 
@@ -195,6 +202,16 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
           <a href="#faq" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.faq">FAQ</a>
           <a href="#investor-cooperation" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.investors">Инвесторам</a>
           <a href="#contact" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.contacts">Контакты</a>
+          
+          <!-- Language Switcher - Mobile -->
+          <div class="border-t border-gray-700 pt-4 mt-4">
+            <div class="text-gray-400 text-sm mb-3" data-i18n="nav.language">Язык</div>
+            <div class="flex space-x-3">
+              <button data-lang="ru" class="text-sm px-3 py-1 rounded hover:text-primary transition-colors">RU</button>
+              <button data-lang="en" class="text-sm px-3 py-1 rounded hover:text-primary transition-colors">EN</button>
+              <button data-lang="ge" class="text-sm px-3 py-1 rounded hover:text-primary transition-colors">GE</button>
+            </div>
+          </div>
         </div>
       </nav>
     </div>
@@ -962,10 +979,10 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
                 <i class="ri-whatsapp-fill text-xl"></i>
                 <span>WhatsApp</span>
               </a>
-              <button class="flex items-center justify-center space-x-3 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors">
+              <a href="https://t.me/arthouseworld" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center space-x-3 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors">
                 <i class="ri-telegram-fill text-xl"></i>
                 <span>Telegram</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -1129,9 +1146,9 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
       <a href="https://wa.me/85261244912" target="_blank" rel="noopener noreferrer" class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center social-whatsapp transition-luxury rounded-full shadow-lg">
         <i class="ri-whatsapp-fill text-white text-lg sm:text-xl"></i>
       </a>
-      <button class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center social-telegram transition-luxury rounded-full shadow-lg">
+      <a href="https://t.me/arthouseworld" target="_blank" rel="noopener noreferrer" class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center social-telegram transition-luxury rounded-full shadow-lg">
         <i class="ri-telegram-fill text-white text-lg sm:text-xl"></i>
-      </button>
+      </a>
       <button class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-primary hover:bg-secondary transition-luxury rounded-full shadow-lg">
         <i class="ri-phone-fill text-dark text-lg sm:text-xl"></i>
       </button>
@@ -1141,7 +1158,7 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
   <!-- Modal -->
   <div id="orderModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4 sm:p-6 backdrop-blur-luxury">
     <div class="luxury-card max-w-2xl w-full max-h-[90vh] overflow-y-auto luxury-shadow-lg relative">
-      <button id="closeModal" type="button" data-i18n="modal.close" title="Закрыть" style="position: absolute !important; top: 20px !important; left: 93% !important; width: 2.5rem !important; height: 2.5rem !important; background: rgba(255, 215, 0, 0.1) !important; border: 1px solid rgba(255, 215, 0, 0.3) !important; border-radius: 50% !important; color: #FFD700 !important; font-size: 1.5rem !important; font-weight: bold !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 1000 !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+      <button id="closeModal" type="button" data-i18n="modal.close" title="Закрыть" style="position: absolute !important; top: 20px !important;  width: 2.5rem !important; height: 2.5rem !important; background: rgba(255, 215, 0, 0.1) !important; border: 1px solid rgba(255, 215, 0, 0.3) !important; border-radius: 50% !important; color: #FFD700 !important; font-size: 1.5rem !important; font-weight: bold !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 1000 !important; display: flex !important; align-items: center !important; justify-content: center !important;">
         <span class="text-xl font-bold">×</span>
       </button>
       <div class="p-6 sm:p-8 md:p-10">
@@ -1176,7 +1193,7 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
   <!-- Gallery Modal -->
   <div id="galleryModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4 sm:p-6 backdrop-blur-luxury">
     <div class="luxury-card max-w-6xl w-full max-h-[90vh] overflow-y-auto luxury-shadow-lg relative">
-      <button id="closeGalleryModal" type="button" data-i18n="modal.close" title="Закрыть" style="position: absolute !important; top: 20px !important; left: 93% !important; width: 2.5rem !important; height: 2.5rem !important; background: rgba(255, 215, 0, 0.1) !important; border: 1px solid rgba(255, 215, 0, 0.3) !important; border-radius: 50% !important; color: #FFD700 !important; font-size: 1.5rem !important; font-weight: bold !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 1000 !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+      <button id="closeGalleryModal" type="button" data-i18n="modal.close" title="Закрыть" style="position: absolute !important; top: 20px !important;  width: 2.5rem !important; height: 2.5rem !important; background: rgba(255, 215, 0, 0.1) !important; border: 1px solid rgba(255, 215, 0, 0.3) !important; border-radius: 50% !important; color: #FFD700 !important; font-size: 1.5rem !important; font-weight: bold !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 1000 !important; display: flex !important; align-items: center !important; justify-content: center !important;">
         <span class="text-xl font-bold">×</span>
       </button>
       <div class="p-6 sm:p-8 md:p-10">
@@ -1208,7 +1225,7 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
   <!-- Structure Modal -->
   <div id="structureModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4 sm:p-6 backdrop-blur-luxury">
     <div class="luxury-card max-w-6xl w-full max-h-[90vh] overflow-y-auto luxury-shadow-lg relative">
-      <button id="closeStructureModal" type="button" data-i18n="modal.close" title="Закрыть" style="position: absolute !important; top: 20px !important; left: 93% !important; width: 2.5rem !important; height: 2.5rem !important; background: rgba(255, 215, 0, 0.1) !important; border: 1px solid rgba(255, 215, 0, 0.3) !important; border-radius: 50% !important; color: #FFD700 !important; font-size: 1.5rem !important; font-weight: bold !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 1000 !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+      <button id="closeStructureModal" type="button" data-i18n="modal.close" title="Закрыть" style="position: absolute !important; top: 20px !important;  width: 2.5rem !important; height: 2.5rem !important; background: rgba(255, 215, 0, 0.1) !important; border: 1px solid rgba(255, 215, 0, 0.3) !important; border-radius: 50% !important; color: #FFD700 !important; font-size: 1.5rem !important; font-weight: bold !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 1000 !important; display: flex !important; align-items: center !important; justify-content: center !important;">
         <span class="text-xl font-bold">×</span>
       </button>
       <div class="p-6 sm:p-8 md:p-10">
@@ -1230,7 +1247,7 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
   <!-- Product Details Modal -->
   <div id="productModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4 sm:p-6 backdrop-blur-luxury">
     <div class="luxury-card max-w-2xl w-full max-h-[90vh] overflow-y-auto luxury-shadow-lg relative">
-      <button id="closeProductModal" type="button" title="Закрыть" style="position: absolute !important; top: 20px !important; left: 93% !important; width: 2.5rem !important; height: 2.5rem !important; background: rgba(255, 215, 0, 0.1) !important; border: 1px solid rgba(255, 215, 0, 0.3) !important; border-radius: 50% !important; color: #FFD700 !important; font-size: 1.5rem !important; font-weight: bold !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 1000 !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+      <button id="closeProductModal" type="button" title="Закрыть" style="position: absolute !important; top: 20px !important;  width: 2.5rem !important; height: 2.5rem !important; background: rgba(255, 215, 0, 0.1) !important; border: 1px solid rgba(255, 215, 0, 0.3) !important; border-radius: 50% !important; color: #FFD700 !important; font-size: 1.5rem !important; font-weight: bold !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 1000 !important; display: flex !important; align-items: center !important; justify-content: center !important;">
         <span class="text-xl font-bold">×</span>
       </button>
       <div class="p-6 sm:p-8 md:p-10">
