@@ -511,8 +511,19 @@ function smoothScrollTo(targetId) {
     }
   
     function openGalleryModal(index = 0) {
+      // Перестраиваем массив так, чтобы выбранное изображение было первым
+      const selectedImage = originalGalleryImages[index];
+      galleryImages = [
+        selectedImage,
+        ...originalGalleryImages.slice(index + 1),
+        ...originalGalleryImages.slice(0, index)
+      ];
+      
+      // Сбрасываем индекс на 0 (первое изображение в новом массиве)
+      currentGalleryIndex = 0;
+      
       openModal('galleryModal');
-      updateGalleryImage(index);
+      updateGalleryImage(0);
     }
   
     function openStructureModal() {
@@ -521,19 +532,22 @@ function smoothScrollTo(targetId) {
   
     // Функции для галереи
     let currentGalleryIndex = 0;
-    const galleryImages = [
+    const originalGalleryImages = [
       './media/gallery/1photo.JPG',
       './media/gallery/2phot.jpg', 
       './media/gallery/3phot.jpg',
       './media/gallery/4photo.jpg',
       './media/gallery/5phot.JPG',
       './media/gallery/6phot.jpg',
-      './media/gallery/7phot.jpg',
+      './media/gallery/7phot.JPG',
       './media/gallery/8phot.jpg',
       './media/gallery/9phot.jpg',
       './media/gallery/10phot.jpg',
       './media/gallery/11phot.jpg'
     ];
+    
+    // Текущий массив для модального окна (может быть перестроен)
+    let galleryImages = [...originalGalleryImages];
 
     function updateGalleryImage(index) {
       currentGalleryIndex = index;
