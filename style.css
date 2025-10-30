@@ -1,3 +1,70 @@
+  /* Центрирование ссылок в хедере (только desktop) */
+  @media (min-width: 1024px) {
+    .desktop-nav-centered {
+      position: absolute;
+      top: 50%;
+      left: 240px;   /* отступ от логотипа */
+      right: 240px;  /* отступ от переключателя языка */
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: center; /* центрируем внутри заданных границ */
+      gap: 0.5rem;
+    }
+    .desktop-nav-centered a { white-space: nowrap; }
+    /* Дополнительное пространство снизу секции на desktop,
+       чтобы плашка, опущенная на 50%, не обрезалась */
+    .hero-bg { padding-bottom: 140px; }
+  }
+
+  /* Language dropdown - desktop */
+  .lang-dropdown {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 60;
+    width: 120px; /* равняем ширину с логотипом */
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .lang-trigger {
+    background: transparent; /* без рамки */
+    color: #E5E5E5;
+    border: 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .lang-menu {
+    position: absolute;
+    right: 0;
+    margin-top: 8px;
+    background: #111;
+    border: 0; /* без рамки */
+    border-radius: 8px;
+    padding: 6px;
+    min-width: 120px;
+    display: none;
+  }
+
+  .lang-menu.open { display: block; }
+
+  .lang-item {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    color: #E5E5E5;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .lang-item:hover { background: rgba(255,255,255,0.08); color: #FFD700; }
 /* Luxury Premium Design */
 :root {
     --black: #000000;
@@ -24,8 +91,8 @@
     box-sizing: border-box;
     }
     
-    body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  body {
+    font-family: 'Unbounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
     background: var(--black);
     color: var(--white);
     line-height: 1.6;
@@ -35,9 +102,9 @@
     overflow-x: hidden;
   }
   
-  /* Заголовки с шрифтом Ysabeau SC */
+  /* Заголовки */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Ysabeau SC', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Unbounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
   }
   
   
@@ -573,17 +640,16 @@
   
   /* Hero Background - Desktop */
   .hero-bg {
-    background-color: #000000;
-    background-image: url('./media/backgrounds/main-background.jpg');
-    background-size: cover;
-    background-position: center center;
+    background-color: #1e1e1e; /* общий тёмно-серый фон всей секции */
+    background-image: none;
     background-repeat: no-repeat;
     background-attachment: scroll;
     position: relative;
-    min-height: 100vh;
+    min-height: auto; /* секция по высоте контента, без нижнего зазора */
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
     image-rendering: auto;
+    background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -592,12 +658,12 @@
   /* Мобильная версия */
   @media (max-width: 768px) {
     .hero-bg {
-      background-size: contain;
-      background-position: center 35%;
+      background-image: none;
       background-attachment: scroll;
-      -webkit-background-size: contain;
-      -moz-background-size: contain;
-      -o-background-size: contain;
+      background-size: cover;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
     }
   }
   
@@ -715,12 +781,139 @@
     transform: translateY(0);
   }
   
-  /* Hero заголовок - адаптивный размер */
-  .hero-title {
+  /* Hero заголовок - адаптивный размер (используем новые классы ниже) */
+
+  /* Новая карточка hero на сером фоне */
+  .hero-topbar {
+    background: transparent; /* единый фон задаёт .hero-bg */
+    padding: 22px 24px;
+    margin-top: 0;
+  }
+
+  .hero-topbar-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .hero-consult {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 85px; /* ещё ниже заголовка */
+    display: inline-block;
+    border-bottom: 1px dashed rgba(255, 215, 0, 0.5); /* менее яркое подчёркивание */
+    padding-bottom: 2px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-consult { margin-top: 80px; }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-consult { margin-top: 104px; }
+  }
+
+  .hero-heading {
+    margin: 0;
+    line-height: 1.12;
+  }
+
+  .hero-heading .line1 {
+    display: block;
+    font-weight: 800;
+    font-size: clamp(22px, 4.2vw, 48px);
+    color: #ffffff;
+    white-space: nowrap; /* всегда одной строкой */
+  }
+
+.hero-heading .line2 {
+  display: block;
+  font-weight: 800;
+  font-size: clamp(22px, 4.2vw, 48px);
+  color: #ffffff; /* вся строка белая по умолчанию */
+  white-space: nowrap; /* всегда одной строкой */
+}
+
+  .hero-badge {
+    position: absolute;
+    right: 120px; /* ещё больше от правого края */
+    bottom: 0; /* базовая точка снизу */
+    transform: translateY(50%); /* на половину высоты вниз (desktop) */
+    display: flex;
+    flex-direction: column; /* номер+стрелка сверху, текст ниже */
+    align-items: flex-start;
+    gap: 10px;
+    background: linear-gradient(180deg, #FFD700 0%, #FFC300 100%);
+    color: #000;
+    border-radius: 24px;
+    padding: 18px 22px; /* визуально ближе к эталону */
+    min-width: 260px;
+    min-height: 150px;
+    box-shadow: 0 16px 36px rgba(255, 215, 0, 0.35);
+  }
+
+  .hero-badge-top { display: flex; align-items: baseline; gap: 10px; }
+
+  .hero-badge-number { font-weight: 800; font-size: 96px; line-height: 0.92; }
+
+  .hero-badge-text { font-size: 20px; font-weight: 500; line-height: 1.2; }
+
+  .hero-badge-caret { font-size: 52px; line-height: 1; position: absolute; right: 24px; bottom: 10px; text-decoration: none; color: rgba(0,0,0,0.9); cursor: pointer; }
+
+  @media (max-width: 640px) {
+    .hero-topbar { padding: 18px 16px; margin-top: 0; }
+    .hero-topbar-inner { flex-direction: column; align-items: center; gap: 12px; }
+    .hero-badge {
+      right: 28px;                  /* ещё больше отступ справа */
+      bottom: 0;                    /* базовая точка снизу */
+      transform: translateY(50%);   /* опустить на половину своей высоты */
+      padding: 10px 12px;           /* ещё меньше внутренние отступы */
+      min-width: 180px;             /* ещё уже */
+      min-height: 96px;             /* ещё ниже */
+    }
+    .hero-badge-number { font-size: 50px; line-height: 0.95; }
+    .hero-badge-text { font-size: 12px; font-weight: 500; }
+    .hero-badge-caret { font-size: 28px; right: 12px; bottom: 6px; }
+  }
+
+  /* Блок изображения HERO */
+  .hero-image-wrap {
+    position: relative;
+    margin-top: 0;
+    padding: 0 24px; /* чтобы были видны границы как у заголовка */
+  }
+
+  .hero-image {
+    width: 100%;
+    height: min(72vh, 780px); /* увеличиваем высоту вниз */
+    background-image: url('./media/backgrounds/backedesk.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 18px; /* скругляем углы фонового изображения */
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .hero-image { background-image: url('./media/backgrounds/backphone.png'); height: 60vh; }
+  }
+
+  @media (max-width: 640px) {
+    .hero-image-wrap { padding: 0 16px; }
   }
   
   /* Мобильная версия заголовка */
   @media (max-width: 768px) {
+    .hero-heading { text-align: center; }
+    .for-desktop { display: none; }
+    .for-mobile { display: inline; color: #ffffff !important; }
+    .hero-consult { margin-top: 12px; }
+    .hero-image-wrap { margin-top: 12px; }
+    /* Увеличиваем высоту секции под плашку, опущенную на 50% */
+    .hero-bg { padding-bottom: 96px; overflow: visible; }
     .hero-title {
       font-size: 2.25rem !important; /* 4xl */
       line-height: 2.5rem !important;

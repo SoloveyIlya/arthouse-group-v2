@@ -13,6 +13,12 @@ const translations = {
     // Hero Section
     'hero.title.brand': 'Art House',
     'hero.title.text': 'современные решения для комфортной жизни',
+    'hero.title.line1': 'Современные решение',
+    'hero.title.line2.white': 'для',
+    'hero.title.line2.highlight': 'комфортной жизни',
+    'hero.consult.free': 'Бесплатная консультация',
+    'hero.badge.word1': 'Модульных',
+    'hero.badge.word2': 'домов',
     'hero.btn.consultation': 'Получить консультацию',
     'hero.btn.catalog': 'Смотреть каталог',
     
@@ -201,6 +207,12 @@ const translations = {
     // Hero Section
     'hero.title.brand': 'Art House',
     'hero.title.text': 'modern solutions for comfortable living',
+    'hero.title.line1': 'Modern solutions',
+    'hero.title.line2.white': 'for',
+    'hero.title.line2.highlight': 'comfortable living',
+    'hero.consult.free': 'Free consultation',
+    'hero.badge.word1': 'Modular',
+    'hero.badge.word2': 'homes',
     'hero.btn.consultation': 'Get Consultation',
     'hero.btn.catalog': 'View Catalog',
     
@@ -389,6 +401,12 @@ const translations = {
     // Hero Section
     'hero.title.brand': 'Art House',
     'hero.title.text': 'თანამედროვე გადაწყვეტები კომფორტული ცხოვრებისთვის',
+    'hero.title.line1': 'თანამედროვე გადაწყვეტა',
+    'hero.title.line2.white': 'თვის',
+    'hero.title.line2.highlight': 'კომფორტული ცხოვრება',
+    'hero.consult.free': 'უფასო კონსულტაცია',
+    'hero.badge.word1': 'მოდულური',
+    'hero.badge.word2': 'სახლები',
     'hero.btn.consultation': 'კონსულტაციის მიღება',
     'hero.btn.catalog': 'კატალოგის ნახვა',
     

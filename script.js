@@ -526,7 +526,13 @@ function smoothScrollTo(targetId) {
       './media/gallery/2phot.jpg', 
       './media/gallery/3phot.jpg',
       './media/gallery/4photo.jpg',
-      './media/gallery/5phot.JPG'
+      './media/gallery/5phot.JPG',
+      './media/gallery/6phot.jpg',
+      './media/gallery/7phot.jpg',
+      './media/gallery/8phot.jpg',
+      './media/gallery/9phot.jpg',
+      './media/gallery/10phot.jpg',
+      './media/gallery/11phot.jpg'
     ];
 
     function updateGalleryImage(index) {

@@ -143,7 +143,7 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Ysabeau+SC:wght@300;400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
   <link
@@ -155,11 +155,11 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="bg-black text-white font-sans antialiased overflow-x-hidden">
+<body class="bg-black text-white antialiased overflow-x-hidden">
   <!-- HEADER -->
   <header class="bg-black shadow-soft sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
+      <div class="flex items-center justify-between h-20 relative">
         <!-- Logo -->
         <div class="flex items-center">
           <div class="flex items-center space-x-3">
@@ -168,7 +168,7 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
         </div>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center space-x-8">
+        <nav class="hidden lg:flex items-center space-x-8 desktop-nav-centered">
           <a href="#catalog" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.catalog">Каталог</a>
           <a href="#modular-features" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.advantages">Преимущества</a>
           <a href="#gallery" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.gallery">Галерея</a>
@@ -176,14 +176,17 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
           <a href="#faq" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.faq">FAQ</a>
           <a href="#investor-cooperation" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.investors">Инвесторам</a>
           <a href="#contact" class="text-gray-400 hover:text-primary smooth-transition" data-i18n="nav.contacts">Контакты</a>
-          
-          <!-- Language Switcher - Desktop -->
-          <div class="flex items-center space-x-2 ml-4">
-            <button data-lang="ru" class="text-sm px-2 py-1 rounded hover:text-primary transition-colors">RU</button>
-            <button data-lang="en" class="text-sm px-2 py-1 rounded hover:text-primary transition-colors">EN</button>
-            <button data-lang="ge" class="text-sm px-2 py-1 rounded hover:text-primary transition-colors">GE</button>
-          </div>
         </nav>
+
+        <!-- Language Dropdown - Desktop Right Corner -->
+        <div class="lang-dropdown hidden lg:block" id="langDropdown">
+          <button class="lang-trigger" id="langTrigger" aria-haspopup="true" aria-expanded="false">RU ▾</button>
+          <div class="lang-menu" id="langMenu" role="menu" aria-labelledby="langTrigger">
+            <button data-lang="ru" class="lang-item" role="menuitem">RU</button>
+            <button data-lang="en" class="lang-item" role="menuitem">EN</button>
+            <button data-lang="ge" class="lang-item" role="menuitem">GE</button>
+          </div>
+        </div>
 
 
         <!-- Mobile Burger Menu -->
@@ -218,20 +221,31 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
   </header>
 
   <!-- HERO -->
-  <section class="hero-bg relative min-h-screen flex items-center text-white">
-    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-on-scroll">
-      <div class="max-w-2xl lg:max-w-4xl text-center lg:text-left">
-        <h1 class="hero-title text-5xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 leading-tight">
-          <span class="text-primary" data-i18n="hero.title.brand">Art House</span> — <span class="text-white" data-i18n="hero.title.text">современные решения для комфортной жизни</span>
-        </h1>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <a href="#contact" class="bg-primary text-dark px-8 py-4 text-lg font-medium rounded-button hover:bg-secondary hover:shadow-glow smooth-transition whitespace-nowrap inline-block text-center" data-i18n="hero.btn.consultation">
-            Получить консультацию
-          </a>
-          <a href="#catalog" class="border-2 border-accent text-accent px-8 py-4 text-lg font-medium rounded-button hover:bg-accent hover:text-dark hover:shadow-glow smooth-transition whitespace-nowrap inline-block text-center" data-i18n="hero.btn.catalog">
-            Смотреть каталог
-          </a>
+  <section class="hero-bg relative text-white">
+    <div class="relative z-10 w-full animate-on-scroll">
+      <!-- Верхняя полоса: заголовок + консультация на темно-сером фоне -->
+      <div class="hero-topbar">
+        <div class="hero-topbar-inner">
+          <h1 class="hero-heading">
+            <span class="line1" data-i18n="hero.title.line1">Современные решение</span>
+            <span class="line2">
+              <span class="line2-white" data-i18n="hero.title.line2.white">для</span>
+              <span class="line2-highlight text-primary" data-i18n="hero.title.line2.highlight">комфортной жизни</span>
+            </span>
+          </h1>
+          <span class="hero-consult" data-i18n="hero.consult.free">Бесплатная консультация</span>
+        </div>
+      </div>
+
+      <!-- Нижний блок: изображение с бейджем справа снизу -->
+      <div class="hero-image-wrap">
+        <div class="hero-image" aria-label="Главное изображение"></div>
+        <div class="hero-badge">
+          <div class="hero-badge-top">
+            <div class="hero-badge-number">30+</div>
+          </div>
+            <div class="hero-badge-text"><div data-i18n="hero.badge.word1">Модульных</div><div data-i18n="hero.badge.word2">домов</div></div>
+          <a href="#catalog" class="hero-badge-caret" aria-label="Перейти к каталогу">▾</a>
         </div>
       </div>
     </div>
@@ -1460,6 +1474,8 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
     document.addEventListener('DOMContentLoaded', function() {
       const burgerToggle = document.getElementById('burgerToggle');
       const mobileNav = document.getElementById('mobileNav');
+      const langTrigger = document.getElementById('langTrigger');
+      const langMenu = document.getElementById('langMenu');
       
       console.log('Burger toggle found:', !!burgerToggle);
       console.log('Mobile nav found:', !!mobileNav);
@@ -1514,6 +1530,33 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
         console.error('Burger menu elements not found!');
         console.error('Burger toggle:', burgerToggle);
         console.error('Mobile nav:', mobileNav);
+      }
+
+      // Language dropdown toggle (desktop)
+      if (langTrigger && langMenu) {
+        langTrigger.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          langMenu.classList.toggle('open');
+          const expanded = langTrigger.getAttribute('aria-expanded') === 'true';
+          langTrigger.setAttribute('aria-expanded', String(!expanded));
+        });
+
+        document.addEventListener('click', function(e) {
+          if (!langMenu.contains(e.target) && !langTrigger.contains(e.target)) {
+            langMenu.classList.remove('open');
+            langTrigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Отображение выбранного языка на кнопке
+        langMenu.querySelectorAll('[data-lang]').forEach(btn => {
+          btn.addEventListener('click', function() {
+            langTrigger.textContent = this.textContent + ' ▾';
+            langMenu.classList.remove('open');
+            langTrigger.setAttribute('aria-expanded', 'false');
+          });
+        });
       }
     });
   </script>
