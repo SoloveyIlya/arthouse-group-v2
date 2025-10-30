@@ -1,3 +1,11 @@
+/* Prevent horizontal scroll on mobile */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video { max-width: 100%; height: auto; }
+
+/* Constrain hero and parallax areas to viewport width */
+.hero-bg { overflow-x: hidden; }
+.parallax-container { overflow: hidden; }
+
   /* Центрирование ссылок в хедере (только desktop) */
   @media (min-width: 1024px) {
     .desktop-nav-centered {
