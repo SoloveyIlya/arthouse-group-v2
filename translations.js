@@ -204,7 +204,7 @@ const translations = {
     
     // Product Titles
     'product.g30.title': 'Space Capsule House G30',
-    'product.g30-premium.title': 'Модульный Дом G30 Premium',
+    'product.g30-premium.title': 'Space Capsule House G30',
     'product.g50.title': 'Space Capsule House G50',
     
     // Product Descriptions
