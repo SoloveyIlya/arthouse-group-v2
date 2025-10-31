@@ -1212,16 +1212,17 @@ function smoothScrollTo(targetId) {
     }
     
     // Показ ошибок
-    function showErrors(errors) {
+    function showErrors(errors, formElement) {
       // Удаляем предыдущие ошибки
       const existingErrors = document.querySelectorAll('.form-error');
       existingErrors.forEach(error => error.remove());
       
-      // Показываем новые ошибки
-      const form = document.getElementById('contactForm');
+      // Определяем форму
+      const form = formElement || document.getElementById('contactForm') || document.getElementById('quoteForm');
+      
       if (form && errors.length > 0) {
         const errorContainer = document.createElement('div');
-        errorContainer.className = 'bg-red-900 border border-red-500 text-red-100 px-4 py-3 rounded mb-4';
+        errorContainer.className = 'form-error bg-red-900 border border-red-500 text-red-100 px-4 py-3 rounded mb-4';
         errorContainer.innerHTML = `
           <div class="font-bold mb-2">Ошибки в форме:</div>
           <ul class="list-disc list-inside">
@@ -1230,8 +1231,14 @@ function smoothScrollTo(targetId) {
         `;
         form.insertBefore(errorContainer, form.firstChild);
         
-        // Прокручиваем к ошибкам
-        errorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Прокручиваем к ошибкам (для модального окна прокручиваем контейнер модального окна)
+        if (form.closest('.fixed')) {
+          // Если форма в модальном окне
+          const modal = form.closest('.fixed');
+          errorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          errorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       }
     }
     
@@ -1241,36 +1248,174 @@ function smoothScrollTo(targetId) {
       
       const form = e.target;
       const formData = new FormData(form);
+      const formType = formData.get('form_type');
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton ? submitButton.textContent : '';
       
-      // Валидация
-      const errors = validateForm(formData);
-      
-      if (errors.length > 0) {
-        showErrors(errors);
-        return false;
+      // Валидация для формы контактов
+      if (formType === 'contact') {
+        const errors = validateForm(formData);
+        
+        if (errors.length > 0) {
+          showErrors(errors, form);
+          return false;
+        }
       }
       
-      // Если валидация прошла успешно
-      console.log('Форма валидна, данные:', Object.fromEntries(formData));
+      // Валидация reCAPTCHA для формы quote
+      if (formType === 'quote') {
+        const errors = [];
+        
+        if (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) {
+          if (!verifyRecaptcha()) {
+            errors.push('Пожалуйста, подтвердите, что вы не робот');
+          }
+        } else {
+          // Проверяем наличие reCAPTCHA в форме
+          const recaptchaContainer = form.querySelector('.g-recaptcha');
+          if (recaptchaContainer) {
+            const recaptchaResponse = formData.get('g-recaptcha-response');
+            if (!recaptchaResponse || recaptchaResponse.trim() === '') {
+              errors.push('Пожалуйста, подтвердите, что вы не робот');
+            }
+          }
+        }
+        
+        if (errors.length > 0) {
+          showErrors(errors, form);
+          return false;
+        }
+      }
       
-      // Здесь можно добавить отправку данных на сервер
-      alert('Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+      // Показываем состояние загрузки
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Отправка...';
+      }
       
-      // Очистка формы
-      form.reset();
-      grecaptcha.reset();
-      
-      // Удаление ошибок
-      const existingErrors = document.querySelectorAll('.form-error');
-      existingErrors.forEach(error => error.remove());
+      // Отправка данных на сервер через AJAX
+      fetch('send_email.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        // Проверяем статус ответа
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        // Получаем текст ответа
+        return response.text();
+      })
+      .then(text => {
+        // Пытаемся распарсить JSON
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          // Если не JSON, значит это ошибка PHP
+          console.error('Ошибка парсинга JSON:', text);
+          throw new Error('Сервер вернул неверный формат данных: ' + text.substring(0, 200));
+        }
+        
+        // Удаление ошибок
+        const existingErrors = document.querySelectorAll('.form-error');
+        existingErrors.forEach(error => error.remove());
+        
+        // Удаление сообщений об успехе
+        const existingSuccess = document.querySelectorAll('.form-success');
+        existingSuccess.forEach(success => success.remove());
+        
+        if (data.success) {
+          // Показываем сообщение об успехе
+          showSuccess(data.message || 'Ваш запрос успешно отправлен! Мы свяжемся с вами в ближайшее время.', form);
+          
+          // Очистка формы
+          form.reset();
+          
+          // Сброс reCAPTCHA если есть
+          if (typeof grecaptcha !== 'undefined' && grecaptcha.reset) {
+            // Сбрасываем все виджеты reCAPTCHA на странице
+            grecaptcha.reset();
+            // Также можем сбросить конкретный виджет для формы
+            const recaptchaWidgets = form.querySelectorAll('.g-recaptcha');
+            recaptchaWidgets.forEach((widget, index) => {
+              try {
+                grecaptcha.reset(index);
+              } catch (e) {
+                // Игнорируем ошибки при сбросе
+              }
+            });
+          }
+          
+          // Если это форма quote, закрываем модальное окно через 2 секунды
+          if (formType === 'quote') {
+            setTimeout(() => {
+              closeModal('orderModal');
+            }, 2000);
+          }
+        } else {
+          // Показываем ошибки
+          const errors = data.errors || [data.message || 'Произошла ошибка при отправке формы'];
+          showErrors(errors, form);
+        }
+      })
+      .catch(error => {
+        console.error('Ошибка:', error);
+        console.error('Детали ошибки:', error.message);
+        showErrors(['Произошла ошибка при отправке формы. Проверьте консоль браузера для деталей. Ошибка: ' + error.message], form);
+      })
+      .finally(() => {
+        // Восстанавливаем кнопку
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      });
+    }
+    
+    // Функция для показа успешного сообщения
+    function showSuccess(message, formElement) {
+      const form = formElement || document.querySelector('#contactForm, #quoteForm');
+      if (form) {
+        const successContainer = document.createElement('div');
+        successContainer.className = 'form-success bg-green-900 border border-green-500 text-green-100 px-4 py-3 rounded mb-4';
+        successContainer.innerHTML = `
+          <div class="font-bold mb-2">✓ Успешно!</div>
+          <div>${message}</div>
+        `;
+        form.insertBefore(successContainer, form.firstChild);
+        
+        // Прокручиваем к сообщению
+        successContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Удаляем сообщение через 5 секунд
+        setTimeout(() => {
+          successContainer.remove();
+        }, 5000);
+      }
     }
     
     // Инициализация системы reCAPTCHA и валидации
     document.addEventListener('DOMContentLoaded', function() {
-      // Настраиваем обработчик формы
+      // Используем делегирование событий для обработки форм
+      // Это работает для всех форм, включая те, что в модальных окнах
+      document.addEventListener('submit', function(e) {
+        const form = e.target;
+        // Проверяем, что это наша форма (contactForm или quoteForm)
+        if (form.id === 'contactForm' || form.id === 'quoteForm') {
+          handleFormSubmit(e);
+        }
+      });
+      
+      // Также добавляем обработчики напрямую (на случай, если форма уже в DOM)
       const contactForm = document.getElementById('contactForm');
       if (contactForm) {
         contactForm.addEventListener('submit', handleFormSubmit);
+      }
+      
+      const quoteForm = document.getElementById('quoteForm');
+      if (quoteForm) {
+        quoteForm.addEventListener('submit', handleFormSubmit);
       }
     });
   

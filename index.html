@@ -1246,7 +1246,8 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
           </h2>
           
           <div class="bg-gray-800 rounded-xl p-4">
-            <form id="contactForm" class="space-y-6">
+            <form id="contactForm" class="space-y-6" method="POST">
+              <input type="hidden" name="form_type" value="contact">
             <!-- Фамилия -->
             <div>
               <label class="block text-white font-medium mb-2" data-i18n="contact.form.lastname">Фамилия</label>
@@ -1431,27 +1432,35 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
         <div class="relative mb-8 sm:mb-10">
           <h3 class="text-xl sm:text-2xl font-light text-white text-luxury-display pr-12" data-i18n="modal.order.title">Запросить расчет стоимости</h3>
         </div>
-        <div class="space-y-4 sm:space-y-6">
-          <div>
-            <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300 text-luxury-caption" data-i18n="modal.order.name">Имя</label>
-            <input type="text" class="luxury-input w-full px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg focus-luxury rounded-luxury" />
+        <form id="quoteForm" method="POST">
+          <input type="hidden" name="form_type" value="quote">
+          <div class="space-y-4 sm:space-y-6">
+            <div>
+              <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300 text-luxury-caption" data-i18n="modal.order.name">Имя</label>
+              <input type="text" name="name" required class="luxury-input w-full px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg focus-luxury rounded-luxury" />
+            </div>
+            <div>
+              <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300 text-luxury-caption" data-i18n="modal.order.email">Электронная почта</label>
+              <input type="email" name="email" required class="luxury-input w-full px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg focus-luxury rounded-luxury" />
+            </div>
+            <div>
+              <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300 text-luxury-caption" data-i18n="modal.order.phone">Телефон</label>
+              <input type="tel" name="phone" required class="luxury-input w-full px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg focus-luxury rounded-luxury" />
+            </div>
+            <div>
+              <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300 text-luxury-caption" data-i18n="modal.order.message">Сообщение</label>
+              <textarea rows="4" name="message" class="luxury-input w-full px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg focus-luxury rounded-luxury"></textarea>
+            </div>
+            <!-- reCAPTCHA v2 -->
+            <div>
+              <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300 text-luxury-caption" data-i18n="contact.form.captcha">Подтвердите, что вы не робот</label>
+              <div class="g-recaptcha" data-sitekey="6Lf7GforAAAAAGG6IAQqsIXF2GFMTu6htVvqLWuW"></div>
+            </div>
+            <button type="submit" class="w-full luxury-button py-3 sm:py-4 text-lg sm:text-xl font-semibold rounded-luxury" data-i18n="modal.order.submit">
+              Отправить запрос
+            </button>
           </div>
-          <div>
-            <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300 text-luxury-caption" data-i18n="modal.order.email">Электронная почта</label>
-            <input type="email" class="luxury-input w-full px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg focus-luxury rounded-luxury" />
-          </div>
-          <div>
-            <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300 text-luxury-caption" data-i18n="modal.order.phone">Телефон</label>
-            <input type="tel" class="luxury-input w-full px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg focus-luxury rounded-luxury" />
-          </div>
-          <div>
-            <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300 text-luxury-caption" data-i18n="modal.order.message">Сообщение</label>
-            <textarea rows="4" class="luxury-input w-full px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg focus-luxury rounded-luxury" data-i18n="modal.order.message.placeholder"></textarea>
-          </div>
-          <button type="button" class="w-full luxury-button py-3 sm:py-4 text-lg sm:text-xl font-semibold rounded-luxury" data-i18n="modal.order.submit">
-            Отправить запрос
-          </button>
-        </div>
+        </form>
       </div>
     </div>
   </div>
