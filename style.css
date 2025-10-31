@@ -736,6 +736,24 @@
     transform: rotate(-45deg) translate(7px, -7px);
   }
   
+  /* Header Mobile Fixes */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+  }
+  
+  /* Remove transform on mobile to allow proper sticky behavior */
+  @media (max-width: 1023px) {
+    header {
+      -webkit-transform: none;
+      transform: none;
+      -webkit-backface-visibility: visible;
+      backface-visibility: visible;
+    }
+  }
+
   /* Mobile Navigation Styles */
   .mobile-nav {
     transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -752,6 +770,32 @@
   @media (min-width: 1024px) {
     .mobile-nav {
       display: none !important;
+    }
+  }
+
+  /* Ensure body scrolls on mobile */
+  @media (max-width: 1023px) {
+    html, body {
+      overflow-x: hidden;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+      height: auto;
+      min-height: 100vh;
+    }
+    
+    /* On mobile, make header scroll normally (not sticky) to avoid blocking content */
+    /* Use !important to override Tailwind CSS classes (sticky, top-0) */
+    header,
+    header.sticky,
+    header[class*="sticky"] {
+      position: static !important;
+      top: auto !important;
+      will-change: auto !important;
+      /* Remove any transforms that might interfere with scrolling */
+      -webkit-transform: none !important;
+      transform: none !important;
+      /* Ensure header scrolls with page content */
+      z-index: auto !important;
     }
   }
   
@@ -2012,13 +2056,22 @@
    MOBILE SAFETY NET: remove horizontal scroll
    ======================================== */
 @media (max-width: 768px) {
-  html, body { overflow-x: hidden; }
+  html, body { overflow-x: hidden; overflow-y: auto !important; }
 
   /* Ensure no child exceeds viewport width */
   body *,
   section, header, footer,
   [class*="container"], [class*="wrapper"], [class*="wrap"], [class*="content"] {
     max-width: 100% !important;
+  }
+  
+  /* Force header to scroll on mobile - override all Tailwind classes */
+  header.bg-black.shadow-soft.sticky,
+  header.sticky,
+  header[class*="sticky"] {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
   }
 
   /* Media should never overflow */
