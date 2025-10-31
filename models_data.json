@@ -5,11 +5,49 @@
     "guests": "2 people",
     "power": "6.7KW/11.2KW",
     "weight": "≈4tons",
-    "external_protection": [],
-    "guest_control": [],
-    "accessories": [],
-    "interior": [],
-    "optional": []
+    "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Three-layer hollow tempered floor-to-ceiling glass",
+      "Standard swing entrance door"
+    ],
+    "guest_control": [
+      "Lighting / Electric curtains",
+      "Intelligent access control system for hotels"
+    ],
+    "accessories": [
+      "Support feet matched at the bottom of the product",
+      "Lifting rings / Transportation fixtures"
+    ],
+    "interior": [
+      "Integrated Ceiling and Wall Modules",
+      "Stone Crystal Wood-Grain Flooring",
+      "Bathroom Privacy Glass Door",
+      "Bathroom Shower Room/Marble/Tile Floor",
+      "Washbasin Counter/Sink/Bathroom Mirror",
+      "Coat Hooks/Shower Storage Shelf/Towel Rack",
+      "Branded Water Tap/Showerhead/Floor Drain",
+      "Whole-House Lighting System",
+      "Whole-House Water and Electricity System",
+      "Standard Color Blackout Curtains",
+      "Air Conditioner (Cooling & Heating)",
+      "Electric Water Heater",
+      "Ventilation System",
+      "Whole-House Mosquito-Proof Screen Doors",
+      "Branded Smart Toilet",
+      "Electric Underfloor Heating",
+      "Lighting Ventilation Fan"
+    ],
+    "optional": [
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Smart Voice System",
+      "Starry Sky Skylight",
+      "Entrance Staircase",
+      "Triangular V-brace",
+      "Entrance Platform"
+    ]
   },
   "A50": {
     "size": "9500*3300*3300mm",
@@ -18,13 +56,19 @@
     "power": "6.7KW/11.2KW",
     "weight": "≈6.5tons",
     "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Hollow laminated tempered glass skylight",
+      "Three-layer hollow tempered floor-to-ceiling glass",
       "Standard swing entrance door"
     ],
     "guest_control": [
       "Lighting / Electric curtains",
-      "Smart Voice System"
+      "Intelligent access control system for hotels"
     ],
     "accessories": [
+      "Support feet matched at the bottom of the product",
       "Lifting rings / Transportation fixtures"
     ],
     "interior": [
@@ -42,28 +86,260 @@
       "Electric Water Heater",
       "Ventilation System",
       "Whole-House Mosquito-Proof Screen Doors",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
       "Branded Smart Toilet",
       "Electric Underfloor Heating"
     ],
     "optional": [
       "International Kitchen Integrated Customization",
-      "Triangular V-brace",
-      "Smart Voice System",
-      "Starry Sky Skylight",
+      "Kitchen Cabinets/Wall Cabinets (Including Sink/Water Tap)",
+      "Range Hood/Induction Cooker/Refrigerator",
+      "Custom bar counter",
+      "Custom wardrobe",
+      "Smart voice system",
       "Projector + projection screen",
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
       "Thickened Insulation Layer",
       "Entrance Staircase",
-      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Triangular V-brace",
       "Entrance Platform"
     ]
   },
   "A70": {
-    "size": "",
+    "size": "11500*3300*3300mm",
     "floor_area": "38.0㎡",
     "guests": "2-4 people",
     "power": "9.9KW/15.4KW",
     "weight": "≈8tons",
     "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Hollow laminated tempered glass skylight",
+      "Three-layer hollow tempered floor-to-ceiling glass",
+      "Standard swing entrance door"
+    ],
+    "guest_control": [
+      "Lighting / Electric curtains",
+      "Intelligent access control system for hotels"
+    ],
+    "accessories": [
+      "Support feet matched at the bottom of the product",
+      "Lifting rings / Transportation fixtures"
+    ],
+    "interior": [
+      "Integrated Ceiling and Wall Modules",
+      "Stone Crystal Wood-Grain Flooring",
+      "Bathroom Privacy Glass Door",
+      "Bathroom Shower Room/Marble/Tile Floor",
+      "Washbasin Counter/Sink/Bathroom Mirror",
+      "Coat Hooks/Shower Storage Shelf/Towel Rack",
+      "Branded Water Tap/Showerhead/Floor Drain",
+      "Whole-House Lighting System",
+      "Whole-House Water and Electricity System",
+      "Standard Color Blackout Curtains",
+      "Air Conditioner (Cooling & Heating)",
+      "Electric Water Heater",
+      "Ventilation System",
+      "Whole-House Mosquito-Proof Screen Doors",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
+      "Branded Smart Toilet",
+      "Electric Underfloor Heating"
+    ],
+    "optional": [
+      "International Kitchen Integrated Customization",
+      "Kitchen Cabinets/Wall Cabinets (Including Sink/Water Tap)",
+      "Range Hood/Induction Cooker/Refrigerator",
+      "Custom bar counter",
+      "Custom wardrobe",
+      "Smart voice system",
+      "Projector + projection screen",
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Entrance Staircase",
+      "Triangular V-brace",
+      "Entrance Platform"
+    ]
+  },
+  "G30": {
+    "size": "5600*2600*3200mm",
+    "floor_area": "14.6㎡",
+    "guests": "2 people",
+    "power": "6.7KW/8.2KW",
+    "weight": "≈4tons",
+    "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Three-layer hollow tempered floor-to-ceiling glass",
+      "Standard swing entrance door"
+    ],
+    "guest_control": [
+      "Lighting / Electric curtains",
+      "Intelligent access control system for hotels"
+    ],
+    "accessories": [
+      "Support feet matched at the bottom of the product",
+      "Lifting rings / Transportation fixtures"
+    ],
+    "interior": [
+      "Integrated Ceiling and Wall Modules",
+      "Stone Crystal Wood-Grain Flooring",
+      "Bathroom Privacy Glass Door",
+      "Bathroom Shower Room/Marble/Tile Floor",
+      "Washbasin Counter/Sink/Bathroom Mirror",
+      "Coat Hooks/Shower Storage Shelf/Towel Rack",
+      "Branded Water Tap/Showerhead/Floor Drain",
+      "Whole-House Lighting System",
+      "Whole-House Water and Electricity System",
+      "Standard Color Blackout Curtains",
+      "Air Conditioner (Cooling & Heating)",
+      "Electric Water Heater",
+      "Ventilation System",
+      "Whole-House Mosquito-Proof Screen Doors",
+      "Branded Smart Toilet",
+      "Electric Underfloor Heating",
+      "Lighting Ventilation Fan"
+    ],
+    "optional": [
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Smart Voice System",
+      "Starry Sky Skylight",
+      "Entrance Staircase",
+      "Triangular V-brace",
+      "Entrance Platform"
+    ]
+  },
+  "G50": {
+    "size": "9500*3300*3200mm",
+    "floor_area": "31.4㎡",
+    "guests": "2 people",
+    "power": "7.5KW/12KW",
+    "weight": "≈6.5tons",
+    "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Hollow laminated tempered glass skylight",
+      "Three-layer hollow tempered floor-to-ceiling glass",
+      "Painted stainless steel swing entrance door"
+    ],
+    "guest_control": [
+      "Multi-Scenario Mode Function Panel",
+      "Lighting / Electric Curtains",
+      "Smart Voice Control",
+      "Hotel Intelligent Access Control System"
+    ],
+    "accessories": [
+      "Support feet matched at the bottom of the product",
+      "Lifting rings / Transportation fixtures"
+    ],
+    "interior": [
+      "Integrated Ceiling and Wall Modules",
+      "Stone Crystal Wood-Grain Flooring",
+      "Bathroom Privacy Glass Door",
+      "Bathroom Shower Room/Marble/Tile Floor",
+      "Washbasin Counter/Sink/Bathroom Mirror",
+      "Coat Hooks/Shower Storage Shelf/Towel Rack",
+      "Branded Water Tap/Showerhead/Floor Drain",
+      "Whole-House Lighting System",
+      "Whole-House Water and Electricity System",
+      "Standard Color Blackout Curtains",
+      "Air Conditioner (Cooling & Heating)",
+      "Electric Water Heater",
+      "Ventilation System",
+      "Whole-House Mosquito-Proof Screen Doors",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
+      "Branded Smart Toilet",
+      "Electric Underfloor Heating",
+      "Hard-Fitted Furniture",
+      "Panoramic balcony"
+    ],
+    "optional": [
+      "International Kitchen Integrated Customization",
+      "Kitchen Cabinets/Wall Cabinets (Including Sink/Water Tap)",
+      "Range Hood/Induction Cooker/Refrigerator",
+      "Wardrobe",
+      "Shoe Cabinet",
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Projector",
+      "Entrance Staircase",
+      "Triangular V-brace",
+      "Entrance Platform"
+    ]
+  },
+  "G50F": {
+    "size": "9500*3300*3200mm",
+    "floor_area": "31.4㎡",
+    "guests": "2 people",
+    "power": "7.5KW/12KW",
+    "weight": "≈6.5tons",
+    "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Hollow laminated tempered glass skylight",
+      "Three-layer hollow tempered floor-to-ceiling glass",
+      "Painted stainless steel swing entrance door"
+    ],
+    "guest_control": [
+      "Multi-Scenario Mode Function Panel",
+      "Lighting / Electric Curtains",
+      "Smart Voice Control",
+      "Hotel Intelligent Access Control System"
+    ],
+    "accessories": [
+      "Support feet matched at the bottom of the product",
+      "Lifting rings / Transportation fixtures"
+    ],
+    "interior": [
+      "Integrated Ceiling and Wall Modules",
+      "Stone Crystal Wood-Grain Flooring",
+      "Bathroom Privacy Glass Door",
+      "Bathroom Shower Room/Marble/Tile Floor",
+      "Washbasin Counter/Sink/Bathroom Mirror",
+      "Coat Hooks/Shower Storage Shelf/Towel Rack",
+      "Branded Water Tap/Showerhead/Floor Drain",
+      "Whole-House Lighting System",
+      "Whole-House Water and Electricity System",
+      "Standard Color Blackout Curtains",
+      "Air Conditioner (Cooling & Heating)",
+      "Electric Water Heater",
+      "Ventilation System",
+      "Whole-House Mosquito-Proof Screen Doors",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
+      "Branded Smart Toilet",
+      "Electric Underfloor Heating",
+      "Hard-Fitted Furniture",
+      "Panoramic balcony"
+    ],
+    "optional": [
+      "International Kitchen Integrated Customization",
+      "Kitchen Cabinets/Wall Cabinets (Including Sink/Water Tap)",
+      "Range Hood/Induction Cooker/Refrigerator",
+      "Wardrobe",
+      "Shoe Cabinet",
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Projector",
+      "Entrance Staircase",
+      "Triangular V-brace",
+      "Entrance Platform"
+    ]
+  },
+  "G70": {
+    "size": "11500*3300*3200mm",
+    "floor_area": "38.0㎡",
+    "guests": "2-4 people",
+    "power": "11.5KW/17KW",
+    "weight": "≈8tons",
+    "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Three-layer hollow tempered floor-to-ceiling glass",
       "Standard swing entrance door"
     ],
     "guest_control": [
@@ -95,7 +371,6 @@
       "International Kitchen Integrated Customization",
       "Triangular V-brace",
       "Smart Voice System",
-      "Starry Sky Skylight",
       "Projector + projection screen",
       "Thickened Insulation Layer",
       "Entrance Staircase",
@@ -103,20 +378,28 @@
       "Entrance Platform"
     ]
   },
-  "D50": {
-    "size": "6000*2150*2500mm",
-    "floor_area": "40.0㎡",
+  "G70F": {
+    "size": "11500*3300*3200mm",
+    "floor_area": "38.0㎡",
     "guests": "2-4 people",
-    "power": "10KW/16KW",
-    "weight": "≈9tons",
+    "power": "11.5KW/17KW",
+    "weight": "≈8tons",
     "external_protection": [
-      "Standard swing entrance door"
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Hollow laminated tempered glass skylight",
+      "Three-layer hollow tempered floor-to-ceiling glass",
+      "Painted stainless steel swing entrance door"
     ],
     "guest_control": [
-      "Lighting / Electric curtains",
-      "Smart Voice System"
+      "Multi-Scenario Mode Function Panel",
+      "Lighting / Electric Curtains",
+      "Smart Voice Control",
+      "Hotel Intelligent Access Control System"
     ],
     "accessories": [
+      "Support feet matched at the bottom of the product",
       "Lifting rings / Transportation fixtures"
     ],
     "interior": [
@@ -134,18 +417,22 @@
       "Electric Water Heater",
       "Ventilation System",
       "Whole-House Mosquito-Proof Screen Doors",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
       "Branded Smart Toilet",
-      "Electric Underfloor Heating"
+      "Electric Underfloor Heating",
+      "Hard-Fitted Furniture",
+      "Panoramic balcony"
     ],
     "optional": [
       "International Kitchen Integrated Customization",
-      "Triangular V-brace",
-      "Smart Voice System",
-      "Starry Sky Skylight",
-      "Projector + projection screen",
-      "Thickened Insulation Layer",
-      "Entrance Staircase",
+      "Kitchen Cabinets/Wall Cabinets (Including Sink/Water Tap)",
+      "Range Hood/Induction Cooker/Refrigerator",
+      "Wardrobe",
       "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Projector",
+      "Entrance Staircase",
+      "Triangular V-brace",
       "Entrance Platform"
     ]
   },
@@ -156,13 +443,21 @@
     "power": "10KW/15KW",
     "weight": "≈7tons",
     "external_protection": [
-      "Standard swing entrance door"
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Hollow laminated tempered glass skylight",
+      "Three-layer hollow tempered floor-to-ceiling glass",
+      "Painted stainless steel swing entrance door"
     ],
     "guest_control": [
-      "Lighting / Electric curtains",
-      "Smart Voice System"
+      "Multi-Scenario Mode Function Panel",
+      "Lighting / Electric Curtains",
+      "Smart Voice Control",
+      "Hotel Intelligent Access Control System"
     ],
     "accessories": [
+      "Support feet matched at the bottom of the product",
       "Lifting rings / Transportation fixtures"
     ],
     "interior": [
@@ -180,18 +475,73 @@
       "Electric Water Heater",
       "Ventilation System",
       "Whole-House Mosquito-Proof Screen Doors",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
       "Branded Smart Toilet",
-      "Electric Underfloor Heating"
+      "Electric Underfloor Heating",
+      "Hard-Fitted Furniture",
+      "Bar counter",
+      "Panoramic balcony"
     ],
     "optional": [
-      "International Kitchen Integrated Customization",
-      "Triangular V-brace",
-      "Smart Voice System",
-      "Starry Sky Skylight",
-      "Projector + projection screen",
-      "Thickened Insulation Layer",
-      "Entrance Staircase",
       "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Projector",
+      "Entrance Staircase",
+      "Triangular V-brace",
+      "Entrance Platform"
+    ]
+  },
+  "L50F": {
+    "size": "9100*3300*3400mm",
+    "floor_area": "30.0㎡",
+    "guests": "2 people",
+    "power": "10KW/15KW",
+    "weight": "≈7tons",
+    "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Hollow laminated tempered glass skylight",
+      "Three-layer hollow tempered floor-to-ceiling glass",
+      "Standard swing entrance door"
+    ],
+    "guest_control": [
+      "Multi-Scenario Mode Function Panel",
+      "Lighting / Electric Curtains",
+      "Smart Voice Control",
+      "Hotel Intelligent Access Control System"
+    ],
+    "accessories": [
+      "Support feet matched at the bottom of the product",
+      "Lifting rings / Transportation fixtures"
+    ],
+    "interior": [
+      "Integrated Ceiling and Wall Modules",
+      "Stone Crystal Wood-Grain Flooring",
+      "Bathroom Privacy Glass Door",
+      "Bathroom Shower Room/Marble/Tile Floor",
+      "Washbasin Counter/Sink/Bathroom Mirror",
+      "Coat Hooks/Shower Storage Shelf/Towel Rack",
+      "Branded Water Tap/Showerhead/Floor Drain",
+      "Whole-House Lighting System",
+      "Whole-House Water and Electricity System",
+      "Standard Color Blackout Curtains",
+      "Air Conditioner (Cooling & Heating)",
+      "Electric Water Heater",
+      "Ventilation System",
+      "Whole-House Mosquito-Proof Screen Doors",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
+      "Branded Smart Toilet",
+      "Electric Underfloor Heating",
+      "Hard-Fitted Furniture",
+      "Bar counter"
+    ],
+    "optional": [
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Projector",
+      "Entrance Staircase",
+      "Triangular V-brace",
       "Entrance Platform"
     ]
   },
@@ -245,24 +595,26 @@
       "Entrance Platform"
     ]
   },
-  "G70": {
-    "size": "11500*3300*3200mm",
-    "floor_area": "38.0㎡",
+  "U30": {
+    "size": "8500*3600*3200mm",
+    "floor_area": "30.6㎡",
     "guests": "2-4 people",
-    "power": "11.5KW/17KW",
-    "weight": "≈8tons",
+    "power": "6.7KW/11.2KW",
+    "weight": "≈5tons",
     "external_protection": [
       "Galvanized steel structure frame system",
       "Fluorocarbon sprayed aluminum alloy shell module",
       "Thermal insulation, waterproof and moisture-proof structural system",
-      "Three-layer hollow tempered floor-to-ceiling glass",
-      "Standard swing entrance door"
+      "Hollow laminated tempered glass skylight",
+      "Double-Layer Insulated Tempered Floor-to-Ceiling Glass",
+      "Painted stainless steel swing entrance door"
     ],
     "guest_control": [
       "Lighting / Electric curtains",
-      "Smart Voice System"
+      "Intelligent access control system for hotels"
     ],
     "accessories": [
+      "Support feet matched at the bottom of the product",
       "Lifting rings / Transportation fixtures"
     ],
     "interior": [
@@ -280,17 +632,72 @@
       "Electric Water Heater",
       "Ventilation System",
       "Whole-House Mosquito-Proof Screen Doors",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
       "Branded Smart Toilet",
-      "Electric Underfloor Heating"
+      "Electric Underfloor Heating",
+      "Panoramic balcony"
     ],
     "optional": [
-      "International Kitchen Integrated Customization",
-      "Triangular V-brace",
-      "Smart Voice System",
-      "Projector + projection screen",
-      "Thickened Insulation Layer",
-      "Entrance Staircase",
       "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Custom bar counter",
+      "Smart voice system",
+      "Projector",
+      "Entrance Staircase",
+      "Triangular V-brace",
+      "Entrance Platform"
+    ]
+  },
+  "U50": {
+    "size": "9200*3600*3200mm",
+    "floor_area": "33.1㎡",
+    "guests": "2-4 people",
+    "power": "6.7KW/11.2KW",
+    "weight": "≈6tons",
+    "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Hollow laminated tempered glass skylight",
+      "Double-Layer Insulated Tempered Floor-to-Ceiling Glass",
+      "Painted stainless steel swing entrance door"
+    ],
+    "guest_control": [
+      "Lighting / Electric curtains",
+      "Intelligent access control system for hotels"
+    ],
+    "accessories": [
+      "Support feet matched at the bottom of the product",
+      "Lifting rings / Transportation fixtures"
+    ],
+    "interior": [
+      "Integrated Ceiling and Wall Modules",
+      "Stone Crystal Wood-Grain Flooring",
+      "Bathroom Privacy Glass Door",
+      "Bathroom Shower Room/Marble/Tile Floor",
+      "Washbasin Counter/Sink/Bathroom Mirror",
+      "Coat Hooks/Shower Storage Shelf/Towel Rack",
+      "Branded Water Tap/Showerhead/Floor Drain",
+      "Whole-House Lighting System",
+      "Whole-House Water and Electricity System",
+      "Standard Color Blackout Curtains",
+      "Air Conditioner (Cooling & Heating)",
+      "Electric Water Heater",
+      "Ventilation System",
+      "Whole-House Mosquito-Proof Screen Doors",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
+      "Branded Smart Toilet",
+      "Electric Underfloor Heating",
+      "Panoramic balcony"
+    ],
+    "optional": [
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Custom bar counter",
+      "Smart voice system",
+      "Projector",
+      "Entrance Staircase",
+      "Triangular V-brace",
       "Entrance Platform"
     ]
   },
@@ -304,14 +711,16 @@
       "Galvanized steel structure frame system",
       "Fluorocarbon sprayed aluminum alloy shell module",
       "Thermal insulation, waterproof and moisture-proof structural system",
-      "Three-layer hollow tempered floor-to-ceiling glass",
-      "Standard swing entrance door"
+      "Hollow laminated tempered glass skylight",
+      "Double-Layer Insulated Tempered Floor-to-Ceiling Glass",
+      "Painted stainless steel swing entrance door"
     ],
     "guest_control": [
       "Lighting / Electric curtains",
-      "Smart Voice System"
+      "Intelligent access control system for hotels"
     ],
     "accessories": [
+      "Support feet matched at the bottom of the product",
       "Lifting rings / Transportation fixtures"
     ],
     "interior": [
@@ -330,16 +739,18 @@
       "Ventilation System",
       "Whole-House Mosquito-Proof Screen Doors",
       "Branded Smart Toilet",
-      "Electric Underfloor Heating"
+      "Electric Underfloor Heating",
+      "Panoramic balcony",
+      "Lighting Ventilation Fan"
     ],
     "optional": [
-      "International Kitchen Integrated Customization",
-      "Triangular V-brace",
-      "Smart Voice System",
-      "Projector + projection screen",
-      "Thickened Insulation Layer",
-      "Entrance Staircase",
       "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Custom bar counter",
+      "Smart voice system",
+      "Projector",
+      "Entrance Staircase",
+      "Triangular V-brace",
       "Entrance Platform"
     ]
   },
@@ -353,14 +764,16 @@
       "Galvanized steel structure frame system",
       "Fluorocarbon sprayed aluminum alloy shell module",
       "Thermal insulation, waterproof and moisture-proof structural system",
-      "Three-layer hollow tempered floor-to-ceiling glass",
-      "Standard swing entrance door"
+      "Hollow laminated tempered glass skylight",
+      "Double-Layer Insulated Tempered Floor-to-Ceiling Glass",
+      "Painted stainless steel swing entrance door"
     ],
     "guest_control": [
       "Lighting / Electric curtains",
-      "Smart Voice System"
+      "Intelligent access control system for hotels"
     ],
     "accessories": [
+      "Support feet matched at the bottom of the product",
       "Lifting rings / Transportation fixtures"
     ],
     "interior": [
@@ -379,114 +792,21 @@
       "Ventilation System",
       "Whole-House Mosquito-Proof Screen Doors",
       "Branded Smart Toilet",
-      "Electric Underfloor Heating"
+      "Electric Underfloor Heating",
+      "Panoramic balcony",
+      "Lighting Ventilation Fan"
     ],
     "optional": [
       "International Kitchen Integrated Customization",
-      "Triangular V-brace",
-      "Smart Voice System",
-      "Projector + projection screen",
+      "Kitchen Cabinets/Wall Cabinets (Including Sink/Water Tap)",
+      "Range Hood/Induction Cooker/Refrigerator",
+      "Custom bar counter",
+      "Smart voice system",
+      "Projector",
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
       "Thickened Insulation Layer",
       "Entrance Staircase",
-      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
-      "Entrance Platform"
-    ]
-  },
-  "U30": {
-    "size": "8500*3600*3200mm",
-    "floor_area": "30.6㎡",
-    "guests": "2-4 people",
-    "power": "6.7KW/11.2KW",
-    "weight": "≈5tons",
-    "external_protection": [
-      "Galvanized steel structure frame system",
-      "Fluorocarbon sprayed aluminum alloy shell module",
-      "Thermal insulation, waterproof and moisture-proof structural system",
-      "Three-layer hollow tempered floor-to-ceiling glass",
-      "Standard swing entrance door"
-    ],
-    "guest_control": [
-      "Lighting / Electric curtains",
-      "Smart Voice System"
-    ],
-    "accessories": [
-      "Lifting rings / Transportation fixtures"
-    ],
-    "interior": [
-      "Integrated Ceiling and Wall Modules",
-      "Stone Crystal Wood-Grain Flooring",
-      "Bathroom Privacy Glass Door",
-      "Bathroom Shower Room/Marble/Tile Floor",
-      "Washbasin Counter/Sink/Bathroom Mirror",
-      "Coat Hooks/Shower Storage Shelf/Towel Rack",
-      "Branded Water Tap/Showerhead/Floor Drain",
-      "Whole-House Lighting System",
-      "Whole-House Water and Electricity System",
-      "Standard Color Blackout Curtains",
-      "Air Conditioner (Cooling & Heating)",
-      "Electric Water Heater",
-      "Ventilation System",
-      "Whole-House Mosquito-Proof Screen Doors",
-      "Branded Smart Toilet",
-      "Electric Underfloor Heating"
-    ],
-    "optional": [
-      "International Kitchen Integrated Customization",
       "Triangular V-brace",
-      "Smart Voice System",
-      "Projector + projection screen",
-      "Thickened Insulation Layer",
-      "Entrance Staircase",
-      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
-      "Entrance Platform"
-    ]
-  },
-  "U50": {
-    "size": "2300*2200*2500mm",
-    "floor_area": "5.0㎡",
-    "guests": "2 people",
-    "power": "5KW",
-    "weight": "≈3tons",
-    "external_protection": [
-      "Galvanized steel structure frame system",
-      "Fluorocarbon sprayed aluminum alloy shell module",
-      "Thermal insulation, waterproof and moisture-proof structural system",
-      "Three-layer hollow tempered floor-to-ceiling glass",
-      "Standard swing entrance door"
-    ],
-    "guest_control": [
-      "Lighting / Electric curtains",
-      "Smart Voice System"
-    ],
-    "accessories": [
-      "Lifting rings / Transportation fixtures"
-    ],
-    "interior": [
-      "Integrated Ceiling and Wall Modules",
-      "Stone Crystal Wood-Grain Flooring",
-      "Bathroom Privacy Glass Door",
-      "Bathroom Shower Room/Marble/Tile Floor",
-      "Washbasin Counter/Sink/Bathroom Mirror",
-      "Coat Hooks/Shower Storage Shelf/Towel Rack",
-      "Branded Water Tap/Showerhead/Floor Drain",
-      "Whole-House Lighting System",
-      "Whole-House Water and Electricity System",
-      "Standard Color Blackout Curtains",
-      "Air Conditioner (Cooling & Heating)",
-      "Electric Water Heater",
-      "Ventilation System",
-      "Whole-House Mosquito-Proof Screen Doors",
-      "Branded Smart Toilet",
-      "Electric Underfloor Heating"
-    ],
-    "optional": [
-      "International Kitchen Integrated Customization",
-      "Triangular V-brace",
-      "Smart Voice System",
-      "Projector + projection screen",
-      "Thickened Insulation Layer",
-      "Entrance Staircase",
-      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
       "Entrance Platform"
     ]
   },
@@ -497,13 +817,18 @@
     "power": "6.7KW/11.2KW",
     "weight": "≈4tons",
     "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Three-layer hollow tempered floor-to-ceiling glass",
       "Standard swing entrance door"
     ],
     "guest_control": [
       "Lighting / Electric curtains",
-      "Smart Voice System"
+      "Intelligent access control system for hotels"
     ],
     "accessories": [
+      "Support feet matched at the bottom of the product",
       "Lifting rings / Transportation fixtures"
     ],
     "interior": [
@@ -522,16 +847,18 @@
       "Ventilation System",
       "Whole-House Mosquito-Proof Screen Doors",
       "Branded Smart Toilet",
-      "Electric Underfloor Heating"
+      "Electric Underfloor Heating",
+      "Smart Voice Control",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
+      "Micro-ventilation window"
     ],
     "optional": [
-      "International Kitchen Integrated Customization",
-      "Triangular V-brace",
-      "Smart Voice System",
-      "Projector + projection screen",
-      "Thickened Insulation Layer",
-      "Entrance Staircase",
       "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Thickened Insulation Layer",
+      "Smart Voice System",
+      "Electric towel rack",
+      "Entrance Staircase",
+      "Triangular V-brace",
       "Entrance Platform"
     ]
   },
@@ -542,13 +869,18 @@
     "power": "6.7KW/11.2KW",
     "weight": "≈6.5tons",
     "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Three-layer hollow tempered floor-to-ceiling glass",
       "Standard swing entrance door"
     ],
     "guest_control": [
       "Lighting / Electric curtains",
-      "Smart Voice System"
+      "Intelligent access control system for hotels"
     ],
     "accessories": [
+      "Support feet matched at the bottom of the product",
       "Lifting rings / Transportation fixtures"
     ],
     "interior": [
@@ -567,33 +899,46 @@
       "Ventilation System",
       "Whole-House Mosquito-Proof Screen Doors",
       "Branded Smart Toilet",
-      "Electric Underfloor Heating"
+      "Electric Underfloor Heating",
+      "Smart Voice Control",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
+      "Micro-ventilation window"
     ],
     "optional": [
       "International Kitchen Integrated Customization",
-      "Triangular V-brace",
-      "Smart Voice System",
+      "Kitchen Cabinets/Wall Cabinets (Including Sink/Water Tap)",
+      "Range Hood/Induction Cooker/Refrigerator",
+      "Custom bar counter/custom wardrobe",
+      "Smart voice system",
       "Projector + projection screen",
+      "Washing machine",
+      "Electric towel rack",
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
       "Thickened Insulation Layer",
       "Entrance Staircase",
-      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Triangular V-brace",
       "Entrance Platform"
     ]
   },
   "W9": {
-    "size": "11380*3480*3300mm",
-    "floor_area": "39.6㎡",
+    "size": "11500*3400*3400mm",
+    "floor_area": "39.1㎡",
     "guests": "2-4 people",
     "power": "9.9KW/15.4KW",
-    "weight": "≈6.7tons",
+    "weight": "≈8tons",
     "external_protection": [
+      "Galvanized steel structure frame system",
+      "Fluorocarbon sprayed aluminum alloy shell module",
+      "Thermal insulation, waterproof and moisture-proof structural system",
+      "Three-layer hollow tempered floor-to-ceiling glass",
       "Standard swing entrance door"
     ],
     "guest_control": [
       "Lighting / Electric curtains",
-      "Smart Voice System"
+      "Intelligent access control system for hotels"
     ],
     "accessories": [
+      "Support feet matched at the bottom of the product",
       "Lifting rings / Transportation fixtures"
     ],
     "interior": [
@@ -612,16 +957,24 @@
       "Ventilation System",
       "Whole-House Mosquito-Proof Screen Doors",
       "Branded Smart Toilet",
-      "Electric Underfloor Heating"
+      "Electric Underfloor Heating",
+      "Smart Voice Control",
+      "4-in-1 bathroom ceiling heater with light, heat, ventilation, and fan",
+      "Micro-ventilation window"
     ],
     "optional": [
       "International Kitchen Integrated Customization",
-      "Triangular V-brace",
-      "Smart Voice System",
+      "Kitchen Cabinets/Wall Cabinets (Including Sink/Water Tap)",
+      "Range Hood/Induction Cooker/Refrigerator",
+      "Custom bar counter/custom wardrobe",
+      "Smart voice system",
       "Projector + projection screen",
+      "Washing machine",
+      "Electric towel rack",
+      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
       "Thickened Insulation Layer",
       "Entrance Staircase",
-      "UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)",
+      "Triangular V-brace",
       "Entrance Platform"
     ]
   }
