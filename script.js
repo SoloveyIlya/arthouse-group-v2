@@ -713,15 +713,39 @@ function smoothScrollTo(targetId) {
       const interiorSection = document.getElementById('interiorSection');
       const interiorList = document.getElementById('interiorList');
       
+      // Mapping from Russian interior item names to translation keys
+      const interiorKeyMap = {
+        'Интегрированные модули потолка и стен': 'interior.ceiling-walls',
+        'Напольное покрытие из каменного кристалла с текстурой дерева': 'interior.flooring',
+        'Ванная комната с дверью из матового стекла': 'interior.bathroom-door',
+        'Душевая комната/Мрамор/Плитка на полу': 'interior.shower-room',
+        'Раковина/Мойка/Зеркало в ванной': 'interior.sink-mirror',
+        'Крючки для одежды/Полка для душа/Вешалка для полотенец': 'interior.hooks-shelf',
+        'Брендовая водопроводная арматура/Душевая лейка/Напольный слив': 'interior.plumbing',
+        'Система освещения всего дома': 'interior.lighting',
+        'Водопроводная и электрическая система всего дома': 'interior.plumbing-electric',
+        'Стандартные затемняющие шторы': 'interior.curtains',
+        'Кондиционер (охлаждение и обогрев)': 'interior.aircon',
+        'Электрический водонагреватель': 'interior.water-heater',
+        'Система вентиляции': 'interior.ventilation',
+        'Защита всего дома от комаров': 'interior.mosquito',
+        '4-в-1 потолочный обогреватель для ванной с освещением, обогревом, вентиляцией и вентилятором': 'interior.bathroom-heater',
+        'Брендовый умный туалет': 'interior.toilet',
+        'Электрический подогрев пола': 'interior.floor-heating'
+      };
+      
       if (product.interior && product.interior.trim()) {
         const items = product.interior.split('|').filter(item => item.trim());
         if (items.length > 0) {
-          interiorList.innerHTML = items.map(item => 
-            `<li class="flex items-center text-gray-300">
+          interiorList.innerHTML = items.map(item => {
+            const trimmedItem = item.trim();
+            const translationKey = interiorKeyMap[trimmedItem] || null;
+            const translatedText = translationKey && t[translationKey] ? t[translationKey] : trimmedItem;
+            return `<li class="flex items-center text-gray-300">
               <i class="ri-home-line text-primary mr-2"></i>
-              <span>${item.trim()}</span>
-            </li>`
-          ).join('');
+              <span>${translatedText}</span>
+            </li>`;
+          }).join('');
           interiorSection.style.display = 'block';
         } else {
           interiorSection.style.display = 'none';
@@ -734,13 +758,29 @@ function smoothScrollTo(targetId) {
       const optionalConfigSection = document.getElementById('optionalConfigSection');
       const optionalConfigCheckboxes = document.getElementById('optionalConfigCheckboxes');
       
+      // Mapping from English optional names to translation keys
+      const optionalKeyMap = {
+        'UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)': 'optional.uv-film',
+        'Thickened Insulation Layer': 'optional.thickened-insulation',
+        'Smart Voice System': 'optional.smart-voice',
+        'Starry Sky Skylight': 'optional.starry-sky',
+        'Projector + projection screen': 'optional.projector',
+        'International Kitchen Integrated Customization': 'optional.kitchen',
+        'Custom bar counter / Custom wardrobe': 'optional.bar-counter',
+        'Entrance Staircase': 'optional.staircase',
+        'Triangular V-brace': 'optional.brace',
+        'Entrance Platform': 'optional.platform'
+      };
+      
       if (product.optional && Array.isArray(product.optional) && product.optional.length > 0) {
-        optionalConfigCheckboxes.innerHTML = product.optional.map((item, index) => 
-          `<label class="flex items-center text-gray-300 cursor-pointer hover:text-white transition-colors">
+        optionalConfigCheckboxes.innerHTML = product.optional.map((item, index) => {
+          const translationKey = optionalKeyMap[item] || null;
+          const translatedText = translationKey && t[translationKey] ? t[translationKey] : item;
+          return `<label class="flex items-center text-gray-300 cursor-pointer hover:text-white transition-colors">
             <input type="checkbox" class="w-5 h-5 text-primary bg-gray-700 border-gray-600 rounded focus:ring-primary focus:ring-2 mr-3" value="${item}">
-            <span>${item}</span>
-          </label>`
-        ).join('');
+            <span>${translatedText}</span>
+          </label>`;
+        }).join('');
         optionalConfigSection.style.display = 'block';
       } else {
         optionalConfigSection.style.display = 'none';
