@@ -164,6 +164,15 @@ const translations = {
     'modal.product.dimensions': 'РАЗМЕРЫ',
     'modal.product.weight': 'ОБЩИЙ ВЕС НЕТТО',
     'modal.product.additional': 'Дополнительные системы',
+    
+    // Card Parameters
+    'card.area': 'Площадь застройки',
+    'card.length': 'Длина',
+    'card.width': 'Ширина',
+    'card.height': 'Высота',
+    'card.occupancy': 'Вместимость',
+    'card.power': 'Максимальная мощность',
+    'card.weight': 'Общий вес нетто',
     'modal.product.protection': 'Внешняя система защиты',
     'modal.product.control': 'Система гостевого контроля',
     'modal.product.accessories': 'Аксессуары для продукта',
@@ -421,6 +430,15 @@ const translations = {
     'modal.product.dimensions': 'DIMENSIONS',
     'modal.product.weight': 'TOTAL NET WEIGHT',
     'modal.product.additional': 'Additional Systems',
+    
+    // Card Parameters
+    'card.area': 'Building area',
+    'card.length': 'Length',
+    'card.width': 'Width',
+    'card.height': 'Height',
+    'card.occupancy': 'Occupancy',
+    'card.power': 'Maximum power',
+    'card.weight': 'Total net weight',
     'modal.product.protection': 'External Protection System',
     'modal.product.control': 'Guest Control System',
     'modal.product.accessories': 'Product Accessories',
@@ -678,6 +696,15 @@ const translations = {
     'modal.product.dimensions': 'ზომები',
     'modal.product.weight': 'მთლიანი წმინდა წონა',
     'modal.product.additional': 'დამატებითი სისტემები',
+    
+    // Card Parameters
+    'card.area': 'შენობის ფართობი',
+    'card.length': 'სიგრძე',
+    'card.width': 'სიგანე',
+    'card.height': 'სიმაღლე',
+    'card.occupancy': 'ტევადობა',
+    'card.power': 'მაქსიმალური სიმძლავრე',
+    'card.weight': 'მთლიანი წმინდა წონა',
     'modal.product.protection': 'გარე დაცვის სისტემა',
     'modal.product.control': 'სტუმრების კონტროლის სისტემა',
     'modal.product.accessories': 'პროდუქტის აქსესუარები',
