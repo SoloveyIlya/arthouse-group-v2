@@ -172,12 +172,11 @@ if ($form_type === 'contact') {
         $errors[] = 'Пожалуйста, подтвердите, что вы не робот';
     }
     
-    // Проверка reCAPTCHA (опционально, если настроен секретный ключ)
-    // ПРИМЕЧАНИЕ: Публичный ключ (Site Key) = 6Lf7GforAAAAAGG6IAQqsIXF2GFMTu6htVvqLWuW (используется в HTML)
-    // Секретный ключ (Secret Key) нужно получить в панели Google reCAPTCHA: https://www.google.com/recaptcha/admin/
-    // Найди сайт с публичным ключом 6Lf7GforAAAAAGG6IAQqsIXF2GFMTu6htVvqLWuW и скопируй Secret Key оттуда
-    $recaptcha_secret = "YOUR_RECAPTCHA_SECRET_KEY"; // ВСТАВЬТЕ СЮДА СЕКРЕТНЫЙ КЛЮЧ reCAPTCHA
-    if (!empty($recaptcha_response) && $recaptcha_secret !== "YOUR_RECAPTCHA_SECRET_KEY") {
+    // Проверка reCAPTCHA
+    // ПРИМЕЧАНИЕ: Публичный ключ (Site Key) = 6LczLv4rAAAAAK0c6c_np1QfAniFp2Ppmlkk4Vyl (используется в HTML)
+    // Секретный ключ (Secret Key) = 6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx
+    $recaptcha_secret = "6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx";
+    if (!empty($recaptcha_response)) {
         $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
         
         $recaptcha_data = [
@@ -322,12 +321,11 @@ if ($form_type === 'contact') {
         $errors[] = 'Пожалуйста, подтвердите, что вы не робот';
     }
     
-    // Проверка reCAPTCHA (опционально, если настроен секретный ключ)
-    // ПРИМЕЧАНИЕ: Публичный ключ (Site Key) = 6Lf7GforAAAAAGG6IAQqsIXF2GFMTu6htVvqLWuW (используется в HTML)
-    // Секретный ключ (Secret Key) нужно получить в панели Google reCAPTCHA: https://www.google.com/recaptcha/admin/
-    // Найди сайт с публичным ключом 6Lf7GforAAAAAGG6IAQqsIXF2GFMTu6htVvqLWuW и скопируй Secret Key оттуда
-    $recaptcha_secret = "YOUR_RECAPTCHA_SECRET_KEY"; // ВСТАВЬТЕ СЮДА СЕКРЕТНЫЙ КЛЮЧ reCAPTCHA
-    if (!empty($recaptcha_response) && $recaptcha_secret !== "YOUR_RECAPTCHA_SECRET_KEY") {
+    // Проверка reCAPTCHA
+    // ПРИМЕЧАНИЕ: Публичный ключ (Site Key) = 6LczLv4rAAAAAK0c6c_np1QfAniFp2Ppmlkk4Vyl (используется в HTML)
+    // Секретный ключ (Secret Key) = 6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx
+    $recaptcha_secret = "6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx";
+    if (!empty($recaptcha_response)) {
         $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
         
         $recaptcha_data = [
