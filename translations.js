@@ -203,9 +203,25 @@ const translations = {
     'optional.platform': 'Входная платформа',
     
     // Product Titles
+    'product.a30.title': 'Capsule House A30',
+    'product.a50.title': 'Capsule House A50',
+    'product.a70.title': 'Capsule House A70',
     'product.g30.title': 'Space Capsule House G30',
     'product.g30-premium.title': 'Space Capsule House G30',
     'product.g50.title': 'Space Capsule House G50',
+    'product.g50f.title': 'Capsule House G50F',
+    'product.g70.title': 'Capsule House G70',
+    'product.g70f.title': 'Capsule House G70F',
+    'product.l50.title': 'Capsule House L50',
+    'product.l50f.title': 'Capsule House L50F',
+    'product.l70.title': 'Capsule House L70',
+    'product.u30.title': 'Capsule House U30',
+    'product.u50.title': 'Capsule House U50',
+    'product.x50.title': 'Capsule House X50',
+    'product.x70.title': 'Capsule House X70',
+    'product.w3.title': 'Capsule House W3',
+    'product.w6.title': 'Capsule House W6',
+    'product.w9.title': 'Capsule House W9',
     
     // Product Descriptions
     'product.g30.description': 'Модель G30 из серии Galaxy предлагает современное компактное решение для жизни. Этот модульный дом сочетает в себе функциональность, комфорт и стиль.',
@@ -444,9 +460,25 @@ const translations = {
     'optional.platform': 'Entrance Platform',
     
     // Product Titles
+    'product.a30.title': 'Capsule House A30',
+    'product.a50.title': 'Capsule House A50',
+    'product.a70.title': 'Capsule House A70',
     'product.g30.title': 'Space Capsule House G30',
     'product.g30-premium.title': 'Modular House G30 Premium',
     'product.g50.title': 'Space Capsule House G50',
+    'product.g50f.title': 'Capsule House G50F',
+    'product.g70.title': 'Capsule House G70',
+    'product.g70f.title': 'Capsule House G70F',
+    'product.l50.title': 'Capsule House L50',
+    'product.l50f.title': 'Capsule House L50F',
+    'product.l70.title': 'Capsule House L70',
+    'product.u30.title': 'Capsule House U30',
+    'product.u50.title': 'Capsule House U50',
+    'product.x50.title': 'Capsule House X50',
+    'product.x70.title': 'Capsule House X70',
+    'product.w3.title': 'Capsule House W3',
+    'product.w6.title': 'Capsule House W6',
+    'product.w9.title': 'Capsule House W9',
     
     // Product Descriptions
     'product.g30.description': 'The G30 model from the Galaxy series offers a modern compact living solution. This modular home combines functionality, comfort and style.',
@@ -685,9 +717,25 @@ const translations = {
     'optional.platform': 'შესასვლელი პლატფორმა',
     
     // Product Titles
+    'product.a30.title': 'Capsule House A30',
+    'product.a50.title': 'Capsule House A50',
+    'product.a70.title': 'Capsule House A70',
     'product.g30.title': 'Space Capsule House G30',
     'product.g30-premium.title': 'მოდულური სახლი G30 Premium',
     'product.g50.title': 'Space Capsule House G50',
+    'product.g50f.title': 'Capsule House G50F',
+    'product.g70.title': 'Capsule House G70',
+    'product.g70f.title': 'Capsule House G70F',
+    'product.l50.title': 'Capsule House L50',
+    'product.l50f.title': 'Capsule House L50F',
+    'product.l70.title': 'Capsule House L70',
+    'product.u30.title': 'Capsule House U30',
+    'product.u50.title': 'Capsule House U50',
+    'product.x50.title': 'Capsule House X50',
+    'product.x70.title': 'Capsule House X70',
+    'product.w3.title': 'Capsule House W3',
+    'product.w6.title': 'Capsule House W6',
+    'product.w9.title': 'Capsule House W9',
     
     // Product Descriptions
     'product.g30.description': 'Galaxy სერიის G30 მოდელი გთავაზობთ თანამედროვე კომპაქტურ საცხოვრებელ გადაწყვეტას. ეს მოდულური სახლი აერთიანებს ფუნქციონალურობას, კომფორტს და სტილს.',

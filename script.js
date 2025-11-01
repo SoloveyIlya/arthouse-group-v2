@@ -1444,6 +1444,15 @@ function smoothScrollTo(targetId) {
         }
       }
       
+      // Добавляем sitekey в formData если есть reCAPTCHA
+      const recaptchaContainer = form.querySelector('.g-recaptcha');
+      if (recaptchaContainer) {
+        const sitekey = recaptchaContainer.getAttribute('data-sitekey');
+        if (sitekey) {
+          formData.append('recaptcha_sitekey', sitekey);
+        }
+      }
+      
       // Показываем состояние загрузки
       if (submitButton) {
         submitButton.disabled = true;
