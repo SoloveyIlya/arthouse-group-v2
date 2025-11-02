@@ -1922,7 +1922,7 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
             <!-- reCAPTCHA v2 -->
             <div>
               <label class="block text-white font-medium mb-2" data-i18n="contact.form.captcha">Подтвердите, что вы не робот</label>
-              <div class="g-recaptcha" data-sitekey="6LczLv4rAAAAAK0c6c_np1QfAniFp2Ppmlkk4Vyl"></div>
+              <div class="g-recaptcha" data-sitekey=""></div>
             </div>
 
             <!-- Submit Button -->
@@ -2063,7 +2063,7 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
             <!-- reCAPTCHA v2 -->
             <div>
               <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300 text-luxury-caption" data-i18n="contact.form.captcha">Подтвердите, что вы не робот</label>
-              <div class="g-recaptcha" data-sitekey="6LczLv4rAAAAAK0c6c_np1QfAniFp2Ppmlkk4Vyl"></div>
+              <div class="g-recaptcha" data-sitekey=""></div>
             </div>
             <button type="submit" class="w-full luxury-button py-3 sm:py-4 text-lg sm:text-xl font-semibold rounded-luxury" data-i18n="modal.order.submit">
               Отправить запрос
@@ -2350,6 +2350,40 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
   }
   </script>
 
+  <!-- reCAPTCHA Configuration: определение окружения и выбор ключей -->
+  <script>
+    // Определение окружения (localhost/production)
+    (function() {
+      const host = window.location.hostname;
+      const isLocal = host === 'localhost' || host === '127.0.0.1' || 
+                     host.includes('127.0.0.1') || host.includes('localhost');
+      
+      // Тестовые ключи Google (для localhost) - всегда проходят проверку
+      const TEST_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+      const TEST_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
+      
+      // Рабочие ключи (для продакшена)
+      const PROD_SITE_KEY = '6LczLv4rAAAAAK0c6c_np1QfAniFp2Ppmlkk4Vyl';
+      const PROD_SECRET_KEY = '6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx';
+      
+      // Выбираем ключи в зависимости от окружения
+      window.RECAPTCHA_SITE_KEY = isLocal ? TEST_SITE_KEY : PROD_SITE_KEY;
+      window.RECAPTCHA_SECRET_KEY = isLocal ? TEST_SECRET_KEY : PROD_SECRET_KEY;
+      window.IS_LOCAL_ENV = isLocal;
+      
+      console.log('reCAPTCHA Environment:', isLocal ? 'LOCAL (Test Keys)' : 'PRODUCTION (Real Keys)');
+      console.log('reCAPTCHA Site Key:', window.RECAPTCHA_SITE_KEY);
+      
+      // Обновляем sitekey во всех контейнерах reCAPTCHA
+      document.addEventListener('DOMContentLoaded', function() {
+        const recaptchaContainers = document.querySelectorAll('.g-recaptcha');
+        recaptchaContainers.forEach(function(container) {
+          container.setAttribute('data-sitekey', window.RECAPTCHA_SITE_KEY);
+        });
+      });
+    })();
+  </script>
+  
   <!-- reCAPTCHA v2 Script -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   
@@ -2458,6 +2492,46 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
       }, { threshold: 0.1 });
       elements.forEach(element => observer.observe(element));
     });
+  </script>
+  <script id="translate-occupancy">
+    // Функция для замены "чел." на переводы в карточках продуктов
+    function updateOccupancyTranslations() {
+      const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
+      const t = window.translations && window.translations[lang] ? window.translations[lang] : (window.translations && window.translations.ru ? window.translations.ru : {});
+      const personShort = t['card.person.short'] || 'чел.';
+      
+      // Найти все элементы с "чел." в карточках продуктов
+      const occupancyElements = document.querySelectorAll('.catalog-card .text-white.font-medium');
+      occupancyElements.forEach(element => {
+        const text = element.textContent;
+        if (text && (text.includes('чел.') || text.includes('ppl') || text.includes('ად.'))) {
+          // Заменить все варианты на текущий перевод
+          let updatedText = text
+            .replace(/чел\./g, personShort)
+            .replace(/ppl/g, personShort)
+            .replace(/ად\./g, personShort);
+          element.textContent = updatedText;
+        }
+      });
+    }
+    
+    // Обновить при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+      updateOccupancyTranslations();
+      
+      // Обновить при смене языка (если используется система смены языка)
+      const langButtons = document.querySelectorAll('[data-lang]');
+      langButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          setTimeout(updateOccupancyTranslations, 100);
+        });
+      });
+    });
+    
+    // Наблюдать за изменениями языка через событие или MutationObserver
+    if (window.addEventListener) {
+      window.addEventListener('languagechange', updateOccupancyTranslations);
+    }
   </script>
 </body>
 </html>

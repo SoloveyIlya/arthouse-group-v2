@@ -171,6 +171,8 @@ const translations = {
     'card.width': 'Ширина',
     'card.height': 'Высота',
     'card.occupancy': 'Вместимость',
+    'card.person.short': 'чел.',
+    'card.weight.short': 'тонны',
     'card.power': 'Максимальная мощность',
     'card.weight': 'Общий вес нетто',
     'modal.product.protection': 'Внешняя система защиты',
@@ -198,6 +200,15 @@ const translations = {
     'interior.bathroom-heater': '4-в-1 потолочный обогреватель для ванной с освещением, обогревом, вентиляцией и вентилятором',
     'interior.toilet': 'Брендовый умный туалет',
     'interior.floor-heating': 'Электрический подогрев пола',
+    // SA30/SA50/SA70 specific interior
+    'interior.sa.low-e-glass': 'Изолированное низкоэмиссионное закаленное стекло',
+    'interior.sa.bathroom': 'SMC модульная ванная комната',
+    'interior.sa.toilet-cabinet': 'Туалет и водяной бак, туалетный столик, настенный шкаф',
+    'interior.sa.shower-mixer': 'Душевой смеситель и душевая штанга, вешалка для полотенец',
+    'interior.sa.aircon': 'Кондиционер',
+    'interior.sa.kitchen': 'Кухня и кухонная техника',
+    'interior.sa.solar': 'Система солнечной энергии',
+    'interior.sa.water-tank': 'Водяной бак',
     
     // Optional Configurations
     'optional.uv-film': 'УФ-стойкая теплоизоляционная взрывобезопасная пленка (высокая прозрачность/конфиденциальность)',
@@ -210,6 +221,10 @@ const translations = {
     'optional.staircase': 'Входная лестница',
     'optional.brace': 'Треугольная V-образная распорка',
     'optional.platform': 'Входная платформа',
+    // SA30/SA50/SA70 specific optional
+    'optional.sa.comfort': 'Комфортные улучшения',
+    'optional.sa.accessories': 'Аксессуары и периферия',
+    'optional.sa.wiring': 'Электротехническая проводка и освещение',
     
     // Product Titles
     'product.a30.title': 'Capsule House A30',
@@ -250,6 +265,12 @@ const translations = {
     'product.w3.description': 'Модель W3 предлагает компактное и функциональное решение для комфортного проживания. Этот модульный дом оснащен современными системами жизнеобеспечения и энергоэффективными технологиями. Продуманная планировка обеспечивает максимальное использование пространства. Идеальный выбор для небольших участков или в качестве гостевого дома.',
     'product.w6.description': 'Модель W6 представляет собой просторное решение для комфортного проживания. Увеличенная площадь и современные технологии создают идеальное пространство для жизни. Этот дом оснащен всеми необходимыми системами для комфортной жизни. Идеальный выбор для семей или тех, кто ценит простор и комфорт.',
     'product.w9.description': 'Модель W9 - это просторный модульный дом для комфортного проживания. Увеличенная площадь и передовые технологии создают идеальное пространство для жизни. Этот дом оснащен всеми необходимыми системами для комфортной жизни. Идеальный выбор для семей или тех, кто ищет максимальный комфорт.',
+    'product.g70f.description': 'Модель G70F предлагает премиальное решение с увеличенной мощностью и площадью. Этот модульный дом оснащен передовыми системами и современными технологиями. Продуманная планировка обеспечивает максимальный комфорт. Идеальный выбор для тех, кто ищет премиальное жилье с современным дизайном.',
+    'product.l50f.description': 'Модель L50F представляет собой функциональное решение для комфортного проживания. Этот модульный дом сочетает в себе современный дизайн и практичность. Продуманная планировка обеспечивает максимальное использование пространства. Идеальный выбор для тех, кто ценит комфорт и стиль.',
+    'product.sa30.description': 'SA30 - разборная версия модульного дома. Модульная конструкция позволяет легко транспортировать и собирать дом на месте. Эта модель оснащена всеми необходимыми системами для комфортной жизни. Идеальный выбор для удаленных мест или где требуется удобная транспортировка.',
+    'product.sa50.description': 'SA50 - разборная версия модульного дома среднего размера. Модульная конструкция позволяет легко транспортировать и собирать дом на месте. Увеличенная площадь создает более комфортное пространство для жизни. Идеальный выбор для тех, кто ценит удобство транспортировки.',
+    'product.sa70.description': 'SA70 - разборная версия просторного модульного дома. Модульная конструкция позволяет легко транспортировать и собирать дом на месте. Увеличенная площадь создает максимально комфортное пространство для жизни. Идеальный выбор для больших семей.',
+    'product.sleepbox.description': 'SleepBox - компактный модульный дом для комфортного отдыха. Эта ультра-компактная модель идеально подходит для небольших участков или в качестве гостевого дома. Продуманная планировка обеспечивает максимальное использование пространства. Идеальный выбор для тех, кто ценит минимализм и функциональность.',
     
     // Product Systems (common for all products)
     'system.protection.1': 'Каркас конструкции из оцинкованной стали система',
@@ -437,6 +458,8 @@ const translations = {
     'card.width': 'Width',
     'card.height': 'Height',
     'card.occupancy': 'Occupancy',
+    'card.person.short': 'ppl',
+    'card.weight.short': 'tons',
     'card.power': 'Maximum power',
     'card.weight': 'Total net weight',
     'modal.product.protection': 'External Protection System',
@@ -464,6 +487,15 @@ const translations = {
     'interior.bathroom-heater': '4-in-1 Bathroom Ceiling Heater with Light, Heat, Ventilation, and Fan',
     'interior.toilet': 'Branded Smart Toilet',
     'interior.floor-heating': 'Electric Underfloor Heating',
+    // SA30/SA50/SA70 specific interior
+    'interior.sa.low-e-glass': 'Insulated Low-E Tempered Glass',
+    'interior.sa.bathroom': 'SMC Modular Bathroom',
+    'interior.sa.toilet-cabinet': 'Toilet and Water Tank, Vanity, Wall Cabinet',
+    'interior.sa.shower-mixer': 'Shower Mixer and Shower Rod, Towel Rack',
+    'interior.sa.aircon': 'Air Conditioner',
+    'interior.sa.kitchen': 'Kitchen and Kitchen Appliances',
+    'interior.sa.solar': 'Solar Energy System',
+    'interior.sa.water-tank': 'Water Tank',
     
     // Optional Configurations
     'optional.uv-film': 'UV-resistant Heat-insulating Explosion-proof Film (High-transparency/Privacy)',
@@ -476,6 +508,10 @@ const translations = {
     'optional.staircase': 'Entrance Staircase',
     'optional.brace': 'Triangular V-brace',
     'optional.platform': 'Entrance Platform',
+    // SA30/SA50/SA70 specific optional
+    'optional.sa.comfort': 'Comfort Improvements',
+    'optional.sa.accessories': 'Accessories and Peripherals',
+    'optional.sa.wiring': 'Electrical Wiring and Lighting',
     
     // Product Titles
     'product.a30.title': 'Capsule House A30',
@@ -516,6 +552,12 @@ const translations = {
     'product.w3.description': 'The W3 model offers a compact and functional solution for comfortable living. This modular home is equipped with modern life support systems and energy-efficient technologies. Thoughtful layout ensures maximum use of space. The ideal choice for small plots or as a guest house.',
     'product.w6.description': 'The W6 model represents a spacious solution for comfortable living. The increased area and modern technologies create the perfect space for life. This home is equipped with all necessary systems for comfortable living. The ideal choice for families or those who value space and comfort.',
     'product.w9.description': 'The W9 model is a spacious modular home for comfortable living. The increased area and advanced technologies create the perfect space for life. This home is equipped with all necessary systems for comfortable living. The ideal choice for families or those seeking maximum comfort.',
+    'product.g70f.description': 'The G70F model offers a premium solution with increased power and area. This modular home is equipped with advanced systems and modern technologies. Thoughtful layout ensures maximum comfort. The ideal choice for those seeking premium housing with modern design.',
+    'product.l50f.description': 'The L50F model is a functional solution for comfortable living. This modular home combines modern design and practicality. Thoughtful layout ensures maximum use of space. The ideal choice for those who value comfort and style.',
+    'product.sa30.description': 'SA30 - disassembled version of modular home. Modular construction allows easy transportation and on-site assembly. This model is equipped with all necessary systems for comfortable living. The ideal choice for remote locations or where convenient transportation is required.',
+    'product.sa50.description': 'SA50 - disassembled version of medium-sized modular home. Modular construction allows easy transportation and on-site assembly. Increased area creates more comfortable living space. The ideal choice for those who value transportation convenience.',
+    'product.sa70.description': 'SA70 - disassembled version of spacious modular home. Modular construction allows easy transportation and on-site assembly. Increased area creates maximum comfortable living space. The ideal choice for large families.',
+    'product.sleepbox.description': 'SleepBox - compact modular home for comfortable rest. This ultra-compact model is perfect for small plots or as a guest house. Thoughtful layout ensures maximum use of space. The ideal choice for those who value minimalism and functionality.',
     
     // Product Systems (common for all products)
     'system.protection.1': 'Galvanized steel frame construction system',
@@ -703,6 +745,8 @@ const translations = {
     'card.width': 'სიგანე',
     'card.height': 'სიმაღლე',
     'card.occupancy': 'ტევადობა',
+    'card.person.short': 'ად.',
+    'card.weight.short': 'ტონა',
     'card.power': 'მაქსიმალური სიმძლავრე',
     'card.weight': 'მთლიანი წმინდა წონა',
     'modal.product.protection': 'გარე დაცვის სისტემა',
@@ -730,6 +774,15 @@ const translations = {
     'interior.bathroom-heater': '4-1-ში აბაზანის ჭერის გამათბობელი განათებით, გათბობით, ვენტილაციით და ვენტილატორით',
     'interior.toilet': 'ბრენდული ჭკვიანი ტუალეტი',
     'interior.floor-heating': 'ელექტრო იატაკის გათბობა',
+    // SA30/SA50/SA70 specific interior
+    'interior.sa.low-e-glass': 'იზოლირებული დაბალი ემისიის შელესილი მინა',
+    'interior.sa.bathroom': 'SMC მოდულური აბაზანა',
+    'interior.sa.toilet-cabinet': 'ტუალეტი და წყლის ტანკი, ტუალეტის მაგიდა, კედლის კარადა',
+    'interior.sa.shower-mixer': 'შხაპის მიქსერი და შხაპის ღერო, ტანისახსრის სადგამი',
+    'interior.sa.aircon': 'კონდიციონერი',
+    'interior.sa.kitchen': 'სამზარეულო და სამზარეულოს ტექნიკა',
+    'interior.sa.solar': 'მზის ენერგიის სისტემა',
+    'interior.sa.water-tank': 'წყლის ტანკი',
     
     // Optional Configurations
     'optional.uv-film': 'UV-გამძლე თბოიზოლაციური ფეთქებისგან დაცული ფილმი (მაღალი გამჭვირვალობა/კონფიდენციალურობა)',
@@ -742,6 +795,10 @@ const translations = {
     'optional.staircase': 'შესასვლელი კიბე',
     'optional.brace': 'სამკუთხა V-ფორმის ბრეკეტი',
     'optional.platform': 'შესასვლელი პლატფორმა',
+    // SA30/SA50/SA70 specific optional
+    'optional.sa.comfort': 'კომფორტული გაუმჯობესებები',
+    'optional.sa.accessories': 'აქსესუარები და პერიფერია',
+    'optional.sa.wiring': 'ელექტროტექნიკური გაყვანილობა და განათება',
     
     // Product Titles
     'product.a30.title': 'Capsule House A30',
@@ -782,6 +839,12 @@ const translations = {
     'product.w3.description': 'W3 მოდელი გთავაზობთ კომპაქტურ და ფუნქციონალურ გადაწყვეტას კომფორტული ცხოვრებისთვის. ეს მოდულური სახლი აღჭურვილია თანამედროვე სისტემებითა და ენერგოეფექტური ტექნოლოგიებით. გონივრული განლაგება უზრუნველყოფს სივრცის მაქსიმალურ გამოყენებას. იდეალური არჩევანი მცირე ნაკვეთებისთვის ან სტუმრების სახლისთვის.',
     'product.w6.description': 'W6 მოდელი წარმოადგენს ფართო გადაწყვეტას კომფორტული ცხოვრებისთვის. გაზრდილი ფართობი და თანამედროვე ტექნოლოგიები ქმნის იდეალურ სივრცეს ცხოვრებისთვის. ეს სახლი აღჭურვილია ყველა საჭირო სისტემით კომფორტული ცხოვრებისთვის. იდეალური არჩევანი ოჯახებისთვის ან მათთვის, ვინც აფასებს სივრცეს და კომფორტს.',
     'product.w9.description': 'W9 მოდელი არის ფართო მოდულური სახლი კომფორტული ცხოვრებისთვის. გაზრდილი ფართობი და მოწინავე ტექნოლოგიები ქმნის იდეალურ სივრცეს ცხოვრებისთვის. ეს სახლი აღჭურვილია ყველა საჭირო სისტემით კომფორტული ცხოვრებისთვის. იდეალური არჩევანი ოჯახებისთვის ან მათთვის, ვინც ეძებს მაქსიმალურ კომფორტს.',
+    'product.g70f.description': 'G70F მოდელი გთავაზობთ პრემიუმ გადაწყვეტას გაზრდილი სიმძლავრითა და ფართობით. ეს მოდულური სახლი აღჭურვილია მოწინავე სისტემებითა და თანამედროვე ტექნოლოგიებით. გონივრული განლაგება უზრუნველყოფს მაქსიმალურ კომფორტს. იდეალური არჩევანი მათთვის, ვინც ეძებს პრემიუმ საცხოვრებელს თანამედროვე დიზაინით.',
+    'product.l50f.description': 'L50F მოდელი წარმოადგენს ფუნქციონალურ გადაწყვეტას კომფორტული ცხოვრებისთვის. ეს მოდულური სახლი აერთიანებს თანამედროვე დიზაინს და პრაქტიკულობას. გონივრული განლაგება უზრუნველყოფს სივრცის მაქსიმალურ გამოყენებას. იდეალური არჩევანი მათთვის, ვინც აფასებს კომფორტს და სტილს.',
+    'product.sa30.description': 'SA30 - მოდულური სახლის დემონტაჟირებადი ვერსია. მოდულური კონსტრუქცია საშუალებას იძლევა მარტივად გადაიტანოს და შეაკრას სახლი ადგილზე. ეს მოდელი აღჭურვილია ყველა საჭირო სისტემით კომფორტული ცხოვრებისთვის. იდეალური არჩევანი შორეული ადგილებისთვის ან სადაც საჭიროა მოხერხებული ტრანსპორტირება.',
+    'product.sa50.description': 'SA50 - საშუალო ზომის მოდულური სახლის დემონტაჟირებადი ვერსია. მოდულური კონსტრუქცია საშუალებას იძლევა მარტივად გადაიტანოს და შეაკრას სახლი ადგილზე. გაზრდილი ფართობი ქმნის უფრო კომფორტულ სივრცეს ცხოვრებისთვის. იდეალური არჩევანი მათთვის, ვინც აფასებს ტრანსპორტირების მოხერხებულობას.',
+    'product.sa70.description': 'SA70 - ფართო მოდულური სახლის დემონტაჟირებადი ვერსია. მოდულური კონსტრუქცია საშუალებას იძლევა მარტივად გადაიტანოს და შეაკრას სახლი ადგილზე. გაზრდილი ფართობი ქმნის მაქსიმალურად კომფორტულ სივრცეს ცხოვრებისთვის. იდეალური არჩევანი დიდი ოჯახებისთვის.',
+    'product.sleepbox.description': 'SleepBox - კომპაქტური მოდულური სახლი კომფორტული დასვენებისთვის. ეს ულტრა-კომპაქტური მოდელი იდეალურია მცირე ნაკვეთებისთვის ან სტუმრების სახლისთვის. გონივრული განლაგება უზრუნველყოფს სივრცის მაქსიმალურ გამოყენებას. იდეალური არჩევანი მათთვის, ვინც აფასებს მინიმალიზმს და ფუნქციონალურობას.',
     
     // Product Systems (common for all products)
     'system.protection.1': 'გალვანიზებული ფოლადის კარკასის სამშენებლო სისტემა',

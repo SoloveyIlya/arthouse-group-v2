@@ -25,7 +25,7 @@ function return_error($message, $errors = [], $code = 400) {
 
 // Настройки для отправки почты
 // ИЗМЕНИТЕ ЭТИ НАСТРОЙКИ ПОД ВАШИ ДАННЫЕ
-$recipient_email = "example@example.com"; // Email получателя
+$recipient_email = "ilyasolovey7@gmail.com"; // Email получателя
 
 // Включить логирование заявок в файл (на случай если почта не работает)
 $log_requests = true; // Установите false, чтобы отключить логирование
@@ -33,7 +33,8 @@ $log_file = __DIR__ . '/requests.log'; // Файл для сохранения �
 
 // Автоматическое определение названия сайта в зависимости от окружения
 $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-$is_local = in_array($host, ['127.0.0.1', 'localhost', '127.0.0.1:5500', 'localhost:5500']) || 
+$local_hosts = array('127.0.0.1', 'localhost', '127.0.0.1:5500', 'localhost:5500');
+$is_local = in_array($host, $local_hosts) || 
             strpos($host, '127.0.0.1') !== false || 
             strpos($host, 'localhost') !== false;
 
@@ -173,9 +174,14 @@ if ($form_type === 'contact') {
     }
     
     // Проверка reCAPTCHA
-    // ПРИМЕЧАНИЕ: Публичный ключ (Site Key) = 6LczLv4rAAAAAK0c6c_np1QfAniFp2Ppmlkk4Vyl (используется в HTML)
-    // Секретный ключ (Secret Key) = 6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx
-    $recaptcha_secret = "6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx";
+    // Выбор ключа в зависимости от окружения
+    // Тестовые ключи Google (для localhost) - всегда проходят проверку
+    $test_secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+    // Рабочие ключи (для продакшена)
+    $prod_secret = "6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx";
+    
+    // Используем тестовый ключ для localhost, рабочий для продакшена
+    $recaptcha_secret = $is_local ? $test_secret : $prod_secret;
     if (!empty($recaptcha_response)) {
         $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
         
@@ -322,9 +328,14 @@ if ($form_type === 'contact') {
     }
     
     // Проверка reCAPTCHA
-    // ПРИМЕЧАНИЕ: Публичный ключ (Site Key) = 6LczLv4rAAAAAK0c6c_np1QfAniFp2Ppmlkk4Vyl (используется в HTML)
-    // Секретный ключ (Secret Key) = 6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx
-    $recaptcha_secret = "6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx";
+    // Выбор ключа в зависимости от окружения
+    // Тестовые ключи Google (для localhost) - всегда проходят проверку
+    $test_secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+    // Рабочие ключи (для продакшена)
+    $prod_secret = "6LczLv4rAAAAAAMYl3Pb3G5qUH9li35b685Be9nx";
+    
+    // Используем тестовый ключ для localhost, рабочий для продакшена
+    $recaptcha_secret = $is_local ? $test_secret : $prod_secret;
     if (!empty($recaptcha_response)) {
         $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
         

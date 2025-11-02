@@ -715,8 +715,8 @@ function smoothScrollTo(targetId) {
         descriptionElement.textContent = t[descKey] || product.description;
       }
       
-      // Products without image display: SA30, SA50, SA70, SleepBox
-      const productsWithoutImage = ['sa30', 'sa50', 'sa70', 'sleepbox'];
+      // Products without image display: SA30, SA50, SA70, SleepBox, D50
+      const productsWithoutImage = ['sa30', 'sa50', 'sa70', 'sleepbox', 'd50'];
       const shouldHideImage = productsWithoutImage.includes(productId);
       
       // Handle product gallery or single image
@@ -841,7 +841,16 @@ function smoothScrollTo(targetId) {
                 </div>
                 <span class="text-gray-400 text-xs sm:text-sm font-medium">${translatedLabel}</span>
               </div>
-              <div class="text-white text-xs sm:text-xl font-bold">${char.value}</div>
+              <div class="text-white text-xs sm:text-xl font-bold">${(() => {
+                let value = char.value;
+                if (char.label === 'ВМЕСТИМОСТЬ' && value.includes('чел.')) {
+                  value = value.replace(/чел\./g, t['card.person.short'] || 'чел.');
+                }
+                if (char.label === 'ОБЩИЙ ВЕС НЕТТО' && value.includes('тонны')) {
+                  value = value.replace(/тонны/g, t['card.weight.short'] || 'тонны');
+                }
+                return value;
+              })()}</div>
             </div>
           `;
         }
@@ -860,7 +869,16 @@ function smoothScrollTo(targetId) {
                 </div>
                 <span class="text-gray-400 text-xs sm:text-sm font-medium">${translatedLabel}</span>
               </div>
-              <div class="text-white text-xs sm:text-xl font-bold">${char.value}</div>
+              <div class="text-white text-xs sm:text-xl font-bold">${(() => {
+                let value = char.value;
+                if (char.label === 'ВМЕСТИМОСТЬ' && value.includes('чел.')) {
+                  value = value.replace(/чел\./g, t['card.person.short'] || 'чел.');
+                }
+                if (char.label === 'ОБЩИЙ ВЕС НЕТТО' && value.includes('тонны')) {
+                  value = value.replace(/тонны/g, t['card.weight.short'] || 'тонны');
+                }
+                return value;
+              })()}</div>
             </div>
           `;
         }
@@ -987,7 +1005,16 @@ function smoothScrollTo(targetId) {
         'Защита всего дома от комаров': 'interior.mosquito',
         '4-в-1 потолочный обогреватель для ванной с освещением, обогревом, вентиляцией и вентилятором': 'interior.bathroom-heater',
         'Брендовый умный туалет': 'interior.toilet',
-        'Электрический подогрев пола': 'interior.floor-heating'
+        'Электрический подогрев пола': 'interior.floor-heating',
+        // SA30/SA50/SA70 specific
+        'Изолированное низкоэмиссионное закаленное стекло': 'interior.sa.low-e-glass',
+        'SMC модульная ванная комната': 'interior.sa.bathroom',
+        'Туалет и водяной бак, туалетный столик, настенный шкаф': 'interior.sa.toilet-cabinet',
+        'Душевой смеситель и душевая штанга, вешалка для полотенец': 'interior.sa.shower-mixer',
+        'Кондиционер': 'interior.sa.aircon',
+        'Кухня и кухонная техника': 'interior.sa.kitchen',
+        'Система солнечной энергии': 'interior.sa.solar',
+        'Водяной бак': 'interior.sa.water-tank'
       };
       
       if (product.interior && product.interior.trim()) {
@@ -1025,7 +1052,11 @@ function smoothScrollTo(targetId) {
         'Custom bar counter / Custom wardrobe': 'optional.bar-counter',
         'Entrance Staircase': 'optional.staircase',
         'Triangular V-brace': 'optional.brace',
-        'Entrance Platform': 'optional.platform'
+        'Entrance Platform': 'optional.platform',
+        // SA30/SA50/SA70 specific
+        'Комфортные улучшения': 'optional.sa.comfort',
+        'Аксессуары и периферия': 'optional.sa.accessories',
+        'Электротехническая проводка и освещение': 'optional.sa.wiring'
       };
       
       if (product.optional && Array.isArray(product.optional) && product.optional.length > 0) {
@@ -1125,19 +1156,68 @@ function smoothScrollTo(targetId) {
     function openOrderModal() {
       openModal('orderModal');
       // Рендерим reCAPTCHA после открытия модального окна
-      setTimeout(() => {
+      // Используем функцию ожидания загрузки API
+      function renderRecaptcha() {
         const recaptchaContainer = document.querySelector('#orderModal .g-recaptcha');
-        if (recaptchaContainer && typeof grecaptcha !== 'undefined') {
-          // Очищаем контейнер от старого виджета
-          recaptchaContainer.innerHTML = '';
-          // Рендерим новый виджет reCAPTCHA
-          const widgetId = grecaptcha.render(recaptchaContainer, {
-            'sitekey': '6LczLv4rAAAAAK0c6c_np1QfAniFp2Ppmlkk4Vyl'
-          });
-          // Сохраняем ID виджета для последующего сброса
-          recaptchaContainer.setAttribute('data-widget-id', widgetId);
+        if (!recaptchaContainer) {
+          console.error('reCAPTCHA container not found');
+          return;
         }
-      }, 300);
+
+        // Проверяем, загружен ли API reCAPTCHA
+        if (typeof grecaptcha !== 'undefined' && grecaptcha.render) {
+          // Проверяем, есть ли уже виджет (iframe)
+          const existingWidget = recaptchaContainer.querySelector('iframe');
+          
+          if (!existingWidget) {
+            // Если виджета нет, рендерим новый
+            try {
+              // Получаем sitekey из window (установлен скриптом определения окружения)
+              const sitekey = window.RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // fallback на тестовый ключ
+              
+              // Убедимся, что у контейнера есть нужные атрибуты
+              if (!recaptchaContainer.getAttribute('data-sitekey')) {
+                recaptchaContainer.setAttribute('data-sitekey', sitekey);
+              }
+              
+              const widgetId = grecaptcha.render(recaptchaContainer, {
+                'sitekey': sitekey
+              });
+              
+              // Сохраняем ID виджета для последующего сброса
+              if (widgetId !== undefined && widgetId !== null) {
+                recaptchaContainer.setAttribute('data-widget-id', widgetId.toString());
+              }
+              console.log('reCAPTCHA rendered successfully, widget ID:', widgetId);
+            } catch (e) {
+              console.error('Error rendering reCAPTCHA:', e);
+              // Восстанавливаем атрибуты для автоматического рендеринга
+              const sitekey = window.RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+              recaptchaContainer.setAttribute('data-sitekey', sitekey);
+            }
+          } else {
+            // Если виджет уже есть, просто сбрасываем его
+            try {
+              const widgetId = recaptchaContainer.getAttribute('data-widget-id');
+              if (widgetId) {
+                grecaptcha.reset(parseInt(widgetId));
+              } else {
+                grecaptcha.reset();
+              }
+              console.log('reCAPTCHA reset');
+            } catch (e) {
+              console.error('Error resetting reCAPTCHA:', e);
+            }
+          }
+        } else {
+          // Если API еще не загружен, ждем и пробуем снова
+          console.log('reCAPTCHA API not loaded yet, waiting...');
+          setTimeout(renderRecaptcha, 200);
+        }
+      }
+      
+      // Ждем немного, чтобы модальное окно успело открыться
+      setTimeout(renderRecaptcha, 300);
     }
   
     function openProductModal(productId = 'g30') {
