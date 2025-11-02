@@ -25,7 +25,10 @@ function return_error($message, $errors = [], $code = 400) {
 
 // Настройки для отправки почты
 // ИЗМЕНИТЕ ЭТИ НАСТРОЙКИ ПОД ВАШИ ДАННЫЕ
-$recipient_email = "ilyasolovey7@gmail.com"; // Email получателя
+$recipient_emails = array(
+    "ilyasolovey7@gmail.com",
+    "info@arthouse-group.com"
+); // Email получателей
 
 // Включить логирование заявок в файл (на случай если почта не работает)
 $log_requests = true; // Установите false, чтобы отключить логирование
@@ -75,12 +78,12 @@ function is_valid_phone($phone) {
 
 // Функция для логирования заявок в файл
 function log_request($form_type, $data, $log_file) {
-    global $recipient_email;
+    global $recipient_emails;
     try {
         $log_entry = "\n" . str_repeat("=", 80) . "\n";
         $log_entry .= "ДАТА: " . date('Y-m-d H:i:s') . "\n";
         $log_entry .= "ТИП ФОРМЫ: " . $form_type . "\n";
-        $log_entry .= "EMAIL ПОЛУЧАТЕЛЯ: " . $recipient_email . "\n";
+        $log_entry .= "EMAIL ПОЛУЧАТЕЛЕЙ: " . implode(", ", $recipient_emails) . "\n";
         $log_entry .= "ДАННЫЕ:\n";
         foreach ($data as $key => $value) {
             if ($key !== 'g-recaptcha-response') { // Не логируем reCAPTCHA
@@ -274,8 +277,13 @@ if ($form_type === 'contact') {
         ], $log_file);
     }
     
-    // Отправка письма
-    $mail_sent = send_email($recipient_email, $subject, $html_message, $headers);
+    // Отправка письма на все адреса
+    $mail_sent = false;
+    foreach ($recipient_emails as $recipient_email) {
+        if (send_email($recipient_email, $subject, $html_message, $headers)) {
+            $mail_sent = true;
+        }
+    }
     
     if ($mail_sent) {
         echo json_encode([
@@ -427,8 +435,13 @@ if ($form_type === 'contact') {
         ], $log_file);
     }
     
-    // Отправка письма
-    $mail_sent = send_email($recipient_email, $subject, $html_message, $headers);
+    // Отправка письма на все адреса
+    $mail_sent = false;
+    foreach ($recipient_emails as $recipient_email) {
+        if (send_email($recipient_email, $subject, $html_message, $headers)) {
+            $mail_sent = true;
+        }
+    }
     
     if ($mail_sent) {
         echo json_encode([
