@@ -97,7 +97,7 @@ function smoothScrollTo(targetId) {
           title: 'Space Capsule House G30',
           price: '$16,700',
           description: 'Модель G30 из серии Galaxy предлагает современное компактное решение для жизни. Этот модульный дом сочетает в себе функциональность, комфорт и стиль.',
-          image: './media/catalog/G30.webp',
+          image: './media/catalog/G30.png',
           gallery: [
             './media/catalog/G30-view.png',
             './media/catalog/G30-scaled.webp'
@@ -178,7 +178,7 @@ function smoothScrollTo(targetId) {
           title: 'Space Capsule House G50',
           price: '$21,000',
           description: 'Модель G50 представляет собой просторное решение премиум-класса для комфортной жизни. Увеличенная площадь и панорамное остекление создают ощущение свободы и простора. Этот модульный дом оснащен передовыми системами безопасности и комфорта, включая умное голосовое управление и панорамный балкон. Идеальный выбор для тех, кто ищет максимальный комфорт в компактном формате.',
-          image: './media/catalog/G50-view.jpg',
+          image: './media/catalog/G50.png',
           gallery: [
             './media/catalog/G50-interer.webp',
             './media/catalog/G50-view.jpg',
@@ -221,7 +221,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House G50F',
           price: '$21,500',
           description: 'Модель G50F представляет собой просторное решение премиум-класса для комфортной жизни. Увеличенная площадь и панорамное остекление создают ощущение свободы и простора. Этот модульный дом оснащен передовыми системами безопасности и комфорта, включая умное голосовое управление и панорамный балкон. Идеальный выбор для тех, кто ищет максимальный комфорт в компактном формате.',
-          image: './media/catalog/G50F.webp',
+          image: './media/catalog/G50F.png',
           gallery: [
             './media/catalog/G50F-interior.webp',
             './media/catalog/G50F-scaled.webp'
@@ -307,7 +307,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House A70',
           price: '$24,500',
           description: 'Модель A70 - это просторный и функциональный модульный дом для комфортного проживания. Увеличенная площадь и современные технологии создают идеальное пространство для жизни. Этот дом оснащен всеми необходимыми системами для комфортной жизни. Идеальный выбор для семей или тех, кто ценит простор и комфорт.',
-          image: './media/catalog/A70.jpg',
+          image: './media/catalog/A70.png',
           gallery: [
             './media/catalog/A70-interior.webp',
             './media/catalog/A70-view.webp'
@@ -329,7 +329,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House D50',
           price: '$23,000',
           description: 'Модель D50 предлагает уникальное решение с увеличенной площадью для максимального комфорта. Этот модульный дом оснащен современными системами жизнеобеспечения и передовыми технологиями. Продуманная планировка обеспечивает удобство использования пространства. Идеальный выбор для тех, кто ищет просторный дом с современным дизайном.',
-          image: './media/catalog/D50.jpg',
+          image: './media/catalog/D50.png',
           gallery: [],
           characteristics: [
             { label: 'ПЛОЩАДЬ', value: '40.0㎡', icon: '<path d="M3 3h18v18H3V3zm2 2v14h14V5H5z"/>' },
@@ -367,7 +367,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House L50',
           price: '$22,500',
           description: 'Модель L50 представляет собой функциональное решение для комфортного проживания. Этот модульный дом сочетает в себе современный дизайн и практичность. Продуманная планировка обеспечивает максимальное использование пространства. Идеальный выбор для тех, кто ценит комфорт и стиль.',
-          image: './media/catalog/L50.jpg',
+          image: './media/catalog/L50.png',
           gallery: [
             './media/catalog/L50-interier.webp',
             './media/catalog/L50-scaled.webp'
@@ -389,7 +389,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House L50F',
           price: '$23,000',
           description: 'Модель L50F представляет собой функциональное решение для комфортного проживания. Этот модульный дом сочетает в себе современный дизайн и практичность. Продуманная планировка обеспечивает максимальное использование пространства. Идеальный выбор для тех, кто ценит комфорт и стиль.',
-          image: './media/catalog/L50F.jpg',
+          image: './media/catalog/L50F.png',
           gallery: [
             './media/catalog/L50F-interier.webp',
             './media/catalog/L50F-scaled.webp'
@@ -411,7 +411,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House L70',
           price: '$25,000',
           description: 'Модель L70 - это просторный модульный дом для комфортного проживания. Увеличенная площадь и современные технологии создают идеальное пространство для жизни. Этот дом оснащен всеми необходимыми системами для комфортной жизни. Идеальный выбор для семей или тех, кто ценит простор и комфорт.',
-          image: './media/catalog/L70.jpg',
+          image: './media/catalog/L70.png',
           gallery: [
             './media/catalog/L70-interier.webp',
             './media/catalog/L70-scaled.webp'
@@ -433,7 +433,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House G70',
           price: '$25,500',
           description: 'Модель G70 предлагает премиальное решение с увеличенной мощностью и площадью. Этот модульный дом оснащен передовыми системами и современными технологиями. Продуманная планировка обеспечивает максимальный комфорт. Идеальный выбор для тех, кто ищет премиальное жилье с современным дизайном.',
-          image: './media/catalog/G70.jpg',
+          image: './media/catalog/G70.png',
           gallery: [
             './media/catalog/G70-interier.webp',
             './media/catalog/G70-scaled.webp'
@@ -455,7 +455,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House G70F',
           price: '$25,800',
           description: 'Модель G70F предлагает премиальное решение с увеличенной мощностью и площадью. Этот модульный дом оснащен передовыми системами и современными технологиями. Продуманная планировка обеспечивает максимальный комфорт. Идеальный выбор для тех, кто ищет премиальное жилье с современным дизайном.',
-          image: './media/catalog/G70F.jpg',
+          image: './media/catalog/G70F.png',
           gallery: [
             './media/catalog/G70F-interier.webp',
             './media/catalog/G70F-scaled.webp'
@@ -715,8 +715,32 @@ function smoothScrollTo(targetId) {
         descriptionElement.textContent = t[descKey] || product.description;
       }
       
+      // Products without image display: SA30, SA50, SA70, SleepBox
+      const productsWithoutImage = ['sa30', 'sa50', 'sa70', 'sleepbox'];
+      const shouldHideImage = productsWithoutImage.includes(productId);
+      
       // Handle product gallery or single image
-      if (product.gallery && product.gallery.length > 1) {
+      if (shouldHideImage) {
+        // Hide image container for specific products
+        currentProductGallery = [];
+        currentProductGalleryIndex = 0;
+        
+        console.log('Product image hidden:', productId);
+        
+        if (imageElement && imageElement.parentElement && imageElement.parentElement.parentElement) {
+          imageElement.parentElement.parentElement.style.display = 'none';
+        }
+        
+        // Hide navigation arrows
+        if (prevBtn) {
+          prevBtn.classList.add('hidden');
+          prevBtn.classList.remove('flex');
+        }
+        if (nextBtn) {
+          nextBtn.classList.add('hidden');
+          nextBtn.classList.remove('flex');
+        }
+      } else if (product.gallery && product.gallery.length > 1) {
         // Product has gallery - setup gallery navigation
         currentProductGallery = product.gallery;
         currentProductGalleryIndex = 0;
