@@ -99,7 +99,7 @@ function smoothScrollTo(targetId) {
           description: 'Модель G30 из серии Galaxy предлагает современное компактное решение для жизни. Этот модульный дом сочетает в себе функциональность, комфорт и стиль.',
           image: './media/catalog/G30.png',
           gallery: [
-            './media/catalog/G30-view.png',
+            './media/catalog/G30.png',
             './media/catalog/G30-scaled.webp'
           ],
           characteristics: [
@@ -348,7 +348,7 @@ function smoothScrollTo(targetId) {
           title: 'SleepBox',
           price: '$12,500',
           description: 'SleepBox - компактный модульный дом для комфортного отдыха. Эта ультра-компактная модель идеально подходит для небольших участков или в качестве гостевого дома. Продуманная планировка обеспечивает максимальное использование пространства. Идеальный выбор для тех, кто ценит минимализм и функциональность.',
-          image: './media/catalog/SleepBox.jpg',
+          image: './media/catalog/SleepBox.png',
           gallery: [],
           characteristics: [
             { label: 'ПЛОЩАДЬ', value: '5.0㎡', icon: '<path d="M3 3h18v18H3V3zm2 2v14h14V5H5z"/>' },
@@ -477,7 +477,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House X50',
           price: '$21,500',
           description: 'Модель X50 представляет собой компактное решение для комфортного проживания. Этот модульный дом сочетает в себе функциональность и стиль. Продуманная планировка обеспечивает эффективное использование пространства. Идеальный выбор для небольших участков или в качестве гостевого дома.',
-          image: './media/catalog/X50.jpg',
+          image: './media/catalog/X50.png',
           gallery: [
             './media/catalog/X50-interier.webp',
             './media/catalog/X50-scaled.webp'
@@ -499,7 +499,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House X70',
           price: '$24,000',
           description: 'Модель X70 - это просторный модульный дом для комфортного проживания. Увеличенная площадь и современные технологии создают идеальное пространство для жизни. Этот дом оснащен всеми необходимыми системами для комфортной жизни. Идеальный выбор для семей или тех, кто ценит простор.',
-          image: './media/catalog/X70.jpg',
+          image: './media/catalog/X70.png',
           gallery: [
             './media/catalog/X70-interier.webp',
             './media/catalog/X70-scaled.webp'
@@ -521,7 +521,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House U30',
           price: '$20,500',
           description: 'Модель U30 предлагает функциональное решение для комфортного проживания. Этот модульный дом оснащен современными системами жизнеобеспечения и энергоэффективными технологиями. Продуманная планировка обеспечивает максимальное использование пространства. Идеальный выбор для тех, кто ценит комфорт и практичность.',
-          image: './media/catalog/U30.webp',
+          image: './media/catalog/U30.png',
           gallery: [
             './media/catalog/U30-interier.webp',
             './media/catalog/U30-scaled.webp'
@@ -543,7 +543,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House U50',
           price: '$14,500',
           description: 'Модель U50 представляет собой компактное решение для комфортного проживания. Этот модульный дом идеально подходит для небольших участков или в качестве гостевого дома. Продуманная планировка обеспечивает эффективное использование пространства. Идеальный выбор для тех, кто ищет компактное и функциональное решение.',
-          image: './media/catalog/U50.webp',
+          image: './media/catalog/U50.png',
           gallery: [
             './media/catalog/U50-interier.webp',
             './media/catalog/U50-scaled.webp'
@@ -565,7 +565,7 @@ function smoothScrollTo(targetId) {
           title: 'Capsule House W3',
           price: '$19,500',
           description: 'Модель W3 предлагает компактное и функциональное решение для комфортного проживания. Этот модульный дом оснащен современными системами жизнеобеспечения и энергоэффективными технологиями. Продуманная планировка обеспечивает максимальное использование пространства. Идеальный выбор для небольших участков или в качестве гостевого дома.',
-          image: './media/catalog/W3.webp',
+          image: './media/catalog/W3.png',
           gallery: [
             './media/catalog/W3-view1.webp',
             './media/catalog/W3-view2.webp',
@@ -633,7 +633,7 @@ function smoothScrollTo(targetId) {
           title: 'Disassembled Version SA30',
           price: '$20,000',
           description: 'SA30 - разборная версия модульного дома. Модульная конструкция позволяет легко транспортировать и собирать дом на месте. Эта модель оснащена всеми необходимыми системами для комфортной жизни. Идеальный выбор для удаленных мест или где требуется удобная транспортировка.',
-          image: './media/catalog/SA30.jpg',
+          image: './media/catalog/SA30.png',
           gallery: [],
           characteristics: [
             { label: 'ПЛОЩАДЬ', value: '23.0㎡', icon: '<path d="M3 3h18v18H3V3zm2 2v14h14V5H5z"/>' },
@@ -651,7 +651,7 @@ function smoothScrollTo(targetId) {
           title: 'Disassembled Version SA50',
           price: '$22,500',
           description: 'SA50 - разборная версия модульного дома среднего размера. Модульная конструкция позволяет легко транспортировать и собирать дом на месте. Увеличенная площадь создает более комфортное пространство для жизни. Идеальный выбор для тех, кто ценит удобство транспортировки.',
-          image: './media/catalog/SA50.jpg',
+          image: './media/catalog/SA50.png',
           gallery: [],
           characteristics: [
             { label: 'ПЛОЩАДЬ', value: '31.1㎡', icon: '<path d="M3 3h18v18H3V3zm2 2v14h14V5H5z"/>' },
@@ -669,7 +669,7 @@ function smoothScrollTo(targetId) {
           title: 'Disassembled Version SA70',
           price: '$24,500',
           description: 'SA70 - разборная версия просторного модульного дома. Модульная конструкция позволяет легко транспортировать и собирать дом на месте. Увеличенная площадь создает максимально комфортное пространство для жизни. Идеальный выбор для больших семей.',
-          image: './media/catalog/SA70.jpg',
+          image: './media/catalog/SA70.png',
           gallery: [],
           characteristics: [
             { label: 'ПЛОЩАДЬ', value: '39.6㎡', icon: '<path d="M3 3h18v18H3V3zm2 2v14h14V5H5z"/>' },
