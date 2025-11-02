@@ -1515,8 +1515,16 @@ function smoothScrollTo(targetId) {
     
     // Функция для проверки reCAPTCHA
     function verifyRecaptcha() {
-      const response = grecaptcha.getResponse();
-      return response.length > 0;
+      try {
+        if (typeof grecaptcha === 'undefined' || !grecaptcha.getResponse) {
+          return false;
+        }
+        const response = grecaptcha.getResponse();
+        return response && response.length > 0;
+      } catch (e) {
+        console.error('Error verifying reCAPTCHA:', e);
+        return false;
+      }
     }
     
     // Валидация формы
@@ -1610,10 +1618,31 @@ function smoothScrollTo(targetId) {
     }
     
     // Обработка отправки формы
+    // Флаг для предотвращения двойной отправки
+    let isSubmitting = false;
+    
     function handleFormSubmit(e) {
       e.preventDefault();
+      e.stopPropagation(); // Останавливаем всплытие события
       
       const form = e.target;
+      
+      // Защита от двойной отправки
+      if (isSubmitting) {
+        console.log('Форма уже отправляется, игнорируем повторный запрос');
+        return false;
+      }
+      
+      // Проверяем, не отправляется ли уже эта форма
+      if (form.dataset.submitting === 'true') {
+        console.log('Эта форма уже отправляется, игнорируем повторный запрос');
+        return false;
+      }
+      
+      // Устанавливаем флаг отправки
+      isSubmitting = true;
+      form.dataset.submitting = 'true';
+      
       const formData = new FormData(form);
       const formType = formData.get('form_type');
       const submitButton = form.querySelector('button[type="submit"]');
@@ -1623,7 +1652,47 @@ function smoothScrollTo(targetId) {
       if (formType === 'contact') {
         const errors = validateForm(formData);
         
+        // Проверка reCAPTCHA для формы contact
+        const recaptchaContainer = form.querySelector('.g-recaptcha');
+        if (recaptchaContainer) {
+          let recaptchaValid = false;
+          // Сначала проверяем через FormData
+          const recaptchaResponseFromForm = formData.get('g-recaptcha-response');
+          if (recaptchaResponseFromForm && recaptchaResponseFromForm.trim() !== '') {
+            recaptchaValid = true;
+          } else if (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) {
+            // Пробуем получить через API
+            try {
+              // Получаем widget ID если есть
+              const widgetId = recaptchaContainer.getAttribute('data-widget-id');
+              let recaptchaResponse;
+              if (widgetId) {
+                recaptchaResponse = grecaptcha.getResponse(parseInt(widgetId));
+              } else {
+                recaptchaResponse = grecaptcha.getResponse();
+              }
+              recaptchaValid = recaptchaResponse && recaptchaResponse.length > 0;
+              
+              // Если получили ответ, добавляем его в formData
+              if (recaptchaValid && !recaptchaResponseFromForm) {
+                formData.set('g-recaptcha-response', recaptchaResponse);
+              }
+            } catch (e) {
+              console.error('Error getting reCAPTCHA response:', e);
+            }
+          }
+          
+          if (!recaptchaValid) {
+            errors.push('Пожалуйста, подтвердите, что вы не робот');
+          }
+        }
+        
         if (errors.length > 0) {
+          // Сбрасываем флаг отправки при ошибках валидации
+          isSubmitting = false;
+          if (form) {
+            form.dataset.submitting = 'false';
+          }
           showErrors(errors, form);
           return false;
         }
@@ -1633,22 +1702,46 @@ function smoothScrollTo(targetId) {
       if (formType === 'quote') {
         const errors = [];
         
-        if (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) {
-          if (!verifyRecaptcha()) {
-            errors.push('Пожалуйста, подтвердите, что вы не робот');
-          }
-        } else {
-          // Проверяем наличие reCAPTCHA в форме
-          const recaptchaContainer = form.querySelector('.g-recaptcha');
-          if (recaptchaContainer) {
-            const recaptchaResponse = formData.get('g-recaptcha-response');
-            if (!recaptchaResponse || recaptchaResponse.trim() === '') {
-              errors.push('Пожалуйста, подтвердите, что вы не робот');
+        const recaptchaContainer = form.querySelector('.g-recaptcha');
+        if (recaptchaContainer) {
+          let recaptchaValid = false;
+          // Сначала проверяем через FormData
+          const recaptchaResponseFromForm = formData.get('g-recaptcha-response');
+          if (recaptchaResponseFromForm && recaptchaResponseFromForm.trim() !== '') {
+            recaptchaValid = true;
+          } else if (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) {
+            // Пробуем получить через API
+            try {
+              // Получаем widget ID если есть
+              const widgetId = recaptchaContainer.getAttribute('data-widget-id');
+              let recaptchaResponse;
+              if (widgetId) {
+                recaptchaResponse = grecaptcha.getResponse(parseInt(widgetId));
+              } else {
+                recaptchaResponse = grecaptcha.getResponse();
+              }
+              recaptchaValid = recaptchaResponse && recaptchaResponse.length > 0;
+              
+              // Если получили ответ, добавляем его в formData
+              if (recaptchaValid && !recaptchaResponseFromForm) {
+                formData.set('g-recaptcha-response', recaptchaResponse);
+              }
+            } catch (e) {
+              console.error('Error getting reCAPTCHA response:', e);
             }
+          }
+          
+          if (!recaptchaValid) {
+            errors.push('Пожалуйста, подтвердите, что вы не робот');
           }
         }
         
         if (errors.length > 0) {
+          // Сбрасываем флаг отправки при ошибках валидации
+          isSubmitting = false;
+          if (form) {
+            form.dataset.submitting = 'false';
+          }
           showErrors(errors, form);
           return false;
         }
@@ -1741,6 +1834,12 @@ function smoothScrollTo(targetId) {
         showErrors(['Произошла ошибка при отправке формы. Проверьте консоль браузера для деталей. Ошибка: ' + error.message], form);
       })
       .finally(() => {
+        // Сбрасываем флаг отправки
+        isSubmitting = false;
+        if (form) {
+          form.dataset.submitting = 'false';
+        }
+        
         // Восстанавливаем кнопку
         if (submitButton) {
           submitButton.disabled = false;
@@ -1775,23 +1874,17 @@ function smoothScrollTo(targetId) {
     document.addEventListener('DOMContentLoaded', function() {
       // Используем делегирование событий для обработки форм
       // Это работает для всех форм, включая те, что в модальных окнах
-      document.addEventListener('submit', function(e) {
-        const form = e.target;
-        // Проверяем, что это наша форма (contactForm или quoteForm)
-        if (form.id === 'contactForm' || form.id === 'quoteForm') {
-          handleFormSubmit(e);
-        }
-      });
-      
-      // Также добавляем обработчики напрямую (на случай, если форма уже в DOM)
-      const contactForm = document.getElementById('contactForm');
-      if (contactForm) {
-        contactForm.addEventListener('submit', handleFormSubmit);
-      }
-      
-      const quoteForm = document.getElementById('quoteForm');
-      if (quoteForm) {
-        quoteForm.addEventListener('submit', handleFormSubmit);
+      // Важно: используем только один обработчик, чтобы избежать двойной отправки
+      // Проверяем, не добавлен ли уже обработчик
+      if (!window.formSubmitHandlerAdded) {
+        document.addEventListener('submit', function(e) {
+          const form = e.target;
+          // Проверяем, что это наша форма (contactForm или quoteForm)
+          if (form.id === 'contactForm' || form.id === 'quoteForm') {
+            handleFormSubmit(e);
+          }
+        }, false);
+        window.formSubmitHandlerAdded = true;
       }
     });
   

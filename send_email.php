@@ -1,10 +1,13 @@
 <?php
 /**
- * Скрипт для отправки почты с форм сайта
+ * Скрипт для отправки заявок в Telegram бот
  * Обрабатывает две формы:
  * 1. Форма контактов "Запросить предложение"
  * 2. Модальное окно "Запросить расчет стоимости"
  */
+
+// Настройка часового пояса
+date_default_timezone_set('Europe/Minsk'); // Установите нужный часовой пояс
 
 // Включаем обработку ошибок
 error_reporting(E_ALL);
@@ -23,14 +26,22 @@ function return_error($message, $errors = [], $code = 400) {
     exit;
 }
 
-// Настройки для отправки почты
-// ИЗМЕНИТЕ ЭТИ НАСТРОЙКИ ПОД ВАШИ ДАННЫЕ
-$recipient_emails = array(
-    "ilyasolovey7@gmail.com",
-    "info@arthouse-group.com"
-); // Email получателей
+// Настройки Telegram бота
+$telegram_bot_token = "8575062080:AAFvL4QynoQx8d_-iCyFLwLmYN2fVnwnueE"; // Токен бота
+// ВНИМАНИЕ: Нужно указать chat_id группы или канала, куда будут отправляться заявки
+// Чтобы получить chat_id:
+// 1. Добавьте бота в группу/канал
+// 2. Отправьте сообщение в группу/канал
+// 3. Перейдите по ссылке: https://api.telegram.org/bot{TOKEN}/getUpdates
+// 4. Найдите "chat":{"id":XXXXX} в ответе - это и есть chat_id
+// Пример: -1001234567890 (для группы) или 123456789 (для личного чата)
+// Можно указать несколько chat_id - сообщения будут отправлены во все указанные чаты
+$telegram_chat_ids = [
+    "6142958528", // Получатель заявок
+    // Добавьте еще chat_id через запятую, если нужно больше получателей
+];
 
-// Включить логирование заявок в файл (на случай если почта не работает)
+// Включить логирование заявок в файл
 $log_requests = true; // Установите false, чтобы отключить логирование
 $log_file = __DIR__ . '/requests.log'; // Файл для сохранения заявок
 
@@ -41,8 +52,38 @@ $is_local = in_array($host, $local_hosts) ||
             strpos($host, '127.0.0.1') !== false || 
             strpos($host, 'localhost') !== false;
 
-// Название сайта (для локальной разработки можно указать "Локальный сервер" или оставить основное название)
+// Название сайта
 $site_name = $is_local ? "art-house.world (Local Test)" : "art-house.world";
+
+// Настройки CORS заголовков (должны быть установлены ДО любых других заголовков)
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, OPTIONS, GET');
+header('Access-Control-Allow-Headers: Content-Type, X-Requested-With');
+header('Access-Control-Max-Age: 86400'); // 24 часа
+
+// Обработка OPTIONS запроса (CORS preflight)
+$request_method = $_SERVER['REQUEST_METHOD'] ?? 'UNKNOWN';
+if ($request_method === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+// Тест для диагностики - отвечаем на GET запрос информацией о файле
+if ($request_method === 'GET' && isset($_GET['test'])) {
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode([
+        'success' => true,
+        'message' => 'PHP файл работает!',
+        'method' => $request_method,
+        'post_data' => $_POST,
+        'server' => [
+            'REQUEST_METHOD' => $_SERVER['REQUEST_METHOD'] ?? 'N/A',
+            'REQUEST_URI' => $_SERVER['REQUEST_URI'] ?? 'N/A',
+            'CONTENT_TYPE' => $_SERVER['CONTENT_TYPE'] ?? 'N/A',
+        ]
+    ]);
+    exit;
+}
 
 // Настройки заголовков ответа
 header('Content-Type: application/json; charset=utf-8');
@@ -78,12 +119,10 @@ function is_valid_phone($phone) {
 
 // Функция для логирования заявок в файл
 function log_request($form_type, $data, $log_file) {
-    global $recipient_emails;
     try {
         $log_entry = "\n" . str_repeat("=", 80) . "\n";
         $log_entry .= "ДАТА: " . date('Y-m-d H:i:s') . "\n";
         $log_entry .= "ТИП ФОРМЫ: " . $form_type . "\n";
-        $log_entry .= "EMAIL ПОЛУЧАТЕЛЕЙ: " . implode(", ", $recipient_emails) . "\n";
         $log_entry .= "ДАННЫЕ:\n";
         foreach ($data as $key => $value) {
             if ($key !== 'g-recaptcha-response') { // Не логируем reCAPTCHA
@@ -97,32 +136,146 @@ function log_request($form_type, $data, $log_file) {
     }
 }
 
-// Функция для отправки email
-function send_email($to, $subject, $message, $headers) {
-    try {
-        $result = @mail($to, $subject, $message, $headers);
-        if (!$result) {
-            // Логируем ошибку если mail() вернула false
-            $last_error = error_get_last();
-            $error_msg = $last_error ? $last_error['message'] : 'Unknown error';
-            error_log("Mail отправка failed: " . $error_msg);
-            error_log("Attempted to send to: " . $to);
-            error_log("Subject: " . $subject);
-        }
-        return $result;
-    } catch (Exception $e) {
-        error_log("Mail exception: " . $e->getMessage());
+// Функция для отправки сообщения в Telegram (один чат)
+function send_telegram_message($bot_token, $chat_id, $message) {
+    if (empty($chat_id)) {
+        error_log("Telegram: chat_id не указан");
+        return false;
+    }
+    
+    $url = "https://api.telegram.org/bot{$bot_token}/sendMessage";
+    
+    $data = [
+        'chat_id' => $chat_id,
+        'text' => $message,
+        'parse_mode' => 'HTML' // Используем HTML для форматирования
+    ];
+    
+    $options = [
+        'http' => [
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($data)
+        ]
+    ];
+    
+    $context = stream_context_create($options);
+    $result = @file_get_contents($url, false, $context);
+    
+    if ($result === false) {
+        error_log("Telegram: ошибка отправки сообщения в chat_id: " . $chat_id);
+        return false;
+    }
+    
+    $response = json_decode($result, true);
+    
+    if (isset($response['ok']) && $response['ok'] === true) {
+        return true;
+    } else {
+        $error_msg = isset($response['description']) ? $response['description'] : 'Unknown error';
+        error_log("Telegram API error для chat_id {$chat_id}: " . $error_msg);
         return false;
     }
 }
 
+// Функция для отправки сообщения в несколько Telegram чатов
+function send_telegram_messages($bot_token, $chat_ids, $message) {
+    if (empty($chat_ids) || !is_array($chat_ids)) {
+        error_log("Telegram: chat_ids не указаны или не является массивом");
+        return false;
+    }
+    
+    $success_count = 0;
+    $failed_count = 0;
+    
+    foreach ($chat_ids as $chat_id) {
+        // Пропускаем пустые значения
+        if (empty($chat_id) || trim($chat_id) === '') {
+            continue;
+        }
+        
+        if (send_telegram_message($bot_token, trim($chat_id), $message)) {
+            $success_count++;
+        } else {
+            $failed_count++;
+        }
+    }
+    
+    // Возвращаем true, если хотя бы одно сообщение отправлено успешно
+    return $success_count > 0;
+}
+
 // Проверка метода запроса
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    return_error('Метод не разрешен', [], 405);
+// $request_method уже объявлен выше
+
+// Диагностика для отладки
+if ($request_method !== 'POST' && $request_method !== 'OPTIONS') {
+    // Логируем информацию о запросе
+    error_log("Request method: " . $request_method);
+    error_log("Request URI: " . ($_SERVER['REQUEST_URI'] ?? 'N/A'));
+    error_log("Content-Type: " . ($_SERVER['CONTENT_TYPE'] ?? 'N/A'));
+    return_error('Метод не разрешен. Получен: ' . $request_method . ', ожидается: POST', [], 405);
+}
+
+// Для обработки FormData может понадобиться чтение из php://input
+// Если $_POST пуст, но есть multipart/form-data, PHP должен автоматически парсить
+// Но иногда нужно подождать или данные могут приходить позже
+
+// Логирование для диагностики
+if ($request_method === 'POST') {
+    error_log("POST request received");
+    error_log("POST data: " . print_r($_POST, true));
+    error_log("Content-Type: " . ($_SERVER['CONTENT_TYPE'] ?? 'N/A'));
+    error_log("Content-Length: " . ($_SERVER['CONTENT_LENGTH'] ?? 'N/A'));
 }
 
 // Получение типа формы
 $form_type = isset($_POST['form_type']) ? clean_input($_POST['form_type']) : '';
+
+// Если form_type не найден в POST, попробуем GET (для отладки)
+if (empty($form_type) && isset($_GET['form_type'])) {
+    $form_type = clean_input($_GET['form_type']);
+}
+
+// Если form_type все еще пуст, это ошибка
+if (empty($form_type) && $request_method === 'POST') {
+    error_log("Form type not found. POST keys: " . implode(', ', array_keys($_POST)));
+    return_error('Тип формы не указан. Убедитесь, что форма содержит поле form_type.', [], 400);
+}
+
+// Защита от двойной отправки - проверяем по IP, времени и данным
+// Упрощаем: проверяем только очень похожие запросы (в течение 5 секунд)
+$request_id = md5($_SERVER['REMOTE_ADDR'] . date('Y-m-d H:i:s') . serialize(array_intersect_key($_POST, array_flip(['form_type', 'lastName', 'firstName', 'name', 'email']))));
+$lock_file = sys_get_temp_dir() . '/telegram_send_' . $request_id . '.lock';
+
+// Проверяем, не был ли уже обработан этот запрос
+if (file_exists($lock_file)) {
+    // Если файл блокировки существует и был создан менее 5 секунд назад, игнорируем запрос
+    $lock_time = filemtime($lock_file);
+    if ((time() - $lock_time) < 5) {
+        error_log("Дубликат запроса обнаружен, игнорируем: " . $request_id);
+        // Возвращаем успешный ответ, но не отправляем сообщение
+        echo json_encode([
+            'success' => true,
+            'message' => 'Запрос уже обработан'
+        ]);
+        exit;
+    } else {
+        // Файл блокировки старый, удаляем его
+        @unlink($lock_file);
+    }
+}
+
+// Создаем файл блокировки
+@file_put_contents($lock_file, time());
+
+// Удаляем файл блокировки после выполнения
+register_shutdown_function(function() use ($lock_file) {
+    // Удаляем через небольшую задержку, чтобы точно не пропустить дубликат
+    if (file_exists($lock_file)) {
+        @unlink($lock_file);
+    }
+});
 
 if ($form_type === 'contact') {
     // Обработка формы контактов "Запросить предложение"
@@ -222,49 +375,22 @@ if ($form_type === 'contact') {
         exit;
     }
     
-    // Формирование темы письма
-    $subject = "Новый запрос на предложение - $site_name";
+    // Формирование сообщения для Telegram
+    $telegram_message = "<b>🔔 Новая заявка на предложение</b>\n\n";
+    $telegram_message .= "<b>👤 Контактная информация:</b>\n";
+    $telegram_message .= "Фамилия: " . htmlspecialchars($lastName, ENT_QUOTES, 'UTF-8') . "\n";
+    $telegram_message .= "Имя: " . htmlspecialchars($firstName, ENT_QUOTES, 'UTF-8') . "\n";
+    $telegram_message .= "Email: " . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . "\n";
+    $telegram_message .= "WhatsApp: " . htmlspecialchars($whatsapp, ENT_QUOTES, 'UTF-8') . "\n";
+    $telegram_message .= "Telegram: " . htmlspecialchars($telegram, ENT_QUOTES, 'UTF-8') . "\n\n";
+    $telegram_message .= "<b>📦 Информация о заказе:</b>\n";
+    $telegram_message .= "Модель дома: " . htmlspecialchars($houseModel, ENT_QUOTES, 'UTF-8') . "\n";
+    $telegram_message .= "Страна доставки: " . htmlspecialchars($deliveryCountry, ENT_QUOTES, 'UTF-8') . "\n\n";
+    $telegram_message .= "---\n";
+    $telegram_message .= "📅 Дата: " . date('d.m.Y H:i') . "\n";
+    $telegram_message .= "🌐 IP: " . $_SERVER['REMOTE_ADDR'] . "\n";
     
-    // Формирование тела письма
-    $message_body = "Новый запрос на предложение\n\n";
-    $message_body .= "=== Контактная информация ===\n";
-    $message_body .= "Фамилия: $lastName\n";
-    $message_body .= "Имя: $firstName\n";
-    $message_body .= "Email: $email\n";
-    $message_body .= "WhatsApp: $whatsapp\n";
-    $message_body .= "Telegram: $telegram\n\n";
-    $message_body .= "=== Информация о заказе ===\n";
-    $message_body .= "Модель дома: $houseModel\n";
-    $message_body .= "Страна доставки: $deliveryCountry\n\n";
-    $message_body .= "---\n";
-    $message_body .= "Дата отправки: " . date('Y-m-d H:i:s') . "\n";
-    $message_body .= "IP адрес: " . $_SERVER['REMOTE_ADDR'] . "\n";
-    
-    // Формирование HTML версии письма
-    $html_message = "<html><body>";
-    $html_message .= "<h2>Новый запрос на предложение</h2>";
-    $html_message .= "<h3>Контактная информация</h3>";
-    $html_message .= "<p><strong>Фамилия:</strong> " . htmlspecialchars($lastName) . "</p>";
-    $html_message .= "<p><strong>Имя:</strong> " . htmlspecialchars($firstName) . "</p>";
-    $html_message .= "<p><strong>Email:</strong> " . htmlspecialchars($email) . "</p>";
-    $html_message .= "<p><strong>WhatsApp:</strong> " . htmlspecialchars($whatsapp) . "</p>";
-    $html_message .= "<p><strong>Telegram:</strong> " . htmlspecialchars($telegram) . "</p>";
-    $html_message .= "<h3>Информация о заказе</h3>";
-    $html_message .= "<p><strong>Модель дома:</strong> " . htmlspecialchars($houseModel) . "</p>";
-    $html_message .= "<p><strong>Страна доставки:</strong> " . htmlspecialchars($deliveryCountry) . "</p>";
-    $html_message .= "<hr>";
-    $html_message .= "<p><small>Дата отправки: " . date('Y-m-d H:i:s') . "<br>";
-    $html_message .= "IP адрес: " . $_SERVER['REMOTE_ADDR'] . "</small></p>";
-    $html_message .= "</body></html>";
-    
-    // Настройка заголовков
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: $site_name <noreply@" . $_SERVER['HTTP_HOST'] . ">\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
-    
-    // Логируем заявку в файл (даже если mail() не работает)
+    // Логируем заявку в файл
     if ($log_requests) {
         log_request('contact', [
             'lastName' => $lastName,
@@ -277,24 +403,19 @@ if ($form_type === 'contact') {
         ], $log_file);
     }
     
-    // Отправка письма на все адреса
-    $mail_sent = false;
-    foreach ($recipient_emails as $recipient_email) {
-        if (send_email($recipient_email, $subject, $html_message, $headers)) {
-            $mail_sent = true;
-        }
-    }
+    // Отправка сообщения в Telegram (во все указанные чаты)
+    $telegram_sent = send_telegram_messages($telegram_bot_token, $telegram_chat_ids, $telegram_message);
     
-    if ($mail_sent) {
+    if ($telegram_sent) {
         echo json_encode([
             'success' => true,
             'message' => 'Ваш запрос успешно отправлен! Мы свяжемся с вами в ближайшее время.'
         ]);
     } else {
-        // Даже если mail() не работает, данные сохранены в файл
+        // Даже если Telegram не отправился, данные сохранены в файл
         echo json_encode([
             'success' => true,
-            'message' => 'Запрос получен! (Письмо может быть не отправлено, но данные сохранены в файл requests.log)'
+            'message' => 'Запрос получен! (Сообщение может быть не отправлено в Telegram, но данные сохранены в файл requests.log)'
         ]);
     }
     
@@ -381,51 +502,23 @@ if ($form_type === 'contact') {
         exit;
     }
     
-    // Формирование темы письма
-    $subject = "Запрос на расчет стоимости - $site_name";
-    
-    // Формирование тела письма
-    $message_body = "Запрос на расчет стоимости\n\n";
-    $message_body .= "=== Контактная информация ===\n";
-    $message_body .= "Имя: $name\n";
-    $message_body .= "Email: $email\n";
-    $message_body .= "Телефон: $phone\n\n";
+    // Формирование сообщения для Telegram
+    $telegram_message = "<b>💰 Запрос на расчет стоимости</b>\n\n";
+    $telegram_message .= "<b>👤 Контактная информация:</b>\n";
+    $telegram_message .= "Имя: " . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . "\n";
+    $telegram_message .= "Email: " . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . "\n";
+    $telegram_message .= "Телефон: " . htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') . "\n";
     
     if (!empty($message)) {
-        $message_body .= "=== Сообщение ===\n";
-        $message_body .= "$message\n\n";
+        $telegram_message .= "\n<b>💬 Сообщение:</b>\n";
+        $telegram_message .= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') . "\n";
     }
     
-    $message_body .= "---\n";
-    $message_body .= "Дата отправки: " . date('Y-m-d H:i:s') . "\n";
-    $message_body .= "IP адрес: " . $_SERVER['REMOTE_ADDR'] . "\n";
+    $telegram_message .= "\n---\n";
+    $telegram_message .= "📅 Дата: " . date('d.m.Y H:i') . "\n";
+    $telegram_message .= "🌐 IP: " . $_SERVER['REMOTE_ADDR'] . "\n";
     
-    // Формирование HTML версии письма
-    $html_message = "<html><body>";
-    $html_message .= "<h2>Запрос на расчет стоимости</h2>";
-    $html_message .= "<h3>Контактная информация</h3>";
-    $html_message .= "<p><strong>Имя:</strong> " . htmlspecialchars($name) . "</p>";
-    $html_message .= "<p><strong>Email:</strong> " . htmlspecialchars($email) . "</p>";
-    $html_message .= "<p><strong>Телефон:</strong> " . htmlspecialchars($phone) . "</p>";
-    
-    if (!empty($message)) {
-        $html_message .= "<h3>Сообщение</h3>";
-        $html_message .= "<p>" . nl2br(htmlspecialchars($message)) . "</p>";
-    }
-    
-    $html_message .= "<hr>";
-    $html_message .= "<p><small>Дата отправки: " . date('Y-m-d H:i:s') . "<br>";
-    $html_message .= "IP адрес: " . $_SERVER['REMOTE_ADDR'] . "</small></p>";
-    $html_message .= "</body></html>";
-    
-    // Настройка заголовков
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: $site_name <noreply@" . $_SERVER['HTTP_HOST'] . ">\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
-    
-    // Логируем заявку в файл (даже если mail() не работает)
+    // Логируем заявку в файл
     if ($log_requests) {
         log_request('quote', [
             'name' => $name,
@@ -435,24 +528,19 @@ if ($form_type === 'contact') {
         ], $log_file);
     }
     
-    // Отправка письма на все адреса
-    $mail_sent = false;
-    foreach ($recipient_emails as $recipient_email) {
-        if (send_email($recipient_email, $subject, $html_message, $headers)) {
-            $mail_sent = true;
-        }
-    }
+    // Отправка сообщения в Telegram (во все указанные чаты)
+    $telegram_sent = send_telegram_messages($telegram_bot_token, $telegram_chat_ids, $telegram_message);
     
-    if ($mail_sent) {
+    if ($telegram_sent) {
         echo json_encode([
             'success' => true,
             'message' => 'Ваш запрос успешно отправлен! Мы свяжемся с вами в ближайшее время.'
         ]);
     } else {
-        // Даже если mail() не работает, данные сохранены в файл
+        // Даже если Telegram не отправился, данные сохранены в файл
         echo json_encode([
             'success' => true,
-            'message' => 'Запрос получен! (Письмо может быть не отправлено, но данные сохранены в файл requests.log)'
+            'message' => 'Запрос получен! (Сообщение может быть не отправлено в Telegram, но данные сохранены в файл requests.log)'
         ]);
     }
     
