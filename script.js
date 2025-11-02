@@ -1079,6 +1079,23 @@ function smoothScrollTo(targetId) {
       
       const modal = document.getElementById(modalId);
       if (modal) {
+        // Сбрасываем reCAPTCHA если закрывается orderModal
+        if (modalId === 'orderModal' && typeof grecaptcha !== 'undefined') {
+          try {
+            const recaptchaContainer = modal.querySelector('.g-recaptcha');
+            if (recaptchaContainer && recaptchaContainer.querySelector('iframe')) {
+              const widgetId = recaptchaContainer.getAttribute('data-widget-id');
+              if (widgetId) {
+                grecaptcha.reset(widgetId);
+              } else {
+                grecaptcha.reset();
+              }
+            }
+          } catch (e) {
+            console.log('Error resetting recaptcha:', e);
+          }
+        }
+        
         modal.classList.add('hidden');
         document.body.style.overflow = 'auto';
         activeModal = null;
@@ -1107,6 +1124,20 @@ function smoothScrollTo(targetId) {
     // Специфичные функции для разных типов модальных окон
     function openOrderModal() {
       openModal('orderModal');
+      // Рендерим reCAPTCHA после открытия модального окна
+      setTimeout(() => {
+        const recaptchaContainer = document.querySelector('#orderModal .g-recaptcha');
+        if (recaptchaContainer && typeof grecaptcha !== 'undefined') {
+          // Очищаем контейнер от старого виджета
+          recaptchaContainer.innerHTML = '';
+          // Рендерим новый виджет reCAPTCHA
+          const widgetId = grecaptcha.render(recaptchaContainer, {
+            'sitekey': '6LczLv4rAAAAAK0c6c_np1QfAniFp2Ppmlkk4Vyl'
+          });
+          // Сохраняем ID виджета для последующего сброса
+          recaptchaContainer.setAttribute('data-widget-id', widgetId);
+        }
+      }, 300);
     }
   
     function openProductModal(productId = 'g30') {

@@ -2230,6 +2230,19 @@
     max-width: 1000px !important;
   }
   
+  /* reCAPTCHA в модальных окнах */
+  #orderModal .g-recaptcha,
+  #orderModal .g-recaptcha * {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 10;
+  }
+  
+  #orderModal .g-recaptcha iframe {
+    pointer-events: auto !important;
+    z-index: 10 !important;
+  }
+  
   /* Навигация галереи */
   #galleryPrevBtn,
   #galleryNextBtn {
