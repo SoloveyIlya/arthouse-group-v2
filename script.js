@@ -1795,33 +1795,19 @@ function smoothScrollTo(targetId) {
         existingSuccess.forEach(success => success.remove());
         
         if (data.success) {
-          // Показываем сообщение об успехе
-          showSuccess(data.message || 'Ваш запрос успешно отправлен! Мы свяжемся с вами в ближайшее время.', form);
-          
-          // Очистка формы
-          form.reset();
-          
-          // Сброс reCAPTCHA если есть
-          if (typeof grecaptcha !== 'undefined' && grecaptcha.reset) {
-            // Сбрасываем все виджеты reCAPTCHA на странице
-            grecaptcha.reset();
-            // Также можем сбросить конкретный виджет для формы
-            const recaptchaWidgets = form.querySelectorAll('.g-recaptcha');
-            recaptchaWidgets.forEach((widget, index) => {
-              try {
-                grecaptcha.reset(index);
-              } catch (e) {
-                // Игнорируем ошибки при сбросе
-              }
-            });
-          }
-          
-          // Если это форма quote, закрываем модальное окно через 2 секунды
+          // Если это форма quote, закрываем модальное окно перед редиректом
           if (formType === 'quote') {
-            setTimeout(() => {
-              closeModal('orderModal');
-            }, 2000);
+            const orderModal = document.getElementById('orderModal');
+            if (orderModal) {
+              orderModal.classList.add('hidden');
+              document.body.classList.remove('modal-open');
+            }
           }
+          
+          // Редирект на страницу благодарности
+          setTimeout(() => {
+            window.location.href = 'thank-you.html';
+          }, 500);
         } else {
           // Показываем ошибки
           const errors = data.errors || [data.message || 'Произошла ошибка при отправке формы'];

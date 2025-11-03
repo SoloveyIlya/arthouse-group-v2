@@ -142,6 +142,11 @@ const translations = {
     'contact.form.captcha': 'Подтвердите, что вы не робот',
     'contact.form.submit': 'Отправить запрос',
     
+    // Thank You Page
+    'thank-you.title': 'Спасибо за заявку!',
+    'thank-you.message': 'Ваш запрос успешно отправлен. Мы свяжемся с вами в ближайшее время.',
+    'thank-you.back': 'Вернуться на сайт',
+    
     // Footer
     'footer.navigation': 'Навигация',
     'footer.contacts': 'Контакты',
@@ -428,6 +433,11 @@ const translations = {
     'contact.form.email.placeholder': 'Enter email',
     'contact.form.captcha': 'Confirm you are not a robot',
     'contact.form.submit': 'Send Request',
+    
+    // Thank You Page
+    'thank-you.title': 'Thank you for your request!',
+    'thank-you.message': 'Your request has been successfully sent. We will contact you soon.',
+    'thank-you.back': 'Back to website',
     
     // Footer
     'footer.navigation': 'Navigation',
