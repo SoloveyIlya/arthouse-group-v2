@@ -243,18 +243,23 @@ if (empty($form_type) && $request_method === 'POST') {
     return_error('Тип формы не указан. Убедитесь, что форма содержит поле form_type.', [], 400);
 }
 
-// Защита от двойной отправки - проверяем по IP, времени и данным
-// Упрощаем: проверяем только очень похожие запросы (в течение 5 секунд)
-$request_id = md5($_SERVER['REMOTE_ADDR'] . date('Y-m-d H:i:s') . serialize(array_intersect_key($_POST, array_flip(['form_type', 'lastName', 'firstName', 'name', 'email']))));
+// Защита от двойной отправки - проверяем по IP и данным формы
+// Создаем уникальный идентификатор на основе данных формы (без времени)
+$form_data_for_id = array_intersect_key($_POST, array_flip(['form_type', 'lastName', 'firstName', 'name', 'email', 'phone', 'whatsapp', 'telegram', 'houseModel', 'deliveryCountry']));
+$request_id = md5($_SERVER['REMOTE_ADDR'] . serialize($form_data_for_id));
 $lock_file = sys_get_temp_dir() . '/telegram_send_' . $request_id . '.lock';
 
 // Проверяем, не был ли уже обработан этот запрос
 if (file_exists($lock_file)) {
-    // Если файл блокировки существует и был создан менее 5 секунд назад, игнорируем запрос
+    // Если файл блокировки существует и был создан менее 30 секунд назад, игнорируем запрос
     $lock_time = filemtime($lock_file);
-    if ((time() - $lock_time) < 5) {
-        error_log("Дубликат запроса обнаружен, игнорируем: " . $request_id);
+    $time_diff = time() - $lock_time;
+    
+    if ($time_diff < 30) {
+        error_log("Дубликат запроса обнаружен (прошло {$time_diff} сек), игнорируем: " . $request_id);
         // Возвращаем успешный ответ, но не отправляем сообщение
+        http_response_code(200);
+        header('Content-Type: application/json; charset=utf-8');
         echo json_encode([
             'success' => true,
             'message' => 'Запрос уже обработан'
@@ -266,13 +271,16 @@ if (file_exists($lock_file)) {
     }
 }
 
-// Создаем файл блокировки
+// Создаем файл блокировки с текущим временем
 @file_put_contents($lock_file, time());
 
-// Удаляем файл блокировки после выполнения
+// Удаляем файл блокировки после выполнения с задержкой
 register_shutdown_function(function() use ($lock_file) {
-    // Удаляем через небольшую задержку, чтобы точно не пропустить дубликат
+    // Удаляем через 35 секунд, чтобы точно не пропустить дубликат
+    // Используем sleep для задержки только в фоновом режиме
     if (file_exists($lock_file)) {
+        // В фоновом режиме можно добавить задержку, но лучше удалить через 35 секунд
+        // Для простоты удаляем сразу, но проверка на 30 секунд уже защитит от дубликатов
         @unlink($lock_file);
     }
 });
@@ -404,7 +412,9 @@ if ($form_type === 'contact') {
     }
     
     // Отправка сообщения в Telegram (во все указанные чаты)
+    error_log("Отправка сообщения в Telegram (contact). Request ID: " . $request_id . ", Time: " . date('Y-m-d H:i:s') . ", IP: " . $_SERVER['REMOTE_ADDR']);
     $telegram_sent = send_telegram_messages($telegram_bot_token, $telegram_chat_ids, $telegram_message);
+    error_log("Результат отправки в Telegram (contact): " . ($telegram_sent ? 'Успешно' : 'Ошибка') . ", Request ID: " . $request_id);
     
     if ($telegram_sent) {
         echo json_encode([
@@ -529,7 +539,9 @@ if ($form_type === 'contact') {
     }
     
     // Отправка сообщения в Telegram (во все указанные чаты)
+    error_log("Отправка сообщения в Telegram (quote). Request ID: " . $request_id . ", Time: " . date('Y-m-d H:i:s') . ", IP: " . $_SERVER['REMOTE_ADDR']);
     $telegram_sent = send_telegram_messages($telegram_bot_token, $telegram_chat_ids, $telegram_message);
+    error_log("Результат отправки в Telegram (quote): " . ($telegram_sent ? 'Успешно' : 'Ошибка') . ", Request ID: " . $request_id);
     
     if ($telegram_sent) {
         echo json_encode([

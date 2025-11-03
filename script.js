@@ -1627,25 +1627,33 @@ function smoothScrollTo(targetId) {
       
       const form = e.target;
       
-      // Защита от двойной отправки
-      if (isSubmitting) {
-        console.log('Форма уже отправляется, игнорируем повторный запрос');
-        return false;
-      }
-      
+      // Защита от двойной отправки - проверяем ДО любой обработки
       // Проверяем, не отправляется ли уже эта форма
       if (form.dataset.submitting === 'true') {
         console.log('Эта форма уже отправляется, игнорируем повторный запрос');
+        e.stopImmediatePropagation();
         return false;
       }
       
-      // Устанавливаем флаг отправки
+      // Проверяем глобальный флаг
+      if (isSubmitting) {
+        console.log('Форма уже отправляется, игнорируем повторный запрос');
+        e.stopImmediatePropagation();
+        return false;
+      }
+      
+      // Устанавливаем флаги отправки ПЕРЕД началом обработки
       isSubmitting = true;
       form.dataset.submitting = 'true';
       
+      // Также отключаем кнопку отправки сразу
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+      
       const formData = new FormData(form);
       const formType = formData.get('form_type');
-      const submitButton = form.querySelector('button[type="submit"]');
       const originalButtonText = submitButton ? submitButton.textContent : '';
       
       // Валидация для формы контактов
