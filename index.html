@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -198,11 +198,11 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
 
         <!-- Language Dropdown - Desktop Right Corner -->
         <div class="lang-dropdown hidden lg:block" id="langDropdown">
-          <button class="lang-trigger" id="langTrigger" aria-haspopup="true" aria-expanded="false">RU ▾</button>
+          <button class="lang-trigger" id="langTrigger" aria-haspopup="true" aria-expanded="false">EN ▾</button>
           <div class="lang-menu" id="langMenu" role="menu" aria-labelledby="langTrigger">
-            <button data-lang="ru" class="lang-item" role="menuitem">RU</button>
-            <button data-lang="en" class="lang-item" role="menuitem">EN</button>
-            <button data-lang="ge" class="lang-item" role="menuitem">GE</button>
+            <button data-lang="ru" class="lang-item text-gray-400" role="menuitem">RU</button>
+            <button data-lang="en" class="lang-item text-primary" role="menuitem">EN</button>
+            <button data-lang="ge" class="lang-item text-gray-400" role="menuitem">GE</button>
           </div>
         </div>
 
@@ -228,9 +228,9 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
           <div class="border-t border-gray-700 pt-4 mt-4">
             <div class="text-gray-400 text-sm mb-3" data-i18n="nav.language">Язык</div>
             <div class="flex space-x-3">
-              <button data-lang="ru" class="text-sm px-3 py-1 rounded hover:text-primary transition-colors">RU</button>
-              <button data-lang="en" class="text-sm px-3 py-1 rounded hover:text-primary transition-colors">EN</button>
-              <button data-lang="ge" class="text-sm px-3 py-1 rounded hover:text-primary transition-colors">GE</button>
+              <button data-lang="ru" class="text-sm px-3 py-1 rounded hover:text-primary transition-colors text-gray-400">RU</button>
+              <button data-lang="en" class="text-sm px-3 py-1 rounded hover:text-primary transition-colors text-primary">EN</button>
+              <button data-lang="ge" class="text-sm px-3 py-1 rounded hover:text-primary transition-colors text-gray-400">GE</button>
             </div>
           </div>
         </div>
@@ -2517,8 +2517,8 @@ src="https://www.facebook.com/tr?id=25142429358721915&ev=PageView&noscript=1"
   <script id="translate-occupancy">
     // Функция для замены "чел." на переводы в карточках продуктов
     function updateOccupancyTranslations() {
-      const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
-      const t = window.translations && window.translations[lang] ? window.translations[lang] : (window.translations && window.translations.ru ? window.translations.ru : {});
+      const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
+      const t = window.translations && window.translations[lang] ? window.translations[lang] : (window.translations && window.translations.en ? window.translations.en : {});
       const personShort = t['card.person.short'] || 'чел.';
       
       // Найти все элементы с "чел." в карточках продуктов

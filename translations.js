@@ -873,7 +873,7 @@ const translations = {
 };
 
 // Language switcher functionality
-let currentLanguage = localStorage.getItem('language') || 'ru';
+let currentLanguage = localStorage.getItem('language') || 'en';
 
 function setLanguage(lang) {
   currentLanguage = lang;

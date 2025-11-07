@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -151,7 +151,7 @@
         // Initialize translations when page loads
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof setLanguage === 'function') {
-                const savedLang = localStorage.getItem('language') || 'ru';
+                const savedLang = localStorage.getItem('language') || 'en';
                 setLanguage(savedLang);
             }
         });

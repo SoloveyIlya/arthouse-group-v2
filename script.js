@@ -691,8 +691,8 @@ function smoothScrollTo(targetId) {
       window.currentProductId = productId;
       
       // Get current language
-      const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
-      const t = window.translations && window.translations[lang] ? window.translations[lang] : window.translations.ru;
+      const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
+      const t = window.translations && window.translations[lang] ? window.translations[lang] : window.translations.en;
       
       // Update modal content
       const titleElement = document.getElementById('productModalTitle');
@@ -899,8 +899,8 @@ function smoothScrollTo(targetId) {
     // Function to update additional systems
     function updateAdditionalSystems(product) {
       // Get current language
-      const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'ru';
-      const t = window.translations && window.translations[lang] ? window.translations[lang] : window.translations.ru;
+      const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
+      const t = window.translations && window.translations[lang] ? window.translations[lang] : window.translations.en;
       
       // External Protection Systems
       const externalProtectionSection = document.getElementById('externalProtectionSection');
