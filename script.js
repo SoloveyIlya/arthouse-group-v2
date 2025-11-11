@@ -1251,17 +1251,26 @@ function smoothScrollTo(targetId) {
     // Функции для галереи
     let currentGalleryIndex = 0;
     const originalGalleryImages = [
-      './media/gallery/1photo.JPG',
-      './media/gallery/2phot.jpg', 
-      './media/gallery/3phot.jpg',
-      './media/gallery/4photo.jpg',
-      './media/gallery/5phot.JPG',
-      './media/gallery/6phot.jpg',
-      './media/gallery/7phot.JPG',
-      './media/gallery/8phot.jpg',
-      './media/gallery/9phot.jpg',
-      './media/gallery/10phot.jpg',
-      './media/gallery/11phot.jpg'
+      './media/gallery/phot1.JPG',
+      './media/gallery/phot2.JPG',
+      './media/gallery/phot3.JPG',
+      './media/gallery/phot4.JPG',
+      './media/gallery/phot5.JPG',
+      './media/gallery/phot6.JPG',
+      './media/gallery/phot7.JPG',
+      './media/gallery/phot8.JPG',
+      './media/gallery/phot9.JPG',
+      './media/gallery/phot10.JPG',
+      './media/gallery/phot11.JPG',
+      './media/gallery/phot12.JPG',
+      './media/gallery/phot13.JPG',
+      './media/gallery/phot14.JPG',
+      './media/gallery/phot15.JPG',
+      './media/gallery/phot16.JPG',
+      './media/gallery/phot17.JPG',
+      './media/gallery/phot18.JPG',
+      './media/gallery/phot19.JPG',
+      './media/gallery/phot20.JPG'
     ];
     
     // Текущий массив для модального окна (может быть перестроен)
