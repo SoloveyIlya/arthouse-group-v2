@@ -1415,6 +1415,269 @@ function smoothScrollTo(targetId) {
           openStructureModal();
         });
       });
+
+      // Слайдер секции галереи
+      const gallerySliderTrack = document.getElementById('gallerySliderTrack');
+      const gallerySliderPrev = document.getElementById('gallerySliderPrev');
+      const gallerySliderNext = document.getElementById('gallerySliderNext');
+      const gallerySlides = gallerySliderTrack ? Array.from(gallerySliderTrack.querySelectorAll('.gallery-slide')) : [];
+      const galleryIndicatorsContainer = document.getElementById('gallerySliderIndicators');
+      const galleryIndicators = galleryIndicatorsContainer
+        ? Array.from(galleryIndicatorsContainer.querySelectorAll('.gallery-slider-indicator'))
+        : [];
+
+      if (gallerySliderTrack && gallerySliderPrev && gallerySliderNext) {
+        const getGalleryScrollAmount = () => {
+          const firstSlide = gallerySlides[0];
+          if (!firstSlide) return gallerySliderTrack.clientWidth;
+
+          const slideWidth = firstSlide.getBoundingClientRect().width;
+          const trackStyles = window.getComputedStyle(gallerySliderTrack);
+          const gapValue = parseFloat(trackStyles.columnGap || trackStyles.gap || '0') || 0;
+
+          return slideWidth + gapValue;
+        };
+
+        const clampToRange = (value, min, max) => Math.min(Math.max(value, min), max);
+
+        const updateGalleryIndicators = () => {
+          if (!galleryIndicators.length) return;
+
+          const scrollAmount = getGalleryScrollAmount();
+          if (!scrollAmount) return;
+
+          let currentIndex = Math.round(gallerySliderTrack.scrollLeft / scrollAmount);
+          const maxIndex = galleryIndicators.length - 1;
+          currentIndex = clampToRange(currentIndex, 0, maxIndex);
+
+          galleryIndicators.forEach((indicator, index) => {
+            const isActive = index === currentIndex;
+            indicator.classList.toggle('active', isActive);
+            indicator.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+
+            if (isActive) {
+              indicator.setAttribute('aria-current', 'true');
+            } else {
+              indicator.removeAttribute('aria-current');
+            }
+          });
+        };
+
+        const snapToNearestSlide = () => {
+          const scrollAmount = getGalleryScrollAmount();
+          if (!scrollAmount) return;
+
+          const maxIndex = Math.round(
+            Math.max((gallerySliderTrack.scrollWidth - gallerySliderTrack.clientWidth) / scrollAmount, 0)
+          );
+
+          let targetIndex = Math.round(gallerySliderTrack.scrollLeft / scrollAmount);
+          targetIndex = clampToRange(targetIndex, 0, maxIndex);
+
+          const targetLeft = targetIndex * scrollAmount;
+          gallerySliderTrack.scrollTo({ left: targetLeft, behavior: 'smooth' });
+          updateGalleryIndicators();
+        };
+
+        const updateGallerySliderButtons = () => {
+          const maxScroll = gallerySliderTrack.scrollWidth - gallerySliderTrack.clientWidth;
+          const atStart = gallerySliderTrack.scrollLeft <= 0;
+          const atEnd = gallerySliderTrack.scrollLeft >= maxScroll - 1;
+
+          gallerySliderPrev.disabled = atStart;
+          gallerySliderNext.disabled = atEnd || maxScroll <= 0;
+          updateGalleryIndicators();
+        };
+
+        const scrollByViewport = (direction = 1) => {
+          const amount = getGalleryScrollAmount() * direction;
+          gallerySliderTrack.scrollBy({ left: amount, behavior: 'smooth' });
+        };
+
+        const handleKeyNavigation = (event) => {
+          if (event.key === 'ArrowLeft') {
+            scrollByViewport(-1);
+          } else if (event.key === 'ArrowRight') {
+            scrollByViewport(1);
+          }
+        };
+
+        gallerySliderPrev.addEventListener('click', () => scrollByViewport(-1));
+        gallerySliderNext.addEventListener('click', () => scrollByViewport(1));
+        gallerySliderTrack.addEventListener('keydown', handleKeyNavigation);
+
+        gallerySliderTrack.addEventListener(
+          'wheel',
+          (event) => {
+            if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+              return;
+            }
+            event.preventDefault();
+            gallerySliderTrack.scrollBy({ left: event.deltaY, behavior: 'smooth' });
+          },
+          { passive: false }
+        );
+
+        gallerySliderTrack.addEventListener('scroll', updateGallerySliderButtons, { passive: true });
+        window.addEventListener('resize', updateGallerySliderButtons);
+
+        if (galleryIndicators.length) {
+          galleryIndicators.forEach(indicator => {
+            indicator.addEventListener('click', () => {
+              const page = parseInt(indicator.getAttribute('data-gallery-page') || '0', 10);
+              if (Number.isNaN(page)) {
+                return;
+              }
+              const scrollAmount = getGalleryScrollAmount();
+              gallerySliderTrack.scrollTo({ left: page * scrollAmount, behavior: 'smooth' });
+            });
+
+            indicator.addEventListener('keydown', event => {
+              if (event.key !== 'Enter' && event.key !== ' ') {
+                return;
+              }
+              event.preventDefault();
+              indicator.click();
+            });
+          });
+        }
+
+        // Drag-to-scroll for desktop
+        let isMouseDown = false;
+        let mouseStartX = 0;
+        let mouseStartScrollLeft = 0;
+        let suppressClick = false;
+        const mouseDragThreshold = 4;
+        const releaseClickSuppression = () => {
+          const delay = suppressClick ? 120 : 0;
+          setTimeout(() => {
+            suppressClick = false;
+          }, delay);
+        };
+
+        gallerySliderTrack.addEventListener(
+          'mousedown',
+          (event) => {
+            if (event.button !== 0) return;
+            isMouseDown = true;
+            suppressClick = false;
+            mouseStartX = event.pageX;
+            mouseStartScrollLeft = gallerySliderTrack.scrollLeft;
+            gallerySliderTrack.classList.add('is-dragging');
+          },
+          { passive: true }
+        );
+
+        gallerySliderTrack.addEventListener('mousemove', (event) => {
+          if (!isMouseDown) return;
+          event.preventDefault();
+          const delta = event.pageX - mouseStartX;
+          if (Math.abs(delta) > mouseDragThreshold) {
+            suppressClick = true;
+          }
+          gallerySliderTrack.scrollLeft = mouseStartScrollLeft - delta;
+        });
+
+        const endMouseDrag = (shouldSnap = true) => {
+          if (!isMouseDown) return;
+          isMouseDown = false;
+          gallerySliderTrack.classList.remove('is-dragging');
+          if (shouldSnap) {
+            snapToNearestSlide();
+          }
+          releaseClickSuppression();
+        };
+
+        gallerySliderTrack.addEventListener('mouseleave', () => endMouseDrag(false));
+        gallerySliderTrack.addEventListener('mouseup', () => endMouseDrag(true));
+
+        // Touch swipe with snap behavior
+        let touchStartX = 0;
+        let touchStartScrollLeft = 0;
+        let isTouching = false;
+        const touchThreshold = 50;
+
+        gallerySliderTrack.addEventListener(
+          'touchstart',
+          (event) => {
+            if (event.touches.length !== 1) return;
+            isTouching = true;
+            suppressClick = false;
+            touchStartX = event.touches[0].pageX;
+            touchStartScrollLeft = gallerySliderTrack.scrollLeft;
+          },
+          { passive: true }
+        );
+
+        gallerySliderTrack.addEventListener(
+          'touchmove',
+          (event) => {
+            if (!isTouching) return;
+            const currentX = event.touches[0].pageX;
+            if (!suppressClick && Math.abs(currentX - touchStartX) > mouseDragThreshold) {
+              suppressClick = true;
+            }
+          },
+          { passive: true }
+        );
+
+        gallerySliderTrack.addEventListener(
+          'touchend',
+          (event) => {
+            if (!isTouching) return;
+            isTouching = false;
+
+            const touchX = event.changedTouches[0]?.pageX ?? touchStartX;
+            const diff = touchStartX - touchX;
+            const scrollAmount = getGalleryScrollAmount();
+            if (!scrollAmount) return;
+
+            const maxIndex = Math.round(
+              Math.max((gallerySliderTrack.scrollWidth - gallerySliderTrack.clientWidth) / scrollAmount, 0)
+            );
+
+            let targetIndex = Math.round(gallerySliderTrack.scrollLeft / scrollAmount);
+
+            if (Math.abs(diff) > touchThreshold) {
+              suppressClick = true;
+              targetIndex += diff > 0 ? 1 : -1;
+            }
+
+            targetIndex = clampToRange(targetIndex, 0, maxIndex);
+            const targetLeft = targetIndex * scrollAmount;
+            gallerySliderTrack.scrollTo({ left: targetLeft, behavior: 'smooth' });
+
+            releaseClickSuppression();
+          },
+          { passive: true }
+        );
+
+        gallerySliderTrack.addEventListener(
+          'touchcancel',
+          () => {
+            if (!isTouching) return;
+            isTouching = false;
+            suppressClick = true;
+            releaseClickSuppression();
+          },
+          { passive: true }
+        );
+
+        // Prevent accidental modal opening after drag/swipe
+        gallerySliderTrack.addEventListener(
+          'click',
+          (event) => {
+            if (suppressClick) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+          },
+          true
+        );
+
+        updateGallerySliderButtons();
+        updateGalleryIndicators();
+      }
       
       // Кнопки заказа (теперь работают как ссылки, обработчики не нужны)
       // Все кнопки "Получить консультацию" и "Получить расчет" теперь ведут напрямую к #contact
